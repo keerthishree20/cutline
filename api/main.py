@@ -37,8 +37,11 @@ STATE: dict = {}
 async def lifespan(_: FastAPI):
     STATE["scorer"] = serving.Scorer()
     STATE["history"] = serving.HistoryStore()
+    # Build the SHAP explainer now. Lazily it costs ~2.5s on the first
+    # /explain, which lands on whoever clicks first during the demo.
+    _ = STATE["scorer"].explainer
     print(f"loaded: {STATE['scorer'].bundle.get('source')} bundle, "
-          f"tau_block={STATE['scorer'].tau_block:.4f}")
+          f"tau_block={STATE['scorer'].tau_block:.4f}, explainer warm")
     yield
     STATE.clear()
 
@@ -147,6 +150,41 @@ def curve() -> dict:
     return _serve_report("cost_curve.json", "scripts/03_cost_model.py")
 
 
+@app.get("/sample")
+def sample() -> dict:
+    """Held-out transactions a viewer can score, label stripped.
+
+    Deliberately weighted toward the risky tail — a random draw at a 3.4% fraud
+    rate flags nothing and demonstrates nothing. The weighting is disclosed
+    rather than hidden.
+    """
+    import csv
+
+    from cutline import config
+
+    path = config.REPORTS / "sample_upload.csv"
+    if not path.exists():
+        raise HTTPException(503, "sample not generated — run scripts/05_demo_queue.py")
+
+    numeric = {"TransactionID", "TransactionDT", "TransactionAmt", "card1",
+               "card2", "card3", "card5", "addr1", "dist1",
+               "C1", "C13", "C14", "D1", "D15"}
+    rows = []
+    with path.open() as fh:
+        for raw in csv.DictReader(fh):
+            row: dict = {}
+            for k, v in raw.items():
+                if v is None or v.strip() == "":
+                    continue          # absent is missing data, not an error
+                row[k] = float(v) if k in numeric else v
+            for k in ("TransactionID", "TransactionDT", "card1"):
+                if k in row:
+                    row[k] = int(row[k])
+            rows.append(row)
+    return {"n": len(rows), "rows": rows,
+            "note": "held-out rows, labels stripped, weighted toward the risky tail"}
+
+
 @app.get("/queue")
 def queue() -> dict:
     """Scored transactions for the review queue, built by scripts/05_demo_queue.py."""
@@ -204,11 +242,18 @@ def explain(txn: Transaction) -> dict:
 
 
 @app.post("/replay")
-def replay(batch: list[Transaction]) -> dict:
-    """Score a batch in order, as the demo feed does."""
+def replay(batch: list[Transaction], explain: bool = False) -> dict:
+    """Score a batch in order, as the demo feed and the upload panel do.
+
+    Order matters: velocity features look back over a card's history, so a
+    batch scored in arrival order gives later rows the benefit of earlier ones
+    — which is exactly what production does and what a shuffled batch would
+    quietly get wrong.
+    """
     if len(batch) > 2000:
         raise HTTPException(413, "batch too large; send 2000 or fewer")
-    scored = [_score_one(t, explain=False) for t in batch]
+    batch = sorted(batch, key=lambda t: t.TransactionDT)
+    scored = [_score_one(t, explain=explain) for t in batch]
     counts: dict[str, int] = {}
     for r in scored:
         counts[r["decision"]] = counts.get(r["decision"], 0) + 1

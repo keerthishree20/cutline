@@ -394,6 +394,29 @@ The live `/score` endpoint still exists and is still what gets demonstrated.
 Showing whether each decision was right — caught, missed, false decline — is the
 difference between a list of numbers and a demo.
 
+### Scoring your own transactions
+
+The dashboard originally only *read* pre-generated files — `/score` existed but
+nothing on the page ever called it, so a viewer could not try anything. The
+upload panel fixes that: drop in a CSV, or press the button, and rows go through
+`POST /replay?explain=true` against the live model.
+
+Two things that made this a real demo rather than a box that returns "allow":
+
+- **The sample file is a disclosed mix, not a random draw.** At a 3.4% fraud
+  rate, 25 random held-out rows flag *nothing* — the first version scored 25 of
+  25 as allow, which demonstrates precisely nothing. Half the file now comes from
+  the high-risk tail (12 of 25 block), and the panel says so on screen. Stacking
+  the file is fine; passing it off as a random draw would not be.
+- **The button scores real held-out rows, not an invented "suspicious"
+  transaction.** A hand-made row scored 0.095 and was allowed, because this model
+  leans on anonymised counting fields nobody can fabricate sensibly. A fake
+  would have understated the model, not flattered it.
+
+The SHAP explainer is now built at startup. Lazily it cost ~2.5s on the first
+`/explain`, and that latency landed on whoever clicked first. Median is now 62ms,
+max 85ms.
+
 ### What the reasons actually look like, and why
 
 **117 of 300 queue items have reasons that are entirely opaque**: "counting

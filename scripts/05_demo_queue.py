@@ -96,7 +96,49 @@ def main() -> None:
     print(f"  probability range {items[-1]['probability']:.5f} "
           f"to {items[0]['probability']:.5f}")
 
+    _write_sample_csv(test, scores)
     _verify(b, test, picked, scores)
+
+
+UPLOAD_FIELDS = ["TransactionID", "TransactionDT", "TransactionAmt", "card1",
+                 "card2", "card3", "card4", "card5", "card6", "addr1", "dist1",
+                 "ProductCD", "P_emaildomain", "R_emaildomain",
+                 "C1", "C13", "C14", "D1", "D15", "M4", "DeviceType"]
+
+
+def _write_sample_csv(test, scores, n: int = 25) -> None:
+    """Something to actually drag into the upload panel during the demo.
+
+    Real held-out rows with the label stripped, so a judge uploading this is
+    scoring transactions the model has genuinely never seen.
+
+    Deliberately a MIX, not a random draw. At a 3.4% fraud rate a random 25
+    rows flag nothing at all, and a demo file where every row is allowed
+    demonstrates precisely nothing. Roughly half come from the high-risk tail.
+    That is stacking the file, so the dashboard says so out loud — the honest
+    move is to disclose the sampling, not to pretend a random draw produced a
+    dramatic result.
+    """
+    import numpy as np
+
+    cols = [c for c in UPLOAD_FIELDS if c in test.columns]
+    rng = np.random.default_rng(config.RANDOM_STATE)
+    order = np.argsort(-scores)
+    risky = order[:200]
+    rest = order[len(order) // 3:]
+
+    pick = np.concatenate([
+        rng.choice(risky, size=n // 2, replace=False),
+        rng.choice(rest, size=n - n // 2, replace=False),
+    ])
+    rng.shuffle(pick)
+
+    sample = test.iloc[pick][cols]
+    out = config.REPORTS / "sample_upload.csv"
+    sample.to_csv(out, index=False)
+    flagged = int((scores[pick] >= 0.4194).sum())
+    print(f"wrote {out} ({n} unlabelled rows: {n // 2} from the high-risk tail, "
+          f"{flagged} would block at the shipped threshold)")
 
 
 def _context(row) -> list[str]:

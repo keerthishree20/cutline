@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import CostCurve from "@/components/CostCurve";
 import QueueTable from "@/components/QueueTable";
+import ScorePanel from "@/components/ScorePanel";
 import StatTile from "@/components/StatTile";
 import {
   API, decide, getCurve, getPolicy, getQueue, money, pct,
@@ -184,6 +185,8 @@ export default function Page() {
           <CostCurve curve={curve} index={index} onPick={setIndex} />
         </div>
       </section>
+
+      <ScorePanel tau={point.tau} currency={curve.currency} />
 
       <section className="flex flex-col gap-3">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
