@@ -1,0 +1,13 @@
+.venv/
+frontend/
+data/
+docs/
+scripts/
+notebooks/
+.git/
+__pycache__/
+**/__pycache__/
+*.parquet
+*.csv
+!reports/sample_upload.csv
+reports/*.png

@@ -42,6 +42,7 @@ async def lifespan(_: FastAPI):
     _ = STATE["scorer"].explainer
     print(f"loaded: {STATE['scorer'].bundle.get('source')} bundle, "
           f"tau_block={STATE['scorer'].tau_block:.4f}, explainer warm")
+    print(f"CORS allows: {ALLOWED_ORIGINS}")
     yield
     STATE.clear()
 
@@ -53,12 +54,22 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# The Next.js dashboard in Phase 5 runs on another origin.
+# The dashboard runs on another origin, so CORS is required — but an explicit
+# allowlist, never "*". Set ALLOWED_ORIGINS to the deployed frontend URL
+# (comma-separated) at deploy time; local development works without it.
+import os  # noqa: E402
+
+_DEFAULT_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000"
+ALLOWED_ORIGINS = [
+    o.strip() for o in os.getenv("ALLOWED_ORIGINS", _DEFAULT_ORIGINS).split(",")
+    if o.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
 
 class Transaction(BaseModel):

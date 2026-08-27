@@ -3,15 +3,19 @@ data/
 *.csv
 *.csv.zip
 
-# ...except the lab notebook, which is the point of the project
+# ...except the lab notebook, and the files the deployed service serves
 !reports/results.csv
+!reports/sample_upload.csv
 *.parquet
 *.zip
 
-# models & artifacts
+# models & artifacts — except the one the service loads at runtime. 6.6MB in
+# git is the cheap option: a release asset or object store would be one more
+# thing to authenticate and one more way for a deploy to come up modelless.
 models/
 *.joblib
 *.pkl
+!models/cutline.joblib
 
 # frontend
 node_modules/

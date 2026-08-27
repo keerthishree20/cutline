@@ -1,0 +1,10 @@
+# Alternative to Railway, same image. Whichever you reach first.
+services:
+  - type: web
+    name: cutline-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: ALLOWED_ORIGINS
+        sync: false   # set to the deployed frontend URL
