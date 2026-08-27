@@ -61,7 +61,8 @@ def main() -> None:
         assert rm.status_code == 200, rm.text
         j = rm.json()
         print(f"\nminimal payload (3 fields) -> {j['decision']} p={j['probability']:.4f} "
-              f"[sparse={j['sparse']}, {j['fields_absent']} fields absent, "
+              f"[sparse={j['sparse']}, {j['fields_supplied']} of "
+              f"{j['fields_supplied'] + j['fields_absent']} fields supplied, "
               f"history={j['history_seen']}]")
         for reason in j["reasons"]:
             print(f"   - {reason['reason']}")

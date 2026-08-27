@@ -134,7 +134,9 @@ def _score_one(txn: Transaction, explain: bool) -> dict:
     # A sparse request scores high for a real reason — missing history is
     # predictive in this dataset — but an unlabelled high score on a 3-field
     # curl reads as a broken model. Say how much was missing.
-    absent = scorer.bundle["feature_builder"].missing_source_columns(featurised)
+    builder = scorer.bundle["feature_builder"]
+    absent = builder.missing_source_values(featurised)
+    supplied = len(builder.source_columns_) - len(absent)
     result = {
         "transaction_id": txn.TransactionID,
         "probability": p,
@@ -143,7 +145,8 @@ def _score_one(txn: Transaction, explain: bool) -> dict:
         "tau_review": scorer.tau_review,
         "amount": txn.TransactionAmt,
         "fields_absent": len(absent),
-        "sparse": len(absent) > 3,
+        "fields_supplied": supplied,
+        "sparse": supplied <= len(builder.source_columns_) // 2,
         "history_seen": int(featurised.get("card1_count_24h", pd.Series([0])).iloc[0] or 0),
     }
 

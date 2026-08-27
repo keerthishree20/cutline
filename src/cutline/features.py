@@ -203,8 +203,22 @@ class FeatureBuilder:
         return X[self.columns_]
 
     def missing_source_columns(self, df: pd.DataFrame) -> list[str]:
-        """Which fit-time columns this frame does not carry. Useful in /health."""
+        """Fit-time columns this frame does not carry at all."""
         return [c for c in self.source_columns_ if c not in df.columns]
+
+    def missing_source_values(self, df: pd.DataFrame) -> list[str]:
+        """Fit-time columns that are absent OR null for every row given.
+
+        Column presence is the wrong measure of a sparse request. A serving
+        store accumulates columns from earlier transactions, so a three-field
+        request arrives carrying every column with almost all of them NaN —
+        `missing_source_columns` sees nothing wrong. This looks at the values.
+        """
+        out = []
+        for col in self.source_columns_:
+            if col not in df.columns or bool(df[col].isna().all()):
+                out.append(col)
+        return out
 
     def fit_transform(self, df: pd.DataFrame) -> pd.DataFrame:
         return self.fit(df).transform(df)
