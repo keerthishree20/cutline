@@ -47,8 +47,9 @@ class HistoryStore:
             if len(self._rows) > self.max_rows:
                 self._rows = self._rows.iloc[-self.max_rows:].reset_index(drop=True)
 
-        card = txn.get("card1")
-        subset = self._rows[self._rows["card1"] == card] if card is not None else self._rows
+        key = features.HISTORY_KEY
+        card = txn.get(key)
+        subset = self._rows[self._rows[key] == card] if card is not None else self._rows
         featurised = features.add_history_features(subset.reset_index(drop=True))
         return featurised.tail(1).reset_index(drop=True)
 

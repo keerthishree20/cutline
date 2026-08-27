@@ -28,6 +28,11 @@ import pandas as pd
 
 from .split import DT_COL, SECONDS_PER_DAY, day_index, hour_of_day
 
+# The column the per-card history features group by. Serving filters on this
+# same constant — hardcoding "card1" in two places is how the training/serving
+# parity guarantee quietly becomes false.
+HISTORY_KEY = "card1"
+
 FREQ_COLUMNS = ["card1", "addr1", "P_emaildomain", "card2"]
 CATEGORICAL = ["ProductCD", "card4", "card6", "M4", "DeviceType"]
 UNSEEN = 0  # frequency sentinel; genuine counts are always >= 1
@@ -52,7 +57,7 @@ def _prior_count_within(dt_sorted: np.ndarray, window: int) -> np.ndarray:
     return np.arange(len(dt_sorted)) - left
 
 
-def add_history_features(df: pd.DataFrame, key: str = "card1") -> pd.DataFrame:
+def add_history_features(df: pd.DataFrame, key: str = HISTORY_KEY) -> pd.DataFrame:
     """Velocity and deviation features, strictly backward-looking.
 
     Run this ONCE on the whole frame, before splitting. Nothing here peeks

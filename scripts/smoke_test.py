@@ -85,6 +85,51 @@ def test_serving_parity() -> None:
     print(f"  unseen-key rates held out: {({k: round(v, 4) for k, v in unseen.items()})}")
 
 
+def test_serving_matches_batch() -> None:
+    """The claim the README makes, actually checked.
+
+    Batch scoring runs `add_history_features` over the whole frame. Serving
+    rebuilds one row's history from a `HistoryStore`. Those are different code
+    paths, and the promise is that they agree exactly. Nothing verified that
+    until this test — and a silent mismatch here means the dashboard disagrees
+    with the metrics table, which is the worst possible thing to discover while
+    someone is watching.
+    """
+    import numpy as np
+
+    from cutline import bundle as bundle_mod
+    from cutline import serving
+
+    raw = synthetic.make_frame(8_000)
+    featurised = features.add_history_features(raw)
+    batch_scores = bundle_mod.score(bundle_mod.load(), featurised)
+
+    key = features.HISTORY_KEY
+    # A card with real history, scored late enough to have accumulated some.
+    counts = featurised[key].value_counts()
+    busy = counts[counts >= 5].index[0]
+    positions = np.flatnonzero((featurised[key] == busy).to_numpy())
+    target = int(positions[-1])
+
+    b = bundle_mod.load()
+    scorer_bundle = b
+    # Seed with every raw row strictly before the target, in time order.
+    seed = featurised.iloc[:target][raw.columns].reset_index(drop=True)
+    store = serving.HistoryStore(seed=seed)
+
+    row = featurised.iloc[target][raw.columns].to_dict()
+    rebuilt = store.add(row)
+    served = bundle_mod.score(scorer_bundle, rebuilt)[0]
+
+    expected = float(batch_scores[target])
+    assert abs(served - expected) < 1e-9, (
+        f"serving and batch disagree: {served:.12f} vs {expected:.12f}. "
+        f"The two feature paths have diverged."
+    )
+    print(f"serving/batch parity: card {busy} at row {target:,} — "
+          f"{served:.10f} both paths")
+
+
 def main() -> None:
     df = synthetic.make_frame(4_000)
 
@@ -128,6 +173,7 @@ def main() -> None:
         print("\ningestion OK — dtypes, join and split all sound.\n")
 
     test_serving_parity()
+    test_serving_matches_batch()
     print("\nsmoke test PASSED.")
 
 

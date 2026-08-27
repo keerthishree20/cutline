@@ -196,7 +196,8 @@ That is the whole argument: a perfectly good classifier delivers essentially
 nothing until someone chooses the threshold on purpose.
 
 Outputs: `cost_curve.png` (the U, τ\* marked), `cost_curve.json` (what the
-Phase 5 slider reads — dragging changes the threshold, never the model, which
+Phase 5 slider reads — snap it to the 72 distinct values, not a continuous
+range, or it will show changing numbers for an unchanged decision — dragging changes the threshold, never the model, which
 is why it is instant), `sensitivity.csv`.
 
 ### Two results here that are uncomfortable, and are reported anyway
@@ -286,6 +287,25 @@ values plus per-card values grouped by `card1`, so a row's features depend only
 on itself and earlier rows of the same card. Restricting to that card returns
 bit-identical output. Production would swap the store for a feature store; the
 feature code would not change.
+
+### The parity claim is now tested, not argued
+
+Batch scoring runs `add_history_features` over the whole frame; serving rebuilds
+one row's history from the store. Different code paths, and the promise is they
+agree exactly. `smoke_test.py` now takes a card with real history, seeds a store
+with every earlier row, scores the target both ways and asserts agreement to
+1e-9. A silent mismatch here means the dashboard disagrees with the metrics
+table — the worst thing to find out while someone is watching.
+
+### A sparse request scores high, and that is correct
+
+A three-field `curl` returns `block` at p=0.19 — the highest score in a typical
+session, from the *least* information. Absent columns become NaN, LightGBM
+routes NaN down its default branch, and `card1_is_first_seen` fires. The model
+is not broken: missing history is genuinely predictive in this dataset. But an
+unlabelled high score on a hand-written request reads as broken, so the response
+carries `sparse`, `fields_absent` and `history_seen`. **Demo through `/replay`
+with history warmed, never one cold request.**
 
 ### What SHAP is actually explaining
 

@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import sys
 import time
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 import pandas as pd
@@ -28,10 +29,24 @@ from pydantic import BaseModel, Field
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from cutline import serving  # noqa: E402
 
+STATE: dict = {}
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    STATE["scorer"] = serving.Scorer()
+    STATE["history"] = serving.HistoryStore()
+    print(f"loaded: {STATE['scorer'].bundle.get('source')} bundle, "
+          f"tau_block={STATE['scorer'].tau_block:.4f}")
+    yield
+    STATE.clear()
+
+
 app = FastAPI(
     title="Cutline",
     description="Payment risk scoring whose threshold comes from cost, not accuracy.",
     version="0.4.0",
+    lifespan=lifespan,
 )
 
 # The Next.js dashboard in Phase 5 runs on another origin.
@@ -41,9 +56,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-STATE: dict = {}
-
 
 class Transaction(BaseModel):
     """Only amount, time and card are required; the rest degrade gracefully.
@@ -85,15 +97,6 @@ class Transaction(BaseModel):
         return row
 
 
-@app.on_event("startup")
-def _startup() -> None:
-    STATE["scorer"] = serving.Scorer()
-    STATE["history"] = serving.HistoryStore()
-    scorer = STATE["scorer"]
-    print(f"loaded: {scorer.bundle.get('source')} bundle, "
-          f"tau_block={scorer.tau_block:.4f}")
-
-
 def _scorer() -> serving.Scorer:
     s = STATE.get("scorer")
     if s is None:
@@ -128,6 +131,10 @@ def _score_one(txn: Transaction, explain: bool) -> dict:
     p = float(scorer.score(featurised)[0])
     decision = scorer.decide(p)
 
+    # A sparse request scores high for a real reason — missing history is
+    # predictive in this dataset — but an unlabelled high score on a 3-field
+    # curl reads as a broken model. Say how much was missing.
+    absent = scorer.bundle["feature_builder"].missing_source_columns(featurised)
     result = {
         "transaction_id": txn.TransactionID,
         "probability": p,
@@ -135,6 +142,9 @@ def _score_one(txn: Transaction, explain: bool) -> dict:
         "tau_block": scorer.tau_block,
         "tau_review": scorer.tau_review,
         "amount": txn.TransactionAmt,
+        "fields_absent": len(absent),
+        "sparse": len(absent) > 3,
+        "history_seen": int(featurised.get("card1_count_24h", pd.Series([0])).iloc[0] or 0),
     }
 
     if explain:
