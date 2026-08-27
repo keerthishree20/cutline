@@ -36,7 +36,8 @@ def rebuild_test_set(source: str):
         df = synthetic.make_frame(80_000)
     else:
         df = data.load()
-    return split.time_ordered_split(features.add_history_features(df)).test
+    parts = split.time_ordered_split(features.add_history_features(df))
+    return parts
 
 
 def main() -> None:
@@ -47,7 +48,21 @@ def main() -> None:
         print("!! bundle was trained on SYNTHETIC data — every figure below is\n"
               "!! shape, not magnitude. Do not put these numbers in a deck.\n")
 
-    test = rebuild_test_set(source)
+    parts = rebuild_test_set(source)
+    # The regeneration above must reproduce Phase 2's split exactly. Without
+    # this assert, changing the row count in 02_model.py silently scores a
+    # different test set here and nothing complains.
+    recorded = b.get("boundaries", {})
+    for name, got in (("train_end_dt", parts.train_end_dt),
+                      ("calib_end_dt", parts.calib_end_dt)):
+        want = recorded.get(name)
+        if want is not None and want != got:
+            raise SystemExit(
+                f"split mismatch: bundle recorded {name}={want}, regenerated {got}.\n"
+                f"The bundle and this script disagree about the test set. "
+                f"Re-run scripts/02_model.py."
+            )
+    test = parts.test
     p = bundle_mod.score(b, test)
     y = test["isFraud"].to_numpy()
     amounts = test["TransactionAmt"].to_numpy(dtype=float)
@@ -59,20 +74,27 @@ def main() -> None:
     curve = costs.sweep(y, p, amounts, c)
     best = costs.optimal(curve)
     nothing = costs.do_nothing_cost(y, amounts, c)
-    default = costs.at_threshold(curve, 0.50)
-    paranoid = costs.at_threshold(curve, 0.05)
+    # Exact thresholds, not the nearest score present. Snapping to a sample
+    # would price "block two transactions" and label it the 0.5 default.
+    default = costs.policy_at(y, p, amounts, 0.50, c)
+    paranoid = costs.policy_at(y, p, amounts, 0.05, c)
+
+    print(f"\nisotonic collapses {len(p):,} scores to {curve['tau'].nunique():,} "
+          f"distinct values,")
+    print("so that is how many threshold positions the Phase 5 slider actually has.")
+    print("A finer slider would be a lie about the model's resolution.")
 
     print(f"\ntest set: {len(y):,} transactions, {int(y.sum()):,} fraudulent "
           f"({y.mean():.2%}), {amounts.sum():,.0f} {config.CURRENCY} total value")
 
     rows = [
         ("approve everything", np.nan, nothing, 0.0, 0.0),
-        ("tau = 0.50 (default)", float(default["tau"]), float(default["cost"]),
-         float(default["fraud_value_caught"]), float(default["good_declined_rate"])),
+        ("tau = 0.50 (default)", default["tau"], default["cost"],
+         default["fraud_value_caught"], default["good_declined_rate"]),
         ("tau* (cost-optimal)", float(best["tau"]), float(best["cost"]),
          float(best["fraud_value_caught"]), float(best["good_declined_rate"])),
-        ("tau = 0.05 (paranoid)", float(paranoid["tau"]), float(paranoid["cost"]),
-         float(paranoid["fraud_value_caught"]), float(paranoid["good_declined_rate"])),
+        ("tau = 0.05 (paranoid)", paranoid["tau"], paranoid["cost"],
+         paranoid["fraud_value_caught"], paranoid["good_declined_rate"]),
     ]
     print(f"\n{'policy':<24}{'tau':>8}{'cost':>14}{'fraud caught':>15}{'good declined':>15}")
     print("-" * 76)
@@ -103,13 +125,20 @@ def main() -> None:
         print("!! ceiling as a business constraint on top of the cost minimum.")
 
     # ---- three bands ----
+    cap = int(0.02 * len(y))  # an analyst queue is ~2% of traffic, not 65%
     band = costs.review_band(y, p, amounts, tau_block=float(best["tau"]),
-                             tau_review=float(best["tau"]) / 3.0, c=c)
+                             tau_review=float(best["tau"]) / 3.0, c=c,
+                             catch_rate=0.70, max_reviews=cap)
     print(f"\nthree bands (block >= {band['tau_block']:.4f}, "
-          f"review >= {band['tau_review']:.4f}):")
+          f"review >= {band['tau_review']:.4f}, catch rate {band['catch_rate']:.0%}, "
+          f"queue cap {cap:,}):")
     print(f"  blocked {band['blocked']:,}  reviewed {band['reviewed']:,}  "
-          f"allowed {band['allowed']:,}   cost {band['cost']:,.0f}")
-    print("  (assumes review catches everything it looks at — optimistic; say so)")
+          f"(overflowed to allow: {band['review_overflow']:,})  "
+          f"allowed {band['allowed']:,}")
+    print(f"  cost {band['cost']:,.0f}  vs {best['cost']:,.0f} for the single threshold")
+    print("  Reviewers catch 70%, not everything, and the queue is capped at 2% of")
+    print("  traffic. Without both, routing most traffic to review buys near-perfect")
+    print("  detection for pocket change and the band policy 'wins' on an artifact.")
 
     # ---- sensitivity ----
     sens = costs.sensitivity(y, p, amounts, c)
@@ -117,6 +146,27 @@ def main() -> None:
     print(sens[["variant", "tau_star", "cost", "fraud_value_caught",
                 "good_declined_rate"]].to_string(index=False,
                                                  float_format=lambda v: f"{v:.4f}"))
+    base_tau = float(sens.loc[sens["variant"] == "baseline", "tau_star"].iloc[0])
+    print("\n  Which constant actually governs tau*:")
+    for _, r in sens[sens["variant"] != "baseline"].iterrows():
+        ratio = r["tau_star"] / max(base_tau, 1e-9)
+        arrow = "up" if ratio > 1.05 else ("down" if ratio < 0.95 else "flat")
+        print(f"    {r['variant']:<18} tau* {arrow:<5} {ratio:>5.2f}x")
+    # Derive the claim from the table rather than asserting it. Hardcoding
+    # "the dispute fee barely matters" would be a sentence that silently
+    # becomes false on a different dataset or a different model.
+    moves = sens[sens["variant"] != "baseline"].assign(
+        ratio=lambda d: (d["tau_star"] / max(base_tau, 1e-9)).clip(lower=1e-9)
+    )
+    moves["shift"] = np.abs(np.log(moves["ratio"]))
+    biggest = moves.sort_values("shift", ascending=False).iloc[0]
+    smallest = moves.sort_values("shift").iloc[0]
+    print(f"  Biggest mover: {biggest['variant']} ({biggest['ratio']:.2f}x). "
+          f"Smallest: {smallest['variant']} ({smallest['ratio']:.2f}x).")
+    print("  Name whichever constant dominates when you present — 'tau* is governed")
+    print("  by X' is a far better line than quoting a range, and the table above")
+    print("  tells you which X without you having to guess.")
+
     lo, hi = float(sens["tau_star"].min()), float(sens["tau_star"].max())
     print(f"\n  tau* ranges {lo:.4f} - {hi:.4f} ({hi / max(lo, 1e-9):.1f}x) across variants.")
     if hi / max(lo, 1e-9) > 2:

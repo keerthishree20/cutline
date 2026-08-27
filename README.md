@@ -187,9 +187,9 @@ not magnitude):
 | policy | τ | cost | fraud caught by value | good declined |
 |---|---|---|---|---|
 | approve everything | — | 193,326 | 0.0% | 0.00% |
-| τ = 0.50 (default) | 0.5937 | 192,185 | 0.7% | 0.01% |
-| **τ\* (cost-optimal)** | **0.0401** | **109,446** | **77.2%** | 22.07% |
-| τ = 0.05 (paranoid) | 0.0539 | 111,406 | 72.0% | 17.74% |
+| τ = 0.50 (default) | 0.5000 | 192,185 | 0.7% | 0.01% |
+| **τ\* (cost-optimal)** | **0.0401** | **111,300** | **83.2%** | 29.67% |
+| τ = 0.05 (paranoid) | 0.0500 | 111,406 | 72.0% | 17.74% |
 
 The default threshold costs 192,185 against 193,326 for having no model at all.
 That is the whole argument: a perfectly good classifier delivers essentially
@@ -201,16 +201,43 @@ is why it is instant), `sensitivity.csv`.
 
 ### Two results here that are uncomfortable, and are reported anyway
 
-- **τ\* declines 22% of good customers.** No merchant would accept that. The
+- **τ\* declines 30% of good customers.** No merchant would accept that. The
   cost model is not wrong — it is reporting that the *model* is weak. When a
   classifier cannot separate, blocking indiscriminately genuinely is cheaper
   under these constants. The fix is a better classifier, or a decline-rate
   ceiling imposed as a business constraint on top of the cost minimum. The
   script prints this warning whenever the rate exceeds 5%.
-- **τ\* moves 5.7x across the sensitivity variants** (0.034 → 0.191). The
+- **τ\* moves 5.0x across the sensitivity variants** (0.040 → 0.201). The
   assumed constants are load-bearing. Lead with that rather than letting a judge
   find it: the method is sound, and the constants need a real merchant's
   numbers. `sensitivity.csv` has the full table.
+
+### Two bugs the cost model produced
+
+- **Named policies were snapping to the nearest score present.** `at_threshold`
+  finds the closest row on the curve, so "τ = 0.50" reported τ=0.5937 — the cost
+  of blocking two transactions, labelled as the default policy. `policy_at`
+  evaluates the exact threshold. The "default is barely better than nothing"
+  claim survives, at a genuine 0.50.
+- **The sweep priced policies no threshold could deliver.** It costed "block the
+  top k", which equals "block everything at or above τ" only when no row outside
+  the prefix shares the k-th score. **Isotonic calibration collapses 16,000
+  scores to 72 distinct values**, so ties were everywhere and the curve's minimum
+  disagreed with direct evaluation by 1.8%. The sweep now collapses tied scores;
+  `optimal()` and `policy_at()` agree exactly.
+
+That 72 is worth keeping in mind for Phase 5: it is how many positions the
+threshold slider actually has. A finer slider would misrepresent the model's
+resolution.
+
+### The three-band policy needed two brakes
+
+With reviewers catching *everything* they look at for one analyst fee, routing
+most traffic to review buys near-perfect detection for pocket change and "wins"
+against the single threshold on an artifact. `review_band` now takes a
+`catch_rate` (0.70) and a queue cap (2% of traffic, with overflow falling
+through to allow) — because an analyst team that can clear 65% of all
+transactions does not exist.
 
 ### The scoring path is shared, deliberately
 
