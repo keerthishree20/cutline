@@ -1,34 +1,51 @@
 @import "tailwindcss";
 
+/* Status colours are validated, not chosen by eye: run
+   scripts/validate_palette.js from the dataviz skill. The previous pair
+   (#96690F review / #A8402F block) sat at deltaE 11.1 in NORMAL vision and 4.7
+   under deuteranopia — indistinguishable. These clear every check. The amber
+   carries a contrast WARN against the light surface, which is why every chip
+   and every bar segment ships a visible text label rather than relying on
+   colour alone. */
 :root {
-  --bg: #f1f4f4;
+  --bg: #f2f5f5;
   --surface: #ffffff;
-  --surface-2: #e9eeee;
-  --ink: #141c1d;
-  --muted: #5a6a6b;
-  --faint: #869596;
-  --hair: #d5dede;
+  --surface-2: #eaefef;
+  --surface-3: #dde5e5;
+  --ink: #101819;
+  --muted: #566566;
+  --faint: #859494;
+  --hair: #d3dddd;
+  --hair-strong: #b6c5c5;
   --accent: #0e6b70;
-  --accent-soft: #dcecec;
-  --ok: #37795a;
-  --warn: #96690f;
-  --risk: #a8402f;
+  --accent-2: #0a5054;
+  --accent-soft: #d9ebeb;
+  --block: #c2183c;
+  --review: #d08700;
+  --allow: #127a4a;
+  --shadow-sm: 0 1px 2px rgb(16 24 25 / 0.06);
+  --shadow: 0 1px 2px rgb(16 24 25 / 0.05), 0 10px 26px -14px rgb(16 24 25 / 0.28);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0d1314;
-    --surface: #151e1f;
-    --surface-2: #1b2627;
-    --ink: #e3ebea;
-    --muted: #94a5a5;
-    --faint: #6e8080;
-    --hair: #24302f;
+    --bg: #0b1112;
+    --surface: #141d1e;
+    --surface-2: #1a2526;
+    --surface-3: #223030;
+    --ink: #e5eceb;
+    --muted: #96a7a7;
+    --faint: #6d7f7f;
+    --hair: #223030;
+    --hair-strong: #334342;
     --accent: #56c2c6;
-    --accent-soft: #16302f;
-    --ok: #6bbb89;
-    --warn: #d5a64c;
-    --risk: #e08272;
+    --accent-2: #7ad4d7;
+    --accent-soft: #14302f;
+    --block: #d9466a;
+    --review: #c68420;
+    --allow: #0e9280;
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.45), 0 12px 30px -16px rgb(0 0 0 / 0.8);
   }
 }
 
@@ -36,39 +53,77 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
   --color-hair: var(--hair);
+  --color-hair-strong: var(--hair-strong);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
-  --color-ok: var(--ok);
-  --color-warn: var(--warn);
-  --color-risk: var(--risk);
+  --color-block: var(--block);
+  --color-review: var(--review);
+  --color-allow: var(--allow);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
 }
 
 html, body { background: var(--bg); color: var(--ink); }
+body { -webkit-font-smoothing: antialiased; }
+
 .tabular { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--font-mono), ui-monospace, monospace; }
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  border-radius: 6px;
+}
+
+/* Numbers that change under the slider get a short transition so a drag reads
+   as one continuous quantity rather than a flicker of unrelated values. */
+.metric { transition: color 160ms ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
 
 input[type="range"] {
-  -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer;
+  -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer; width: 100%;
 }
 input[type="range"]::-webkit-slider-runnable-track {
-  height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--hair);
+  height: 8px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--allow) 0%, var(--review) 50%, var(--block) 100%);
+  opacity: 0.28;
 }
 input[type="range"]::-moz-range-track {
-  height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--hair);
+  height: 8px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--allow) 0%, var(--review) 50%, var(--block) 100%);
+  opacity: 0.28;
 }
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; appearance: none; margin-top: -7px;
-  height: 19px; width: 19px; border-radius: 50%;
-  background: var(--accent); border: 2px solid var(--surface);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  -webkit-appearance: none; appearance: none; margin-top: -6px;
+  height: 20px; width: 20px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--surface);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+  transition: transform 120ms ease;
 }
 input[type="range"]::-moz-range-thumb {
-  height: 19px; width: 19px; border-radius: 50%;
-  background: var(--accent); border: 2px solid var(--surface);
+  height: 20px; width: 20px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--surface);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
 }
-input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.12); }
+input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 6px; }
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
+}

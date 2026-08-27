@@ -3,28 +3,35 @@ export default function StatTile({
   value,
   sub,
   tone = "ink",
+  accent,
 }: {
   label: string;
   value: string;
   sub?: string;
-  tone?: "ink" | "ok" | "risk" | "accent";
+  tone?: "ink" | "allow" | "block" | "accent";
+  accent?: boolean;
 }) {
   const color = {
     ink: "text-ink",
-    ok: "text-[var(--ok)]",
-    risk: "text-[var(--risk)]",
+    allow: "text-[var(--allow)]",
+    block: "text-[var(--block)]",
     accent: "text-[var(--accent)]",
   }[tone];
 
   return (
-    <div className="flex flex-col gap-1 rounded border border-hair bg-surface px-4 py-3">
-      <span className="text-[11px] uppercase tracking-wider text-faint font-[family-name:var(--font-mono)]">
-        {label}
-      </span>
-      <span className={`text-2xl font-semibold tabular font-[family-name:var(--font-mono)] ${color}`}>
+    <div
+      className={`relative flex flex-col gap-1.5 overflow-hidden rounded-md border bg-surface px-4 py-3.5 ${
+        accent ? "border-[var(--accent)]/45" : "border-hair"
+      }`}
+    >
+      {accent ? (
+        <span className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)]" aria-hidden />
+      ) : null}
+      <span className="label">{label}</span>
+      <span className={`mono tabular metric text-[26px] leading-none font-semibold ${color}`}>
         {value}
       </span>
-      {sub ? <span className="text-xs text-muted leading-snug">{sub}</span> : null}
+      {sub ? <span className="text-[11.5px] leading-snug text-muted">{sub}</span> : null}
     </div>
   );
 }

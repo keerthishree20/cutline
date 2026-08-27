@@ -353,6 +353,8 @@ payload rather than leaving it to the reader.
 
 ## Phase 5 — the dashboard
 
+![Cutline dashboard](docs/dashboard.png)
+
 ```bash
 .venv/bin/uvicorn api.main:app --port 8000      # terminal 1
 cd frontend && npm run dev                      # terminal 2 -> localhost:3000
@@ -360,6 +362,34 @@ cd frontend && npm run dev                      # terminal 2 -> localhost:3000
 
 Next.js 16, React 19, Tailwind 4. Three panels: the threshold slider with four
 live stat tiles, the cost curve, and the review queue.
+
+### The status colours were validated, not chosen
+
+The first pass used `#96690F` for review and `#A8402F` for block. Those sit at
+**ΔE 11.1 in normal vision and 4.7 under deuteranopia** — effectively the same
+colour to a red-green colourblind viewer, and hard to separate for anyone. The
+green also read as grey (chroma 0.084, below the floor).
+
+Re-stepped and re-validated: light `#C2183C / #D08700 / #127A4A` (worst adjacent
+pair ΔE 12.1 under protanopia, 22.6 in normal vision) and dark
+`#D9466A / #C68420 / #0E9280` (ΔE 9.9). The amber still carries a contrast
+warning against the light surface, which is why every chip and every bar segment
+ships a visible text label instead of relying on colour alone.
+
+### Two things the first render got wrong
+
+Building it and *looking* at it caught both:
+
+- **The cost axis made the U invisible.** Blocking every transaction costs about
+  $4.9M against $711k for doing nothing, so an honest full-range y-axis squashed
+  the entire interesting band into the bottom sixth of the plot and it read as a
+  flat line. The axis is now cut at 1.12× the do-nothing cost and says so on the
+  chart — nothing is hidden, and the region above the cut is uniformly terrible
+  and carries no information.
+- **The queue was sorted by raw probability**, so the top ten rows were all
+  `1.0000` with near-identical reasons. It now sorts by **expected loss**
+  (probability × amount), which is how an analyst actually works a queue and is
+  far more legible.
 
 ### The slider binds to an index, not a threshold
 
