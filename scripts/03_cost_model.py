@@ -73,6 +73,7 @@ def main() -> None:
 
     curve = costs.sweep(y, p, amounts, c)
     best = costs.optimal(curve)
+    shipped = costs.constrained_optimal(curve, config.MAX_DECLINE_RATE)
     nothing = costs.do_nothing_cost(y, amounts, c)
     # Exact thresholds, not the nearest score present. Snapping to a sample
     # would price "block two transactions" and label it the 0.5 default.
@@ -91,8 +92,11 @@ def main() -> None:
         ("approve everything", np.nan, nothing, 0.0, 0.0),
         ("tau = 0.50 (default)", default["tau"], default["cost"],
          default["fraud_value_caught"], default["good_declined_rate"]),
-        ("tau* (cost-optimal)", float(best["tau"]), float(best["cost"]),
+        ("tau* (pure cost min)", float(best["tau"]), float(best["cost"]),
          float(best["fraud_value_caught"]), float(best["good_declined_rate"])),
+        (f"tau_ship (<= {config.MAX_DECLINE_RATE:.0%} declines)", float(shipped["tau"]),
+         float(shipped["cost"]), float(shipped["fraud_value_caught"]),
+         float(shipped["good_declined_rate"])),
         ("tau = 0.05 (paranoid)", paranoid["tau"], paranoid["cost"],
          paranoid["fraud_value_caught"], paranoid["good_declined_rate"]),
     ]
@@ -102,11 +106,13 @@ def main() -> None:
         tau_s = "  —" if np.isnan(tau) else f"{tau:.4f}"
         print(f"{label:<24}{tau_s:>8}{cost:>14,.0f}{caught:>14.1%}{declined:>15.2%}")
 
-    saved = nothing - float(best["cost"])
+    saved = nothing - float(shipped["cost"])
     per_10k = saved / len(y) * 10_000
     print("\n" + "=" * 76)
-    print(f"At tau* = {best['tau']:.4f} we catch {best['fraud_value_caught']:.1%} of fraud")
-    print(f"BY VALUE while declining {best['good_declined_rate']:.2%} of good customers,")
+    print(f"RECOMMENDED POLICY  tau = {shipped['tau']:.4f}")
+    print(f"We catch {shipped['fraud_value_caught']:.1%} of fraud BY VALUE while declining")
+    print(f"{shipped['good_declined_rate']:.2%} of good customers — inside the "
+          f"{config.MAX_DECLINE_RATE:.0%} ceiling the business sets —")
     print(f"saving {saved:,.0f} {config.CURRENCY} on this test set "
           f"({per_10k:,.0f} {config.CURRENCY} per 10,000 transactions).")
     print(f"In INR at {config.USD_TO_INR:.0f}/USD that is "
@@ -116,26 +122,45 @@ def main() -> None:
     print(f"\nNote the default: tau=0.50 costs {default['cost']:,.0f}, barely better than")
     print(f"the {nothing:,.0f} of doing nothing at all. That is the argument.")
 
+    gap = float(shipped["cost"]) - float(best["cost"])
+    print(f"\nThe ceiling costs {gap:,.0f} {config.CURRENCY} against pure cost "
+          f"minimisation ({gap / max(float(best['cost']), 1e-9):+.1%}), and takes")
+    print(f"declines from {best['good_declined_rate']:.2%} to "
+          f"{shipped['good_declined_rate']:.2%} while giving up "
+          f"{best['fraud_value_caught'] - shipped['fraud_value_caught']:.1%} of fraud value.")
+    print("That trade is the business's to make, not the model's, which is why both")
+    print("optima are reported instead of one being chosen silently.")
+
+    # The ceiling is a dial, and its setting changes the answer a lot. Show the
+    # dial rather than making the reader edit config and re-run to find out.
+    print(f"\nwhere the ceiling could sit:")
+    print(f"  {'ceiling':>9}{'tau':>9}{'cost':>12}{'fraud caught':>15}{'declined':>11}")
+    print("  " + "-" * 54)
+    for ceiling in (0.005, 0.01, 0.02, 0.05, 1.0):
+        row = costs.constrained_optimal(curve, ceiling)
+        label = "none" if ceiling >= 1.0 else f"{ceiling:.1%}"
+        marker = "  <- current" if abs(ceiling - config.MAX_DECLINE_RATE) < 1e-9 else ""
+        print(f"  {label:>9}{row['tau']:>9.4f}{row['cost']:>12,.0f}"
+              f"{row['fraud_value_caught']:>14.1%}{row['good_declined_rate']:>11.2%}{marker}")
+    print(f"  Set it in config.MAX_DECLINE_RATE. A tighter ceiling buys goodwill")
+    print("  with fraud losses; the table is what that exchange rate actually is.")
+
     decline = float(best["good_declined_rate"])
-    if decline > 0.02:
-        print(f"\n!! tau* declines {decline:.1%} of good customers — more than any real")
-        print("!! merchant would accept. The cost model is not wrong; it is answering")
-        print("!! the question it was asked, which is 'minimise total cost' and not")
-        print("!! 'minimise cost subject to a decline-rate ceiling'. Under these")
-        print("!! constants a false decline is cheap, so the optimum blocks freely.")
-        print("!! Two honest fixes, and you should name both:")
-        print("!!   1. add a decline-rate ceiling as a business constraint and report")
-        print("!!      the constrained optimum alongside the unconstrained one")
-        print("!!   2. raise the support cost to reflect churn, not just a ticket —")
-        print("!!      a turned-away customer often does not come back")
+    if decline > config.MAX_DECLINE_RATE:
+        print(f"\nNote: pure cost minimisation would decline {decline:.2%} of good")
+        print(f"customers, above the {config.MAX_DECLINE_RATE:.0%} ceiling — which is "
+              f"why tau_ship exists and")
+        print("is the policy recommended above. Churn is already priced into the")
+        print("constants; without it the unconstrained optimum blocks harder still.")
         if decline > 0.20:
-            print("!! At this rate the classifier is also genuinely weak; a better model")
-            print("!! moves the optimum more than either fix above.")
+            print("At this rate the classifier is also genuinely weak, and a better")
+            print("model would move the optimum more than either the ceiling or the")
+            print("churn constant does.")
 
     # ---- three bands ----
     cap = int(0.02 * len(y))  # an analyst queue is ~2% of traffic, not 65%
-    band = costs.review_band(y, p, amounts, tau_block=float(best["tau"]),
-                             tau_review=float(best["tau"]) / 3.0, c=c,
+    band = costs.review_band(y, p, amounts, tau_block=float(shipped["tau"]),
+                             tau_review=float(shipped["tau"]) / 3.0, c=c,
                              catch_rate=0.70, max_reviews=cap)
     print(f"\nthree bands (block >= {band['tau_block']:.4f}, "
           f"review >= {band['tau_review']:.4f}, catch rate {band['catch_rate']:.0%}, "
@@ -143,7 +168,7 @@ def main() -> None:
     print(f"  blocked {band['blocked']:,}  reviewed {band['reviewed']:,}  "
           f"(overflowed to allow: {band['review_overflow']:,})  "
           f"allowed {band['allowed']:,}")
-    print(f"  cost {band['cost']:,.0f}  vs {best['cost']:,.0f} for the single threshold")
+    print(f"  cost {band['cost']:,.0f}  vs {shipped['cost']:,.0f} for the single threshold")
     print("  Reviewers catch 70%, not everything, and the queue is capped at 2% of")
     print("  traffic. Without both, routing most traffic to review buys near-perfect")
     print("  detection for pocket change and the band policy 'wins' on an artifact.")
@@ -185,10 +210,10 @@ def main() -> None:
         print("  Narrow: the assumed constants are not load-bearing, which is the")
         print("  strongest possible answer to \'you made those numbers up\'.")
 
-    _write_outputs(curve, sens, best, nothing, source)
+    _write_outputs(curve, sens, best, shipped, nothing, source)
 
 
-def _write_outputs(curve, sens, best, nothing, source: str) -> None:
+def _write_outputs(curve, sens, best, shipped, nothing, source: str) -> None:
     config.REPORTS.mkdir(parents=True, exist_ok=True)
 
     sens.to_csv(config.REPORTS / "sensitivity.csv", index=False)
@@ -201,6 +226,12 @@ def _write_outputs(curve, sens, best, nothing, source: str) -> None:
         "source": source,
         "tau_star": float(best["tau"]),
         "cost_at_tau_star": float(best["cost"]),
+        # What the service actually uses. Pure cost minimisation is reported
+        # for honesty; it is not what anyone would ship.
+        "tau_recommended": float(shipped["tau"]),
+        "cost_at_tau_recommended": float(shipped["cost"]),
+        "max_decline_rate": config.MAX_DECLINE_RATE,
+        "decline_rate_at_recommended": float(shipped["good_declined_rate"]),
         "cost_do_nothing": float(nothing),
         "currency": config.CURRENCY,
         "points": thin.round(6).to_dict(orient="records"),
@@ -214,6 +245,9 @@ def _write_outputs(curve, sens, best, nothing, source: str) -> None:
     fig, ax = plt.subplots(figsize=(6.4, 4.4))
     ax.plot(curve["tau"], curve["cost"], color="#0E6B70", lw=1.8)
     ax.axvline(float(best["tau"]), color="#A8402F", lw=1.2, ls="--")
+    ax.axvline(float(shipped["tau"]), color="#0E6B70", lw=1.2, ls="-.")
+    ax.annotate(f"ship {shipped['tau']:.3f}", xy=(float(shipped["tau"]), float(shipped["cost"])),
+                xytext=(8, -22), textcoords="offset points", fontsize=9, color="#0E6B70")
     ax.axhline(nothing, color="#869596", lw=1, ls=":")
     ax.annotate(f"τ* = {best['tau']:.3f}", xy=(float(best["tau"]), float(best["cost"])),
                 xytext=(8, 18), textcoords="offset points", fontsize=9, color="#A8402F")

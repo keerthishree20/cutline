@@ -38,12 +38,20 @@ class CostConstants:
     gross_margin: float = config.GROSS_MARGIN
     support_cost: float = config.SUPPORT_COST
     analyst_cost: float = config.ANALYST_COST
+    churn_cost: float = config.CHURN_COST
+
+    @property
+    def false_decline_fixed(self) -> float:
+        """Everything a false decline costs beyond the lost margin."""
+        return self.support_cost + self.churn_cost
 
     def render(self) -> str:
         return (
             f"  dispute fee   {self.dispute_fee:>8.2f} {config.CURRENCY}  per missed chargeback\n"
             f"  gross margin  {self.gross_margin:>8.2%}      earned on a legitimate sale\n"
             f"  support cost  {self.support_cost:>8.2f} {config.CURRENCY}  per false decline\n"
+            f"  churn cost    {self.churn_cost:>8.2f} {config.CURRENCY}  per false decline "
+            f"({config.CHURN_RATE:.0%} x {config.CUSTOMER_LIFETIME_VALUE:.0f} lifetime value)\n"
             f"  analyst cost  {self.analyst_cost:>8.2f} {config.CURRENCY}  per manual review"
         )
 
@@ -89,7 +97,7 @@ def sweep(y_true, y_score, amounts, c: CostConstants | None = None) -> pd.DataFr
     missed_value = total_fraud_value - caught_value
 
     fraud_cost = missed_value + c.dispute_fee * missed_n
-    decline_cost = c.gross_margin * fp_value + c.support_cost * fp_n
+    decline_cost = c.gross_margin * fp_value + c.false_decline_fixed * fp_n
 
     # Collapse tied scores. A prefix of length k is only an implementable
     # policy if no row outside it shares the k-th score — otherwise "block the
@@ -123,6 +131,27 @@ def optimal(curve: pd.DataFrame) -> pd.Series:
     return curve.loc[curve["cost"].idxmin()]
 
 
+def constrained_optimal(curve: pd.DataFrame,
+                        max_decline_rate: float = config.MAX_DECLINE_RATE) -> pd.Series:
+    """Cheapest policy that also respects a false-decline ceiling.
+
+    Pure cost minimisation answers a question no merchant actually asks. It
+    treats a wrongly declined customer as a small fixed loss, so when declines
+    are cheap relative to fraud the optimum blocks freely — here, about a tenth
+    of legitimate traffic. Real risk teams operate under a decline-rate budget
+    set by the business, not by the model.
+
+    Report both. The unconstrained optimum is the honest answer to "what does
+    pure cost say"; this is the one you would actually ship.
+    """
+    feasible = curve[curve["good_declined_rate"] <= max_decline_rate]
+    if feasible.empty:
+        # Nothing clears the ceiling — fall back to the least-declining policy
+        # rather than silently returning the unconstrained optimum.
+        return curve.loc[curve["good_declined_rate"].idxmin()]
+    return feasible.loc[feasible["cost"].idxmin()]
+
+
 def at_threshold(curve: pd.DataFrame, tau: float) -> pd.Series:
     """The curve row closest to a given threshold.
 
@@ -148,7 +177,8 @@ def policy_at(y_true, y_score, amounts, tau: float,
 
     cost = (
         a[missed].sum() + c.dispute_fee * missed.sum()
-        + c.gross_margin * a[false_decline].sum() + c.support_cost * false_decline.sum()
+        + c.gross_margin * a[false_decline].sum()
+        + c.false_decline_fixed * false_decline.sum()
     )
     return {
         "tau": float(tau),
@@ -171,13 +201,22 @@ def sensitivity(y_true, y_score, amounts, base: CostConstants | None = None) -> 
     variants = {
         "baseline": base,
         "dispute fee x2": CostConstants(base.dispute_fee * 2, base.gross_margin,
-                                        base.support_cost, base.analyst_cost),
+                                        base.support_cost, base.analyst_cost,
+                                        base.churn_cost),
         "dispute fee /2": CostConstants(base.dispute_fee / 2, base.gross_margin,
-                                        base.support_cost, base.analyst_cost),
+                                        base.support_cost, base.analyst_cost,
+                                        base.churn_cost),
         "margin x2": CostConstants(base.dispute_fee, base.gross_margin * 2,
-                                   base.support_cost, base.analyst_cost),
+                                   base.support_cost, base.analyst_cost,
+                                   base.churn_cost),
         "support cost x5": CostConstants(base.dispute_fee, base.gross_margin,
-                                         base.support_cost * 5, base.analyst_cost),
+                                         base.support_cost * 5, base.analyst_cost,
+                                         base.churn_cost),
+        "no churn cost": CostConstants(base.dispute_fee, base.gross_margin,
+                                       base.support_cost, base.analyst_cost, 0.0),
+        "churn cost x2": CostConstants(base.dispute_fee, base.gross_margin,
+                                       base.support_cost, base.analyst_cost,
+                                       base.churn_cost * 2),
     }
     for label, c in variants.items():
         best = optimal(sweep(y_true, y_score, amounts, c))
@@ -240,7 +279,8 @@ def review_band(y_true, y_score, amounts, tau_block: float, tau_review: float,
     cost = (
         a[missed].sum() + c.dispute_fee * missed.sum()
         + missed_in_review_value + c.dispute_fee * missed_in_review_n
-        + c.gross_margin * a[false_decline].sum() + c.support_cost * false_decline.sum()
+        + c.gross_margin * a[false_decline].sum()
+        + c.false_decline_fixed * false_decline.sum()
         + c.analyst_cost * reviewed.sum()
     )
     caught_value = a[(y == 1) & blocked].sum() + catch_rate * reviewed_fraud_value

@@ -205,18 +205,17 @@ On IEEE-CIS: 118,108 test transactions, 4,064 fraudulent, 16.2M USD of value.
 | policy | τ | cost (USD) | fraud caught by value | good declined |
 |---|---|---|---|---|
 | approve everything | — | 711,534 | 0.0% | 0.00% |
-| τ = 0.50 (default) | 0.5000 | 571,963 | 18.6% | 0.51% |
-| **τ\* (cost-optimal)** | **0.0561** | **422,401** | **64.6%** | 10.51% |
-| τ = 0.05 (paranoid) | 0.0500 | 432,814 | 67.9% | 12.57% |
+| τ = 0.50 (default) | 0.5000 | 589,543 | 18.6% | 0.51% |
+| τ\* (pure cost min) | 0.1538 | 560,924 | 37.2% | 2.48% |
+| **τ_ship (≤1% declines)** | **0.4194** | **583,344** | **20.8%** | **0.73%** |
 
-**At τ\* we catch 64.6% of fraud by value while declining 10.5% of good
-customers, saving 289,133 USD on the test set — 24,480 USD per 10,000
+**The recommended policy catches 20.8% of fraud by value while declining 0.73%
+of good customers — saving 128,190 USD on the test set, 10,854 per 10,000
 transactions.**
 
-The default threshold captures 18.6% of fraud value and costs 571,963 against
-711,534 for having no model at all. A classifier at 12.4x base-rate lift
-delivers about a fifth of its available value until someone chooses the
-threshold on purpose. That is the whole argument.
+Two thresholds are reported on purpose. τ\* is what pure cost minimisation
+says; τ_ship is what anyone would actually deploy. The service reads
+τ_ship.
 
 Outputs: `cost_curve.png` (the U, τ\* marked), `cost_curve.json` (what the
 Phase 5 slider reads — snap it to the 156 distinct values, not a continuous
@@ -370,7 +369,7 @@ payload rather than leaving it to the reader.
 
 ```
 src/cutline/
-  config.py      paths + the cost constants, stated as assumptions
+  config.py      cost constants + the decline ceiling, stated as assumptions
   split.py       time-ordered splitter and the leakage demo — read this first
   data.py        CSV -> parquet, identity join, dtype downcasting
   features.py    history features (unfitted) + FeatureBuilder (fitted on train)

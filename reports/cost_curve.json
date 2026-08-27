@@ -1,7 +1,11 @@
 {
  "source": "ieee-cis",
- "tau_star": 0.05614783226723525,
- "cost_at_tau_star": 422401.1478793192,
+ "tau_star": 0.15384615384615385,
+ "cost_at_tau_star": 560923.7319157838,
+ "tau_recommended": 0.41935483870967744,
+ "cost_at_tau_recommended": 583344.3306973458,
+ "max_decline_rate": 0.01,
+ "decline_rate_at_recommended": 0.00729542983409912,
  "cost_do_nothing": 711534.3356752396,
  "currency": "USD",
  "points": [
@@ -15,7 +19,7 @@
   },
   {
    "tau": 1.0,
-   "cost": 710970.428363,
+   "cost": 711030.428363,
    "fraud_value_caught": 0.00069,
    "fraud_count_caught": 0.001722,
    "good_declined_rate": 1.8e-05,
@@ -23,7 +27,7 @@
   },
   {
    "tau": 0.970029,
-   "cost": 710905.835364,
+   "cost": 710965.835364,
    "fraud_value_caught": 0.000755,
    "fraud_count_caught": 0.001969,
    "good_declined_rate": 1.8e-05,
@@ -31,7 +35,7 @@
   },
   {
    "tau": 0.953488,
-   "cost": 700887.379061,
+   "cost": 701517.379061,
    "fraud_value_caught": 0.013132,
    "fraud_count_caught": 0.027559,
    "good_declined_rate": 0.000184,
@@ -39,7 +43,7 @@
   },
   {
    "tau": 0.952587,
-   "cost": 700890.598821,
+   "cost": 701550.598821,
    "fraud_value_caught": 0.013132,
    "fraud_count_caught": 0.027559,
    "good_declined_rate": 0.000193,
@@ -47,7 +51,7 @@
   },
   {
    "tau": 0.93802,
-   "cost": 700842.605821,
+   "cost": 701502.605821,
    "fraud_value_caught": 0.013169,
    "fraud_count_caught": 0.027805,
    "good_declined_rate": 0.000193,
@@ -55,7 +59,7 @@
   },
   {
    "tau": 0.921959,
-   "cost": 700790.800821,
+   "cost": 701450.800821,
    "fraud_value_caught": 0.013213,
    "fraud_count_caught": 0.028051,
    "good_declined_rate": 0.000193,
@@ -63,7 +67,7 @@
   },
   {
    "tau": 0.903226,
-   "cost": 673358.50023,
+   "cost": 675218.50023,
    "fraud_value_caught": 0.047254,
    "fraud_count_caught": 0.096211,
    "good_declined_rate": 0.000544,
@@ -71,7 +75,7 @@
   },
   {
    "tau": 0.890501,
-   "cost": 673262.798227,
+   "cost": 675122.798227,
    "fraud_value_caught": 0.047369,
    "fraud_count_caught": 0.096457,
    "good_declined_rate": 0.000544,
@@ -79,7 +83,7 @@
   },
   {
    "tau": 0.833333,
-   "cost": 642319.616242,
+   "cost": 645589.616242,
    "fraud_value_caught": 0.086239,
    "fraud_count_caught": 0.171506,
    "good_declined_rate": 0.000956,
@@ -87,7 +91,7 @@
   },
   {
    "tau": 0.820909,
-   "cost": 642137.227235,
+   "cost": 645407.227235,
    "fraud_value_caught": 0.086497,
    "fraud_count_caught": 0.171752,
    "good_declined_rate": 0.000956,
@@ -95,7 +99,7 @@
   },
   {
    "tau": 0.811993,
-   "cost": 642142.458595,
+   "cost": 645442.458595,
    "fraud_value_caught": 0.086497,
    "fraud_count_caught": 0.171752,
    "good_declined_rate": 0.000965,
@@ -103,7 +107,7 @@
   },
   {
    "tau": 0.810945,
-   "cost": 610343.279833,
+   "cost": 616673.279833,
    "fraud_value_caught": 0.129001,
    "fraud_count_caught": 0.240896,
    "good_declined_rate": 0.00185,
@@ -111,7 +115,7 @@
   },
   {
    "tau": 0.794848,
-   "cost": 610160.890825,
+   "cost": 616490.890825,
    "fraud_value_caught": 0.129259,
    "fraud_count_caught": 0.241142,
    "good_declined_rate": 0.00185,
@@ -119,7 +123,7 @@
   },
   {
    "tau": 0.78442,
-   "cost": 610202.890825,
+   "cost": 616562.890825,
    "fraud_value_caught": 0.129259,
    "fraud_count_caught": 0.241142,
    "good_declined_rate": 0.001859,
@@ -127,7 +131,7 @@
   },
   {
    "tau": 0.75,
-   "cost": 607536.389862,
+   "cost": 614046.389862,
    "fraud_value_caught": 0.13314,
    "fraud_count_caught": 0.244833,
    "good_declined_rate": 0.001903,
@@ -135,7 +139,7 @@
   },
   {
    "tau": 0.636364,
-   "cost": 604388.163579,
+   "cost": 611618.163579,
    "fraud_value_caught": 0.137395,
    "fraud_count_caught": 0.252461,
    "good_declined_rate": 0.002113,
@@ -143,7 +147,7 @@
   },
   {
    "tau": 0.626864,
-   "cost": 604390.563579,
+   "cost": 611650.563579,
    "fraud_value_caught": 0.137395,
    "fraud_count_caught": 0.252461,
    "good_declined_rate": 0.002122,
@@ -151,7 +155,7 @@
   },
   {
    "tau": 0.620248,
-   "cost": 604271.745579,
+   "cost": 611531.745579,
    "fraud_value_caught": 0.137549,
    "fraud_count_caught": 0.252707,
    "good_declined_rate": 0.002122,
@@ -159,7 +163,7 @@
   },
   {
    "tau": 0.614705,
-   "cost": 604275.201419,
+   "cost": 611565.201419,
    "fraud_value_caught": 0.137549,
    "fraud_count_caught": 0.252707,
    "good_declined_rate": 0.002131,
@@ -167,7 +171,7 @@
   },
   {
    "tau": 0.604567,
-   "cost": 604279.788539,
+   "cost": 611599.788539,
    "fraud_value_caught": 0.137549,
    "fraud_count_caught": 0.252707,
    "good_declined_rate": 0.00214,
@@ -175,7 +179,7 @@
   },
   {
    "tau": 0.59418,
-   "cost": 604283.854299,
+   "cost": 611633.854299,
    "fraud_value_caught": 0.137549,
    "fraud_count_caught": 0.252707,
    "good_declined_rate": 0.002148,
@@ -183,7 +187,7 @@
   },
   {
    "tau": 0.594087,
-   "cost": 604139.6443,
+   "cost": 611489.6443,
    "fraud_value_caught": 0.137744,
    "fraud_count_caught": 0.252953,
    "good_declined_rate": 0.002148,
@@ -191,7 +195,7 @@
   },
   {
    "tau": 0.593914,
-   "cost": 604092.7573,
+   "cost": 611442.7573,
    "fraud_value_caught": 0.13778,
    "fraud_count_caught": 0.253199,
    "good_declined_rate": 0.002148,
@@ -199,7 +203,7 @@
   },
   {
    "tau": 0.585169,
-   "cost": 603617.7573,
+   "cost": 610967.7573,
    "fraud_value_caught": 0.138518,
    "fraud_count_caught": 0.253445,
    "good_declined_rate": 0.002148,
@@ -207,7 +211,7 @@
   },
   {
    "tau": 0.574661,
-   "cost": 580679.653622,
+   "cost": 594929.653622,
    "fraud_value_caught": 0.171506,
    "fraud_count_caught": 0.309301,
    "good_declined_rate": 0.004165,
@@ -215,7 +219,7 @@
   },
   {
    "tau": 0.572012,
-   "cost": 580606.699623,
+   "cost": 594856.699623,
    "fraud_value_caught": 0.171585,
    "fraud_count_caught": 0.309547,
    "good_declined_rate": 0.004165,
@@ -223,7 +227,7 @@
   },
   {
    "tau": 0.56901,
-   "cost": 580571.699623,
+   "cost": 594821.699623,
    "fraud_value_caught": 0.171601,
    "fraud_count_caught": 0.309793,
    "good_declined_rate": 0.004165,
@@ -231,7 +235,7 @@
   },
   {
    "tau": 0.517158,
-   "cost": 580446.699623,
+   "cost": 594696.699623,
    "fraud_value_caught": 0.171765,
    "fraud_count_caught": 0.310039,
    "good_declined_rate": 0.004165,
@@ -239,7 +243,7 @@
   },
   {
    "tau": 0.513158,
-   "cost": 571899.333733,
+   "cost": 589449.333733,
    "fraud_value_caught": 0.185759,
    "fraud_count_caught": 0.323327,
    "good_declined_rate": 0.00513,
@@ -247,7 +251,7 @@
   },
   {
    "tau": 0.50901,
-   "cost": 571963.253733,
+   "cost": 589543.253733,
    "fraud_value_caught": 0.185759,
    "fraud_count_caught": 0.323327,
    "good_declined_rate": 0.005138,
@@ -255,7 +259,7 @@
   },
   {
    "tau": 0.4855,
-   "cost": 571969.173733,
+   "cost": 589579.173733,
    "fraud_value_caught": 0.185759,
    "fraud_count_caught": 0.323327,
    "good_declined_rate": 0.005147,
@@ -263,7 +267,7 @@
   },
   {
    "tau": 0.454193,
-   "cost": 571974.744453,
+   "cost": 589614.744453,
    "fraud_value_caught": 0.185759,
    "fraud_count_caught": 0.323327,
    "good_declined_rate": 0.005156,
@@ -271,7 +275,7 @@
   },
   {
    "tau": 0.446359,
-   "cost": 571978.480613,
+   "cost": 589648.480613,
    "fraud_value_caught": 0.185759,
    "fraud_count_caught": 0.323327,
    "good_declined_rate": 0.005165,
@@ -279,7 +283,7 @@
   },
   {
    "tau": 0.419355,
-   "cost": 558384.330697,
+   "cost": 583344.330697,
    "fraud_value_caught": 0.208226,
    "fraud_count_caught": 0.351624,
    "good_declined_rate": 0.007295,
@@ -287,7 +291,7 @@
   },
   {
    "tau": 0.406076,
-   "cost": 558395.970777,
+   "cost": 583385.970777,
    "fraud_value_caught": 0.208226,
    "fraud_count_caught": 0.351624,
    "good_declined_rate": 0.007304,
@@ -295,7 +299,7 @@
   },
   {
    "tau": 0.391089,
-   "cost": 544730.4836,
+   "cost": 579800.4836,
    "fraud_value_caught": 0.2336,
    "fraud_count_caught": 0.377953,
    "good_declined_rate": 0.01025,
@@ -303,7 +307,7 @@
   },
   {
    "tau": 0.377499,
-   "cost": 544733.52136,
+   "cost": 579833.52136,
    "fraud_value_caught": 0.2336,
    "fraud_count_caught": 0.377953,
    "good_declined_rate": 0.010259,
@@ -311,7 +315,7 @@
   },
   {
    "tau": 0.367469,
-   "cost": 544747.52136,
+   "cost": 579877.52136,
    "fraud_value_caught": 0.2336,
    "fraud_count_caught": 0.377953,
    "good_declined_rate": 0.010268,
@@ -319,7 +323,7 @@
   },
   {
    "tau": 0.288366,
-   "cost": 544422.52136,
+   "cost": 579552.52136,
    "fraud_value_caught": 0.234092,
    "fraud_count_caught": 0.378199,
    "good_declined_rate": 0.010268,
@@ -327,7 +331,7 @@
   },
   {
    "tau": 0.259615,
-   "cost": 519486.766232,
+   "cost": 566556.766232,
    "fraud_value_caught": 0.278737,
    "fraud_count_caught": 0.408711,
    "good_declined_rate": 0.013758,
@@ -335,7 +339,7 @@
   },
   {
    "tau": 0.207071,
-   "cost": 504827.376788,
+   "cost": 565817.376788,
    "fraud_value_caught": 0.309979,
    "fraud_count_caught": 0.435039,
    "good_declined_rate": 0.017826,
@@ -343,7 +347,7 @@
   },
   {
    "tau": 0.2,
-   "cost": 504676.502709,
+   "cost": 566626.502709,
    "fraud_value_caught": 0.310625,
    "fraud_count_caught": 0.43627,
    "good_declined_rate": 0.018107,
@@ -351,7 +355,7 @@
   },
   {
    "tau": 0.195833,
-   "cost": 484479.486039,
+   "cost": 561699.486039,
    "fraud_value_caught": 0.353223,
    "fraud_count_caught": 0.459154,
    "good_declined_rate": 0.02257,
@@ -359,7 +363,7 @@
   },
   {
    "tau": 0.153846,
-   "cost": 476143.731916,
+   "cost": 560923.731916,
    "fraud_value_caught": 0.371801,
    "fraud_count_caught": 0.46998,
    "good_declined_rate": 0.02478,
@@ -367,7 +371,7 @@
   },
   {
    "tau": 0.14374,
-   "cost": 445330.260614,
+   "cost": 572710.260614,
    "fraud_value_caught": 0.450452,
    "fraud_count_caught": 0.521654,
    "good_declined_rate": 0.037231,
@@ -375,7 +379,7 @@
   },
   {
    "tau": 0.138813,
-   "cost": 445335.780614,
+   "cost": 572745.780614,
    "fraud_value_caught": 0.450452,
    "fraud_count_caught": 0.521654,
    "good_declined_rate": 0.03724,
@@ -383,7 +387,7 @@
   },
   {
    "tau": 0.133333,
-   "cost": 444476.887137,
+   "cost": 574256.887137,
    "fraud_value_caught": 0.453065,
    "fraud_count_caught": 0.525098,
    "good_declined_rate": 0.037933,
@@ -391,7 +395,7 @@
   },
   {
    "tau": 0.111111,
-   "cost": 444332.344657,
+   "cost": 575012.344657,
    "fraud_value_caught": 0.453867,
    "fraud_count_caught": 0.525837,
    "good_declined_rate": 0.038196,
@@ -399,7 +403,7 @@
   },
   {
    "tau": 0.110945,
-   "cost": 444335.623457,
+   "cost": 575045.623457,
    "fraud_value_caught": 0.453867,
    "fraud_count_caught": 0.525837,
    "good_declined_rate": 0.038205,
@@ -407,7 +411,7 @@
   },
   {
    "tau": 0.110643,
-   "cost": 444351.303457,
+   "cost": 575091.303457,
    "fraud_value_caught": 0.453867,
    "fraud_count_caught": 0.525837,
    "good_declined_rate": 0.038213,
@@ -415,7 +419,7 @@
   },
   {
    "tau": 0.110555,
-   "cost": 444369.783457,
+   "cost": 575139.783457,
    "fraud_value_caught": 0.453867,
    "fraud_count_caught": 0.525837,
    "good_declined_rate": 0.038222,
@@ -423,7 +427,7 @@
   },
   {
    "tau": 0.110064,
-   "cost": 444244.783457,
+   "cost": 575014.783457,
    "fraud_value_caught": 0.454031,
    "fraud_count_caught": 0.526083,
    "good_declined_rate": 0.038222,
@@ -431,7 +435,7 @@
   },
   {
    "tau": 0.110027,
-   "cost": 444249.183697,
+   "cost": 575049.183697,
    "fraud_value_caught": 0.454031,
    "fraud_count_caught": 0.526083,
    "good_declined_rate": 0.038231,
@@ -439,7 +443,7 @@
   },
   {
    "tau": 0.109325,
-   "cost": 444254.303697,
+   "cost": 575084.303697,
    "fraud_value_caught": 0.454031,
    "fraud_count_caught": 0.526083,
    "good_declined_rate": 0.03824,
@@ -447,7 +451,7 @@
   },
   {
    "tau": 0.108394,
-   "cost": 444260.120337,
+   "cost": 575120.120337,
    "fraud_value_caught": 0.454031,
    "fraud_count_caught": 0.526083,
    "good_declined_rate": 0.038248,
@@ -455,7 +459,7 @@
   },
   {
    "tau": 0.108167,
-   "cost": 444266.296017,
+   "cost": 575156.296017,
    "fraud_value_caught": 0.454031,
    "fraud_count_caught": 0.526083,
    "good_declined_rate": 0.038257,
@@ -463,7 +467,7 @@
   },
   {
    "tau": 0.107883,
-   "cost": 444274.456017,
+   "cost": 575194.456017,
    "fraud_value_caught": 0.454031,
    "fraud_count_caught": 0.526083,
    "good_declined_rate": 0.038266,
@@ -471,7 +475,7 @@
   },
   {
    "tau": 0.1075,
-   "cost": 444283.416017,
+   "cost": 575233.416017,
    "fraud_value_caught": 0.454031,
    "fraud_count_caught": 0.526083,
    "good_declined_rate": 0.038275,
@@ -479,7 +483,7 @@
   },
   {
    "tau": 0.107131,
-   "cost": 443911.416017,
+   "cost": 574861.416017,
    "fraud_value_caught": 0.4546,
    "fraud_count_caught": 0.526329,
    "good_declined_rate": 0.038275,
@@ -487,7 +491,7 @@
   },
   {
    "tau": 0.106918,
-   "cost": 440890.406621,
+   "cost": 592480.406621,
    "fraud_value_caught": 0.47457,
    "fraud_count_caught": 0.543307,
    "good_declined_rate": 0.044307,
@@ -495,7 +499,7 @@
   },
   {
    "tau": 0.106198,
-   "cost": 440913.536062,
+   "cost": 592533.536062,
    "fraud_value_caught": 0.47457,
    "fraud_count_caught": 0.543307,
    "good_declined_rate": 0.044316,
@@ -503,7 +507,7 @@
   },
   {
    "tau": 0.106164,
-   "cost": 440918.256062,
+   "cost": 592568.256062,
    "fraud_value_caught": 0.47457,
    "fraud_count_caught": 0.543307,
    "good_declined_rate": 0.044325,
@@ -511,7 +515,7 @@
   },
   {
    "tau": 0.10548,
-   "cost": 440928.016062,
+   "cost": 592608.016062,
    "fraud_value_caught": 0.47457,
    "fraud_count_caught": 0.543307,
    "good_declined_rate": 0.044334,
@@ -519,7 +523,7 @@
   },
   {
    "tau": 0.105422,
-   "cost": 437956.469681,
+   "cost": 606976.469681,
    "fraud_value_caught": 0.490943,
    "fraud_count_caught": 0.559055,
    "good_declined_rate": 0.049402,
@@ -527,7 +531,7 @@
   },
   {
    "tau": 0.095395,
-   "cost": 434730.163676,
+   "cost": 621120.163676,
    "fraud_value_caught": 0.509187,
    "fraud_count_caught": 0.574311,
    "good_declined_rate": 0.054479,
@@ -535,7 +539,7 @@
   },
   {
    "tau": 0.092434,
-   "cost": 434741.523676,
+   "cost": 621161.523676,
    "fraud_value_caught": 0.509187,
    "fraud_count_caught": 0.574311,
    "good_declined_rate": 0.054488,
@@ -543,7 +547,7 @@
   },
   {
    "tau": 0.092072,
-   "cost": 430138.213968,
+   "cost": 660718.213968,
    "fraud_value_caught": 0.546969,
    "fraud_count_caught": 0.6031,
    "good_declined_rate": 0.067395,
@@ -551,7 +555,7 @@
   },
   {
    "tau": 0.072165,
-   "cost": 426833.12013,
+   "cost": 699893.12013,
    "fraud_value_caught": 0.580606,
    "fraud_count_caught": 0.629429,
    "good_declined_rate": 0.079811,
@@ -559,7 +563,7 @@
   },
   {
    "tau": 0.07023,
-   "cost": 426837.44013,
+   "cost": 699927.44013,
    "fraud_value_caught": 0.580606,
    "fraud_count_caught": 0.629429,
    "good_declined_rate": 0.07982,
@@ -567,7 +571,7 @@
   },
   {
    "tau": 0.068939,
-   "cost": 426846.80013,
+   "cost": 699966.80013,
    "fraud_value_caught": 0.580606,
    "fraud_count_caught": 0.629429,
    "good_declined_rate": 0.079829,
@@ -575,7 +579,7 @@
   },
   {
    "tau": 0.06872,
-   "cost": 426866.39325,
+   "cost": 700016.39325,
    "fraud_value_caught": 0.580606,
    "fraud_count_caught": 0.629429,
    "good_declined_rate": 0.079838,
@@ -583,7 +587,7 @@
   },
   {
    "tau": 0.068639,
-   "cost": 426812.39325,
+   "cost": 699962.39325,
    "fraud_value_caught": 0.580654,
    "fraud_count_caught": 0.629675,
    "good_declined_rate": 0.079838,
@@ -591,7 +595,7 @@
   },
   {
    "tau": 0.066061,
-   "cost": 426830.39325,
+   "cost": 700010.39325,
    "fraud_value_caught": 0.580654,
    "fraud_count_caught": 0.629675,
    "good_declined_rate": 0.079846,
@@ -599,7 +603,7 @@
   },
   {
    "tau": 0.064516,
-   "cost": 427183.985841,
+   "cost": 703243.985841,
    "fraud_value_caught": 0.582092,
    "fraud_count_caught": 0.631398,
    "good_declined_rate": 0.080688,
@@ -607,7 +611,7 @@
   },
   {
    "tau": 0.06381,
-   "cost": 427193.345841,
+   "cost": 703283.345841,
    "fraud_value_caught": 0.582092,
    "fraud_count_caught": 0.631398,
    "good_declined_rate": 0.080697,
@@ -615,7 +619,7 @@
   },
   {
    "tau": 0.063167,
-   "cost": 427199.705841,
+   "cost": 703319.705841,
    "fraud_value_caught": 0.582092,
    "fraud_count_caught": 0.631398,
    "good_declined_rate": 0.080706,
@@ -623,7 +627,7 @@
   },
   {
    "tau": 0.060408,
-   "cost": 427203.144481,
+   "cost": 703353.144481,
    "fraud_value_caught": 0.582092,
    "fraud_count_caught": 0.631398,
    "good_declined_rate": 0.080714,
@@ -631,7 +635,7 @@
   },
   {
    "tau": 0.059606,
-   "cost": 427223.224481,
+   "cost": 703403.224481,
    "fraud_value_caught": 0.582092,
    "fraud_count_caught": 0.631398,
    "good_declined_rate": 0.080723,
@@ -639,7 +643,7 @@
   },
   {
    "tau": 0.059299,
-   "cost": 427241.224481,
+   "cost": 703451.224481,
    "fraud_value_caught": 0.582092,
    "fraud_count_caught": 0.631398,
    "good_declined_rate": 0.080732,
@@ -647,7 +651,7 @@
   },
   {
    "tau": 0.056148,
-   "cost": 422401.147879,
+   "cost": 781951.147879,
    "fraud_value_caught": 0.64599,
    "fraud_count_caught": 0.679134,
    "good_declined_rate": 0.105091,
@@ -655,7 +659,7 @@
   },
   {
    "tau": 0.055475,
-   "cost": 422403.562359,
+   "cost": 781983.562359,
    "fraud_value_caught": 0.64599,
    "fraud_count_caught": 0.679134,
    "good_declined_rate": 0.1051,
@@ -663,7 +667,7 @@
   },
   {
    "tau": 0.053994,
-   "cost": 422409.359399,
+   "cost": 782019.359399,
    "fraud_value_caught": 0.64599,
    "fraud_count_caught": 0.679134,
    "good_declined_rate": 0.105109,
@@ -671,7 +675,7 @@
   },
   {
    "tau": 0.052456,
-   "cost": 432814.253267,
+   "cost": 862954.253267,
    "fraud_value_caught": 0.679026,
    "fraud_count_caught": 0.705955,
    "good_declined_rate": 0.125723,
@@ -679,7 +683,7 @@
   },
   {
    "tau": 0.049803,
-   "cost": 432827.212467,
+   "cost": 862997.212467,
    "fraud_value_caught": 0.679026,
    "fraud_count_caught": 0.705955,
    "good_declined_rate": 0.125732,
@@ -687,7 +691,7 @@
   },
   {
    "tau": 0.04771,
-   "cost": 435314.965326,
+   "cost": 893474.965326,
    "fraud_value_caught": 0.695191,
    "fraud_count_caught": 0.718012,
    "good_declined_rate": 0.133913,
@@ -695,7 +699,7 @@
   },
   {
    "tau": 0.047167,
-   "cost": 435328.965326,
+   "cost": 893518.965326,
    "fraud_value_caught": 0.695191,
    "fraud_count_caught": 0.718012,
    "good_declined_rate": 0.133922,
@@ -703,7 +707,7 @@
   },
   {
    "tau": 0.045973,
-   "cost": 435340.325326,
+   "cost": 893560.325326,
    "fraud_value_caught": 0.695191,
    "fraud_count_caught": 0.718012,
    "good_declined_rate": 0.133931,
@@ -711,7 +715,7 @@
   },
   {
    "tau": 0.045267,
-   "cost": 438281.504185,
+   "cost": 922121.504185,
    "fraud_value_caught": 0.706447,
    "fraud_count_caught": 0.727854,
    "good_declined_rate": 0.141419,
@@ -719,7 +723,7 @@
   },
   {
    "tau": 0.042074,
-   "cost": 453922.106242,
+   "cost": 1013452.106242,
    "fraud_value_caught": 0.733866,
    "fraud_count_caught": 0.75123,
    "good_declined_rate": 0.163542,
@@ -727,7 +731,7 @@
   },
   {
    "tau": 0.036997,
-   "cost": 453927.542242,
+   "cost": 1013487.542242,
    "fraud_value_caught": 0.733866,
    "fraud_count_caught": 0.75123,
    "good_declined_rate": 0.163551,
@@ -735,7 +739,7 @@
   },
   {
    "tau": 0.0365,
-   "cost": 453933.462242,
+   "cost": 1013523.462242,
    "fraud_value_caught": 0.733866,
    "fraud_count_caught": 0.75123,
    "good_declined_rate": 0.16356,
@@ -743,7 +747,7 @@
   },
   {
    "tau": 0.036068,
-   "cost": 453940.182242,
+   "cost": 1013560.182242,
    "fraud_value_caught": 0.733866,
    "fraud_count_caught": 0.75123,
    "good_declined_rate": 0.163568,
@@ -751,7 +755,7 @@
   },
   {
    "tau": 0.035078,
-   "cost": 453944.902242,
+   "cost": 1013594.902242,
    "fraud_value_caught": 0.733866,
    "fraud_count_caught": 0.75123,
    "good_declined_rate": 0.163577,
@@ -759,7 +763,7 @@
   },
   {
    "tau": 0.033195,
-   "cost": 450617.094028,
+   "cost": 1040417.094028,
    "fraud_value_caught": 0.757908,
    "fraud_count_caught": 0.762795,
    "good_declined_rate": 0.17239,
@@ -767,7 +771,7 @@
   },
   {
    "tau": 0.032674,
-   "cost": 450628.133228,
+   "cost": 1040458.133228,
    "fraud_value_caught": 0.757908,
    "fraud_count_caught": 0.762795,
    "good_declined_rate": 0.172398,
@@ -775,7 +779,7 @@
   },
   {
    "tau": 0.031414,
-   "cost": 455354.193474,
+   "cost": 1056134.193474,
    "fraud_value_caught": 0.758854,
    "fraud_count_caught": 0.764272,
    "good_declined_rate": 0.175599,
@@ -783,7 +787,7 @@
   },
   {
    "tau": 0.031343,
-   "cost": 455364.029473,
+   "cost": 1056174.029473,
    "fraud_value_caught": 0.758854,
    "fraud_count_caught": 0.764272,
    "good_declined_rate": 0.175608,
@@ -791,7 +795,7 @@
   },
   {
    "tau": 0.030929,
-   "cost": 455374.029473,
+   "cost": 1056214.029473,
    "fraud_value_caught": 0.758854,
    "fraud_count_caught": 0.764272,
    "good_declined_rate": 0.175616,
@@ -799,7 +803,7 @@
   },
   {
    "tau": 0.030835,
-   "cost": 455378.425474,
+   "cost": 1056248.425474,
    "fraud_value_caught": 0.758854,
    "fraud_count_caught": 0.764272,
    "good_declined_rate": 0.175625,
@@ -807,7 +811,7 @@
   },
   {
    "tau": 0.030731,
-   "cost": 455405.381474,
+   "cost": 1056305.381474,
    "fraud_value_caught": 0.758854,
    "fraud_count_caught": 0.764272,
    "good_declined_rate": 0.175634,
@@ -815,7 +819,7 @@
   },
   {
    "tau": 0.030347,
-   "cost": 496865.564324,
+   "cost": 1264655.564324,
    "fraud_value_caught": 0.806073,
    "fraud_count_caught": 0.808317,
    "good_declined_rate": 0.224413,
@@ -823,7 +827,7 @@
   },
   {
    "tau": 0.029135,
-   "cost": 511379.346537,
+   "cost": 1348889.346537,
    "fraud_value_caught": 0.827305,
    "fraud_count_caught": 0.828002,
    "good_declined_rate": 0.244791,
@@ -831,7 +835,7 @@
   },
   {
    "tau": 0.023463,
-   "cost": 533106.271979,
+   "cost": 1442166.271979,
    "fraud_value_caught": 0.844751,
    "fraud_count_caught": 0.840551,
    "good_declined_rate": 0.265704,
@@ -839,7 +843,7 @@
   },
   {
    "tau": 0.023255,
-   "cost": 533109.895019,
+   "cost": 1442199.895019,
    "fraud_value_caught": 0.844751,
    "fraud_count_caught": 0.840551,
    "good_declined_rate": 0.265713,
@@ -847,7 +851,7 @@
   },
   {
    "tau": 0.023169,
-   "cost": 533112.436059,
+   "cost": 1442232.436059,
    "fraud_value_caught": 0.844751,
    "fraud_count_caught": 0.840551,
    "good_declined_rate": 0.265722,
@@ -855,7 +859,7 @@
   },
   {
    "tau": 0.022695,
-   "cost": 533127.232059,
+   "cost": 1442277.232059,
    "fraud_value_caught": 0.844751,
    "fraud_count_caught": 0.840551,
    "good_declined_rate": 0.265731,
@@ -863,7 +867,7 @@
   },
   {
    "tau": 0.02258,
-   "cost": 533133.868059,
+   "cost": 1442313.868059,
    "fraud_value_caught": 0.844751,
    "fraud_count_caught": 0.840551,
    "good_declined_rate": 0.26574,
@@ -871,7 +875,7 @@
   },
   {
    "tau": 0.022406,
-   "cost": 572681.312771,
+   "cost": 1601891.312771,
    "fraud_value_caught": 0.864301,
    "fraud_count_caught": 0.858514,
    "good_declined_rate": 0.300822,
@@ -879,7 +883,7 @@
   },
   {
    "tau": 0.020129,
-   "cost": 572696.18877,
+   "cost": 1601936.18877,
    "fraud_value_caught": 0.864301,
    "fraud_count_caught": 0.858514,
    "good_declined_rate": 0.300831,
@@ -887,7 +891,7 @@
   },
   {
    "tau": 0.017697,
-   "cost": 572768.90877,
+   "cost": 1602038.90877,
    "fraud_value_caught": 0.864301,
    "fraud_count_caught": 0.858514,
    "good_declined_rate": 0.30084,
@@ -895,7 +899,7 @@
   },
   {
    "tau": 0.016736,
-   "cost": 572952.104767,
+   "cost": 1602252.104767,
    "fraud_value_caught": 0.864301,
    "fraud_count_caught": 0.858514,
    "good_declined_rate": 0.300849,
@@ -903,7 +907,7 @@
   },
   {
    "tau": 0.016021,
-   "cost": 572960.264767,
+   "cost": 1602290.264767,
    "fraud_value_caught": 0.864301,
    "fraud_count_caught": 0.858514,
    "good_declined_rate": 0.300858,
@@ -911,7 +915,7 @@
   },
   {
    "tau": 0.014861,
-   "cost": 573024.184767,
+   "cost": 1602384.184767,
    "fraud_value_caught": 0.864301,
    "fraud_count_caught": 0.858514,
    "good_declined_rate": 0.300866,
@@ -919,7 +923,7 @@
   },
   {
    "tau": 0.014765,
-   "cost": 733295.271456,
+   "cost": 2176745.271456,
    "fraud_value_caught": 0.912302,
    "fraud_count_caught": 0.904035,
    "good_declined_rate": 0.421899,
@@ -927,7 +931,7 @@
   },
   {
    "tau": 0.011199,
-   "cost": 780883.817582,
+   "cost": 2349673.817582,
    "fraud_value_caught": 0.929396,
    "fraud_count_caught": 0.914616,
    "good_declined_rate": 0.458534,
@@ -935,7 +939,7 @@
   },
   {
    "tau": 0.010262,
-   "cost": 803249.41064,
+   "cost": 2423879.41064,
    "fraud_value_caught": 0.931257,
    "fraud_count_caught": 0.918307,
    "good_declined_rate": 0.473686,
@@ -943,7 +947,7 @@
   },
   {
    "tau": 0.010244,
-   "cost": 803253.73064,
+   "cost": 2423913.73064,
    "fraud_value_caught": 0.931257,
    "fraud_count_caught": 0.918307,
    "good_declined_rate": 0.473694,
@@ -951,7 +955,7 @@
   },
   {
    "tau": 0.010242,
-   "cost": 803266.126639,
+   "cost": 2423956.126639,
    "fraud_value_caught": 0.931257,
    "fraud_count_caught": 0.918307,
    "good_declined_rate": 0.473703,
@@ -959,7 +963,7 @@
   },
   {
    "tau": 0.01019,
-   "cost": 803273.562639,
+   "cost": 2423993.562639,
    "fraud_value_caught": 0.931257,
    "fraud_count_caught": 0.918307,
    "good_declined_rate": 0.473712,
@@ -967,7 +971,7 @@
   },
   {
    "tau": 0.010156,
-   "cost": 803276.562639,
+   "cost": 2424026.562639,
    "fraud_value_caught": 0.931257,
    "fraud_count_caught": 0.918307,
    "good_declined_rate": 0.473721,
@@ -975,7 +979,7 @@
   },
   {
    "tau": 0.010155,
-   "cost": 803294.960239,
+   "cost": 2424074.960239,
    "fraud_value_caught": 0.931257,
    "fraud_count_caught": 0.918307,
    "good_declined_rate": 0.473729,
@@ -983,7 +987,7 @@
   },
   {
    "tau": 0.010144,
-   "cost": 803327.20104,
+   "cost": 2424137.20104,
    "fraud_value_caught": 0.931257,
    "fraud_count_caught": 0.918307,
    "good_declined_rate": 0.473738,
@@ -991,7 +995,7 @@
   },
   {
    "tau": 0.01014,
-   "cost": 835968.059964,
+   "cost": 2535978.059964,
    "fraud_value_caught": 0.937124,
    "fraud_count_caught": 0.924705,
    "good_declined_rate": 0.496887,
@@ -999,7 +1003,7 @@
   },
   {
    "tau": 0.009096,
-   "cost": 878255.35665,
+   "cost": 2678405.35665,
    "fraud_value_caught": 0.942232,
    "fraud_count_caught": 0.931348,
    "good_declined_rate": 0.526157,
@@ -1007,7 +1011,7 @@
   },
   {
    "tau": 0.008805,
-   "cost": 878266.07265,
+   "cost": 2678446.07265,
    "fraud_value_caught": 0.942232,
    "fraud_count_caught": 0.931348,
    "good_declined_rate": 0.526165,
@@ -1015,7 +1019,7 @@
   },
   {
    "tau": 0.007718,
-   "cost": 898867.579547,
+   "cost": 2754007.579547,
    "fraud_value_caught": 0.94686,
    "fraud_count_caught": 0.936024,
    "good_declined_rate": 0.542229,
@@ -1023,7 +1027,7 @@
   },
   {
    "tau": 0.007385,
-   "cost": 898882.375546,
+   "cost": 2754052.375546,
    "fraud_value_caught": 0.94686,
    "fraud_count_caught": 0.936024,
    "good_declined_rate": 0.542238,
@@ -1031,7 +1035,7 @@
   },
   {
    "tau": 0.006586,
-   "cost": 898888.211546,
+   "cost": 2754088.211546,
    "fraud_value_caught": 0.94686,
    "fraud_count_caught": 0.936024,
    "good_declined_rate": 0.542247,
@@ -1039,7 +1043,7 @@
   },
   {
    "tau": 0.006353,
-   "cost": 898891.671546,
+   "cost": 2754121.671546,
    "fraud_value_caught": 0.94686,
    "fraud_count_caught": 0.936024,
    "good_declined_rate": 0.542256,
@@ -1047,7 +1051,7 @@
   },
   {
    "tau": 0.006289,
-   "cost": 921174.299704,
+   "cost": 2834634.299704,
    "fraud_value_caught": 0.951964,
    "fraud_count_caught": 0.941437,
    "good_declined_rate": 0.559275,
@@ -1055,7 +1059,7 @@
   },
   {
    "tau": 0.00551,
-   "cost": 940899.559412,
+   "cost": 2897469.559412,
    "fraud_value_caught": 0.95311,
    "fraud_count_caught": 0.944144,
    "good_declined_rate": 0.571876,
@@ -1063,7 +1067,7 @@
   },
   {
    "tau": 0.005071,
-   "cost": 940910.919412,
+   "cost": 2897510.919412,
    "fraud_value_caught": 0.95311,
    "fraud_count_caught": 0.944144,
    "good_declined_rate": 0.571885,
@@ -1071,7 +1075,7 @@
   },
   {
    "tau": 0.004878,
-   "cost": 946216.278584,
+   "cost": 2915506.278584,
    "fraud_value_caught": 0.953327,
    "fraud_count_caught": 0.944636,
    "good_declined_rate": 0.575594,
@@ -1079,7 +1083,7 @@
   },
   {
    "tau": 0.004815,
-   "cost": 946220.358584,
+   "cost": 2915540.358584,
    "fraud_value_caught": 0.953327,
    "fraud_count_caught": 0.944636,
    "good_declined_rate": 0.575602,
@@ -1087,7 +1091,7 @@
   },
   {
    "tau": 0.004365,
-   "cost": 1200206.627085,
+   "cost": 3794576.627085,
    "fraud_value_caught": 0.982031,
    "fraud_count_caught": 0.978593,
    "good_declined_rate": 0.758295,
@@ -1095,7 +1099,7 @@
   },
   {
    "tau": 0.00281,
-   "cost": 1260999.176487,
+   "cost": 4019739.176487,
    "fraud_value_caught": 0.986473,
    "fraud_count_caught": 0.988435,
    "good_declined_rate": 0.806338,
@@ -1103,7 +1107,7 @@
   },
   {
    "tau": 0.002357,
-   "cost": 1283821.326817,
+   "cost": 4114891.326817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827479,
@@ -1111,7 +1115,7 @@
   },
   {
    "tau": 0.002353,
-   "cost": 1283832.686817,
+   "cost": 4114932.686817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827488,
@@ -1119,7 +1123,7 @@
   },
   {
    "tau": 0.002224,
-   "cost": 1283840.922817,
+   "cost": 4114970.922817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827496,
@@ -1127,7 +1131,7 @@
   },
   {
    "tau": 0.002156,
-   "cost": 1283861.002817,
+   "cost": 4115021.002817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827505,
@@ -1135,7 +1139,7 @@
   },
   {
    "tau": 0.001984,
-   "cost": 1283879.002817,
+   "cost": 4115069.002817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827514,
@@ -1143,7 +1147,7 @@
   },
   {
    "tau": 0.001827,
-   "cost": 1283884.922817,
+   "cost": 4115104.922817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827523,
@@ -1151,7 +1155,7 @@
   },
   {
    "tau": 0.001695,
-   "cost": 1283891.642817,
+   "cost": 4115141.642817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827531,
@@ -1159,7 +1163,7 @@
   },
   {
    "tau": 0.001613,
-   "cost": 1283896.762817,
+   "cost": 4115176.762817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.82754,
@@ -1167,7 +1171,7 @@
   },
   {
    "tau": 0.001478,
-   "cost": 1283906.762817,
+   "cost": 4115216.762817,
    "fraud_value_caught": 0.992909,
    "fraud_count_caught": 0.991388,
    "good_declined_rate": 0.827549,
@@ -1175,7 +1179,7 @@
   },
   {
    "tau": 0.001405,
-   "cost": 1401953.969117,
+   "cost": 4565183.969117,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924564,
@@ -1183,7 +1187,7 @@
   },
   {
    "tau": 0.001169,
-   "cost": 1401962.286717,
+   "cost": 4565222.286717,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924573,
@@ -1191,7 +1195,7 @@
   },
   {
    "tau": 0.001087,
-   "cost": 1401966.362717,
+   "cost": 4565256.362717,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924582,
@@ -1199,7 +1203,7 @@
   },
   {
    "tau": 0.001081,
-   "cost": 1401971.482717,
+   "cost": 4565291.482717,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924591,
@@ -1207,7 +1211,7 @@
   },
   {
    "tau": 0.001069,
-   "cost": 1402002.278718,
+   "cost": 4565352.278718,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924599,
@@ -1215,7 +1219,7 @@
   },
   {
    "tau": 0.000663,
-   "cost": 1402012.914718,
+   "cost": 4565392.914718,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924608,
@@ -1223,7 +1227,7 @@
   },
   {
    "tau": 0.000617,
-   "cost": 1402019.630718,
+   "cost": 4565429.630718,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924617,
@@ -1231,7 +1235,7 @@
   },
   {
    "tau": 0.000266,
-   "cost": 1402023.706718,
+   "cost": 4565463.706718,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924626,
@@ -1239,7 +1243,7 @@
   },
   {
    "tau": 9.8e-05,
-   "cost": 1402028.026718,
+   "cost": 4565498.026718,
    "fraud_value_caught": 0.998942,
    "fraud_count_caught": 0.997293,
    "good_declined_rate": 0.924634,
@@ -1247,7 +1251,7 @@
   },
   {
    "tau": 0.0,
-   "cost": 1478767.825549,
+   "cost": 4900087.825549,
    "fraud_value_caught": 1.0,
    "fraud_count_caught": 1.0,
    "good_declined_rate": 1.0,

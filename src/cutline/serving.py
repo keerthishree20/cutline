@@ -86,7 +86,12 @@ class Scorer:
         curve_path = curve_path or (config.REPORTS / "cost_curve.json")
         if curve_path.exists():
             payload = json.loads(curve_path.read_text())
-            self.tau_block = float(payload["tau_star"])
+            # Prefer the ceiling-respecting threshold. Pure cost minimisation
+            # declines roughly a tenth of good customers, which is a fine thing
+            # to report and a terrible thing to ship.
+            self.tau_block = float(payload.get("tau_recommended", payload["tau_star"]))
+            self.tau_unconstrained = float(payload["tau_star"])
+            self.max_decline_rate = payload.get("max_decline_rate")
             self.cost_do_nothing = float(payload.get("cost_do_nothing", float("nan")))
             self.cost_at_tau = float(payload.get("cost_at_tau_star", float("nan")))
             self.curve_source = str(curve_path)
@@ -94,6 +99,8 @@ class Scorer:
             # No curve means no cost-optimal threshold, and defaulting to 0.5
             # silently would undo the entire argument of the project.
             self.tau_block = 0.5
+            self.tau_unconstrained = 0.5
+            self.max_decline_rate = None
             self.cost_do_nothing = float("nan")
             self.cost_at_tau = float("nan")
             self.curve_source = "MISSING — falling back to 0.5, run 03_cost_model.py"
@@ -131,6 +138,8 @@ class Scorer:
                 "support_cost": self.constants.support_cost,
                 "analyst_cost": self.constants.analyst_cost,
             },
+            "tau_unconstrained": self.tau_unconstrained,
+            "max_decline_rate": self.max_decline_rate,
             "cost_do_nothing": self.cost_do_nothing,
             "cost_at_tau_block": self.cost_at_tau,
             "curve": self.curve_source,
