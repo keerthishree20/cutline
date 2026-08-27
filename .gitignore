@@ -12,7 +12,12 @@ data/
 # models & artifacts — except the one the service loads at runtime. 6.6MB in
 # git is the cheap option: a release asset or object store would be one more
 # thing to authenticate and one more way for a deploy to come up modelless.
-models/
+# NOTE the trailing /* rather than a bare models/. Excluding the DIRECTORY
+# stops git descending into it at all, which makes any negation inside it dead
+# — the file stays untracked and the deploy builds an image with no model. The
+# local docker build does not catch this, because it copies from the working
+# tree rather than from git.
+models/*
 *.joblib
 *.pkl
 !models/cutline.joblib
