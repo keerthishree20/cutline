@@ -1,0 +1,33 @@
+# data — never commit, these are gigabytes
+data/
+*.csv
+*.csv.zip
+
+# ...except the lab notebook, which is the point of the project
+!reports/results.csv
+*.parquet
+*.zip
+
+# models & artifacts
+models/
+*.joblib
+*.pkl
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+
+# reports: keep the tables, drop the heavy plots
+reports/*.png
+!reports/.gitkeep
+
+# env
+.env
+.env.local
+
+# os / editor
+.DS_Store
+.vscode/
