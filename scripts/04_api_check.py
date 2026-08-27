@@ -15,18 +15,30 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from fastapi.testclient import TestClient  # noqa: E402
 
 from api.main import app  # noqa: E402
-from cutline import features, split, synthetic  # noqa: E402
+from cutline import config, data, synthetic  # noqa: E402
 
 
 def main() -> None:
-    frame = synthetic.make_frame(4_000)
-    drop = ["isFraud"]
-    sample = frame.drop(columns=drop).tail(40)
+    # Post the same kind of rows the model was trained on. Feeding synthetic
+    # transactions to a model fitted on IEEE-CIS exercises the plumbing but
+    # tells you nothing about whether the scores are sane.
+    if config.TRAIN_PARQUET.exists():
+        frame = data.load().tail(400)
+        origin = "ieee-cis"
+    else:
+        frame = synthetic.make_frame(4_000)
+        origin = "synthetic"
+    sample = frame.drop(columns=["isFraud"]).tail(40)
+    print(f"posting {origin} rows\n")
 
     with TestClient(app) as client:
         health = client.get("/health").json()
         print("GET /health ->", health)
         assert health["ok"]
+        assert health["trained_on"] == origin, (
+            f"model was trained on {health['trained_on']} but this check is "
+            f"posting {origin} rows — the scores below would be meaningless"
+        )
 
         pol = client.get("/policy").json()
         print(f"\nGET /policy -> tau_block={pol['tau_block']:.4f} "
@@ -79,19 +91,29 @@ def main() -> None:
 
 
 def _row_to_payload(row) -> dict:
+    """Drop nulls and coerce numpy scalars to JSON-safe Python types.
+
+    `isinstance(v, float)` is not enough: np.float32 is not a Python float, so
+    NaNs in real float32 columns sail straight through into the request body
+    and json.dumps rejects them. pd.isna handles every null flavour here —
+    NaN, NaT and pd.NA alike.
+    """
     import numpy as np
+    import pandas as pd
+
     out = {}
     for k, v in row.items():
-        if isinstance(v, float) and np.isnan(v):
+        if v is None or (np.ndim(v) == 0 and pd.isna(v)):
             continue
-        if v is None:
-            continue
-        if isinstance(v, (np.integer,)):
+        if isinstance(v, (np.integer, int)) and not isinstance(v, bool):
             out[k] = int(v)
-        elif isinstance(v, (np.floating,)):
+        elif isinstance(v, (np.floating, float)):
             out[k] = float(v)
+        elif isinstance(v, str):
+            out[k] = v
         else:
-            out[k] = str(v) if not isinstance(v, (int, float, str)) else v
+            out[k] = str(v)
+
     for k in ("TransactionID", "TransactionDT", "card1", "has_identity"):
         if k in out:
             out[k] = int(out[k])

@@ -109,7 +109,10 @@ def test_serving_matches_batch() -> None:
     counts = featurised[key].value_counts()
     busy = counts[counts >= 5].index[0]
     positions = np.flatnonzero((featurised[key] == busy).to_numpy())
-    target = int(positions[-1])
+    # Deliberately NOT the card's latest transaction. Picking the last one
+    # hides any bug that assumes the incoming row sorts last, which is exactly
+    # the assumption HistoryStore used to make.
+    target = int(positions[len(positions) // 2])
 
     b = bundle_mod.load()
     scorer_bundle = b
@@ -126,8 +129,54 @@ def test_serving_matches_batch() -> None:
         f"serving and batch disagree: {served:.12f} vs {expected:.12f}. "
         f"The two feature paths have diverged."
     )
-    print(f"serving/batch parity: card {busy} at row {target:,} — "
+    later = int((featurised[key] == busy).to_numpy()[target + 1:].sum())
+    print(f"serving/batch parity: card {busy} at row {target:,} "
+          f"({later} later transactions on this card, so it does NOT sort last) — "
           f"{served:.10f} both paths")
+
+
+def test_out_of_order_arrival() -> None:
+    """A transaction that arrives AFTER later ones still gets its own score.
+
+    Replayed feeds, retries and clock skew all deliver transactions out of
+    order. `add_history_features` sorts by time, so an incoming row that is not
+    the latest for its card does not come back last — and a store that grabbed
+    the final row would return a DIFFERENT transaction's features and score
+    them as this one. Silently. This is the test that reproduces it.
+    """
+    import numpy as np
+
+    from cutline import bundle as bundle_mod
+    from cutline import serving
+
+    raw = synthetic.make_frame(8_000)
+    featurised = features.add_history_features(raw)
+    b = bundle_mod.load()
+    batch_scores = bundle_mod.score(b, featurised)
+
+    key = features.HISTORY_KEY
+    counts = featurised[key].value_counts()
+    busy = counts[counts >= 8].index[0]
+    positions = np.flatnonzero((featurised[key] == busy).to_numpy())
+    target = int(positions[len(positions) // 2])
+    n_later = int(len(positions) - np.searchsorted(positions, target) - 1)
+    assert n_later > 0, "need a target with later transactions to test this"
+
+    # Seed with EVERY row of this card except the target — later ones included.
+    others = [i for i in positions if i != target]
+    seed = featurised.iloc[others][raw.columns].reset_index(drop=True)
+    store = serving.HistoryStore(seed=seed)
+
+    row = featurised.iloc[target][raw.columns].to_dict()
+    served = bundle_mod.score(b, store.add(row))[0]
+    expected = float(batch_scores[target])
+
+    assert abs(served - expected) < 1e-9, (
+        f"out-of-order arrival returned the wrong row: {served:.12f} vs "
+        f"{expected:.12f}. The store is picking a transaction by position."
+    )
+    print(f"out-of-order arrival: scored correctly with {n_later} later "
+          f"transactions already in the store")
 
 
 def main() -> None:
@@ -174,6 +223,7 @@ def main() -> None:
 
     test_serving_parity()
     test_serving_matches_batch()
+    test_out_of_order_arrival()
     print("\nsmoke test PASSED.")
 
 

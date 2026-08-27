@@ -35,6 +35,9 @@ class HistoryStore:
     def __len__(self) -> int:
         return 0 if self._rows is None else len(self._rows)
 
+    #: Temporary marker column used to find the incoming row after sorting.
+    _UID = "_cutline_uid"
+
     def add(self, txn: dict) -> pd.DataFrame:
         """Append one transaction and return it WITH history features."""
         row = pd.DataFrame([txn])
@@ -50,8 +53,25 @@ class HistoryStore:
         key = features.HISTORY_KEY
         card = txn.get(key)
         subset = self._rows[self._rows[key] == card] if card is not None else self._rows
-        featurised = features.add_history_features(subset.reset_index(drop=True))
-        return featurised.tail(1).reset_index(drop=True)
+        subset = subset.reset_index(drop=True).copy()
+
+        # Find the incoming row by an explicit marker, never by position.
+        # `add_history_features` sorts by TransactionDT, so a transaction that
+        # is not the latest for its card does NOT come back last — taking the
+        # final row would silently return a DIFFERENT transaction's features
+        # and score it as this one. Out-of-order arrivals are normal: replayed
+        # feeds, retries, and clock skew all produce them.
+        subset[self._UID] = 0
+        subset.loc[subset.index[-1], self._UID] = 1
+
+        featurised = features.add_history_features(subset)
+        hit = featurised[featurised[self._UID] == 1]
+        if len(hit) != 1:
+            raise RuntimeError(
+                f"history reconstruction lost the incoming transaction "
+                f"({len(hit)} matches). This must never happen."
+            )
+        return hit.drop(columns=[self._UID]).reset_index(drop=True)
 
 
 class Scorer:

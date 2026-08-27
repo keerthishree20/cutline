@@ -75,6 +75,10 @@ PHRASES = {
         "email domain never seen during training" if v == 0
         else f"email domain seen {int(v)} times during training"
     ),
+    "email_known": lambda v: (
+        "both payer and recipient email domains present" if v >= 0.5
+        else "payer or recipient email domain is missing"
+    ),
     "email_mismatch": lambda v: (
         "payer and recipient email domains differ" if v >= 0.5
         else "payer and recipient email domains match"

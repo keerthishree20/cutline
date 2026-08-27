@@ -116,13 +116,21 @@ def main() -> None:
     print(f"\nNote the default: tau=0.50 costs {default['cost']:,.0f}, barely better than")
     print(f"the {nothing:,.0f} of doing nothing at all. That is the argument.")
 
-    if float(best["good_declined_rate"]) > 0.05:
-        print(f"\n!! tau* declines {best['good_declined_rate']:.1%} of good customers. No")
-        print("!! real merchant would accept that, and the cost model is not wrong —")
-        print("!! it is telling you the MODEL is weak. When the classifier cannot")
-        print("!! separate, blocking indiscriminately really is the cheaper policy")
-        print("!! under these constants. The fix is a better model, or a decline-rate")
-        print("!! ceiling as a business constraint on top of the cost minimum.")
+    decline = float(best["good_declined_rate"])
+    if decline > 0.02:
+        print(f"\n!! tau* declines {decline:.1%} of good customers — more than any real")
+        print("!! merchant would accept. The cost model is not wrong; it is answering")
+        print("!! the question it was asked, which is 'minimise total cost' and not")
+        print("!! 'minimise cost subject to a decline-rate ceiling'. Under these")
+        print("!! constants a false decline is cheap, so the optimum blocks freely.")
+        print("!! Two honest fixes, and you should name both:")
+        print("!!   1. add a decline-rate ceiling as a business constraint and report")
+        print("!!      the constrained optimum alongside the unconstrained one")
+        print("!!   2. raise the support cost to reflect churn, not just a ticket —")
+        print("!!      a turned-away customer often does not come back")
+        if decline > 0.20:
+            print("!! At this rate the classifier is also genuinely weak; a better model")
+            print("!! moves the optimum more than either fix above.")
 
     # ---- three bands ----
     cap = int(0.02 * len(y))  # an analyst queue is ~2% of traffic, not 65%

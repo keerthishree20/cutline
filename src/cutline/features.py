@@ -111,7 +111,13 @@ def add_history_features(df: pd.DataFrame, key: str = HISTORY_KEY) -> pd.DataFra
     if "P_emaildomain" in out.columns and "R_emaildomain" in out.columns:
         p = out["P_emaildomain"].astype("string")
         r = out["R_emaildomain"].astype("string")
-        out["email_mismatch"] = ((p != r) & r.notna()).astype("int8")
+        # Both sides must be present for "mismatch" to mean anything. Comparing
+        # a null yields NA under pandas' nullable string dtype, and NA & True is
+        # still NA, so the int cast below fails outright. Absence is recorded
+        # separately rather than being folded into the mismatch flag.
+        known = p.notna() & r.notna()
+        out["email_mismatch"] = ((p != r) & known).fillna(False).astype("int8")
+        out["email_known"] = known.fillna(False).astype("int8")
 
     return out
 
@@ -119,7 +125,7 @@ def add_history_features(df: pd.DataFrame, key: str = HISTORY_KEY) -> pd.DataFra
 HISTORY_COLUMNS = [
     "hour", "dayofweek", "log_amt", "amt_cents", "amt_is_round",
     "card1_count_1h", "card1_count_24h", "card1_sec_since_prev",
-    "card1_amt_z", "card1_is_first_seen", "email_mismatch",
+    "card1_amt_z", "card1_is_first_seen", "email_mismatch", "email_known",
 ]
 
 

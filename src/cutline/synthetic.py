@@ -89,7 +89,11 @@ def make_frame(n: int = 20_000, seed: int = 0) -> pd.DataFrame:
             "card6": rng.choice(["debit", "credit"], size=n),
             "addr1": addr1,
             "dist1": dist1,
-            "P_emaildomain": rng.choice(EMAILS, size=n),
+            # Nulls here are not cosmetic: real P_emaildomain is ~16% missing,
+            # and a stand-in without them let a null-propagation bug in
+            # email_mismatch reach the real 590k-row run undetected.
+            "P_emaildomain": np.where(rng.random(n) < 0.16, None,
+                                      rng.choice(EMAILS, size=n)),
             "R_emaildomain": rng.choice([*EMAILS, None], size=n),
             "C1": rng.poisson(2.0, size=n).astype(np.float32),
             "C13": c13,

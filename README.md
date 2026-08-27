@@ -169,34 +169,57 @@ an error:
   different integer codes.** LightGBM then reads garbage at inference, silently.
   `transform` pins levels from training via `pd.Categorical(..., categories=...)`.
 
-### About the synthetic numbers
+### Real numbers, on IEEE-CIS
 
-On the stand-in, Phase 2 beats the Phase 1 floor by ~15%. Do not read anything
-into the magnitude. An earlier version of the generator left `D15`, `card5` and
-`card2` as pure noise, and LightGBM tied with logistic regression because ~22 of
-33 features were random and the planted signal was mostly linear — the one
-regime where boosting has no edge. The generator now includes non-linear terms
-and a two-way interaction. **Judge Phase 2 on IEEE-CIS, not here**, which is why
-the below-floor warning is worded differently for the two sources.
+590,540 transactions, 3.50% fraud. Test slice is the last 118,108 by time.
+
+| run | PR-AUC | lift over base rate | ECE | Brier |
+|---|---|---|---|---|
+| baseline logreg (floor) | 0.1325 | 3.85x | 0.3645 | 0.1827 |
+| LightGBM raw | 0.4391 | 12.76x | 0.1073 | 0.0551 |
+| **LightGBM calibrated** | **0.4263** | **12.39x** | **0.0043** | **0.0244** |
+
+**+221.7% over the floor**, and calibration error down 96%. Isotonic costs a
+little PR-AUC (ties) and buys a 25x improvement in ECE, which is the trade the
+cost model needs.
+
+`has_identity` earned its place: fraud runs at **7.85%** on the 24.4% of
+transactions that carry identity data, against **2.09%** on those that do not.
+
+**The leakage demo does not fire on this feature set.** Trained on past only:
+0.1289. Trained on past plus half the future: 0.1282. The premium is -0.5% —
+noise. The baseline's thirteen features are static card attributes with nothing
+time-varying for a leak to exploit, so seeing the future buys nothing. The
+time-ordered split is still the right call and the guard still belongs in the
+code, but "look at the gap" is not a slide on these features. It would take
+re-running the demo with the Phase 2 feature set to make that argument, and the
+honest thing is to say so rather than show a gap that is not there.
 
 ## Phase 3 results — the cost model
 
 `scripts/03_cost_model.py`. The argument in one table (synthetic figures, shape
 not magnitude):
 
-| policy | τ | cost | fraud caught by value | good declined |
-|---|---|---|---|---|
-| approve everything | — | 193,326 | 0.0% | 0.00% |
-| τ = 0.50 (default) | 0.5000 | 192,185 | 0.7% | 0.01% |
-| **τ\* (cost-optimal)** | **0.0401** | **111,300** | **83.2%** | 29.67% |
-| τ = 0.05 (paranoid) | 0.0500 | 111,406 | 72.0% | 17.74% |
+On IEEE-CIS: 118,108 test transactions, 4,064 fraudulent, 16.2M USD of value.
 
-The default threshold costs 192,185 against 193,326 for having no model at all.
-That is the whole argument: a perfectly good classifier delivers essentially
-nothing until someone chooses the threshold on purpose.
+| policy | τ | cost (USD) | fraud caught by value | good declined |
+|---|---|---|---|---|
+| approve everything | — | 711,534 | 0.0% | 0.00% |
+| τ = 0.50 (default) | 0.5000 | 571,963 | 18.6% | 0.51% |
+| **τ\* (cost-optimal)** | **0.0561** | **422,401** | **64.6%** | 10.51% |
+| τ = 0.05 (paranoid) | 0.0500 | 432,814 | 67.9% | 12.57% |
+
+**At τ\* we catch 64.6% of fraud by value while declining 10.5% of good
+customers, saving 289,133 USD on the test set — 24,480 USD per 10,000
+transactions.**
+
+The default threshold captures 18.6% of fraud value and costs 571,963 against
+711,534 for having no model at all. A classifier at 12.4x base-rate lift
+delivers about a fifth of its available value until someone chooses the
+threshold on purpose. That is the whole argument.
 
 Outputs: `cost_curve.png` (the U, τ\* marked), `cost_curve.json` (what the
-Phase 5 slider reads — snap it to the 72 distinct values, not a continuous
+Phase 5 slider reads — snap it to the 156 distinct values, not a continuous
 range, or it will show changing numbers for an unchanged decision — dragging changes the threshold, never the model, which
 is why it is instant), `sensitivity.csv`.
 
@@ -222,12 +245,12 @@ is why it is instant), `sensitivity.csv`.
   claim survives, at a genuine 0.50.
 - **The sweep priced policies no threshold could deliver.** It costed "block the
   top k", which equals "block everything at or above τ" only when no row outside
-  the prefix shares the k-th score. **Isotonic calibration collapses 16,000
-  scores to 72 distinct values**, so ties were everywhere and the curve's minimum
-  disagreed with direct evaluation by 1.8%. The sweep now collapses tied scores;
+  the prefix shares the k-th score. **Isotonic calibration collapses 118,108
+  scores to 156 distinct values**, so ties were everywhere and the curve's
+  minimum disagreed with direct evaluation. The sweep now collapses tied scores;
   `optimal()` and `policy_at()` agree exactly.
 
-That 72 is worth keeping in mind for Phase 5: it is how many positions the
+That 156 is worth keeping in mind for Phase 5: it is how many positions the
 threshold slider actually has. A finer slider would misrepresent the model's
 resolution.
 
