@@ -15,8 +15,8 @@ it came from.
 |---|---|---|
 | 1 | Data, time-ordered split, baseline floor | **done** |
 | 2 | Feature engineering, LightGBM, calibration | **done** |
-| 3 | Cost model and threshold sweep | next |
-| 4 | FastAPI `/score` + `/explain` | — |
+| 3 | Cost model and threshold sweep | **done** |
+| 4 | FastAPI `/score` + `/explain` | next |
 | 5 | Next.js review queue + threshold slider | — |
 
 ## Setup
@@ -179,6 +179,47 @@ regime where boosting has no edge. The generator now includes non-linear terms
 and a two-way interaction. **Judge Phase 2 on IEEE-CIS, not here**, which is why
 the below-floor warning is worded differently for the two sources.
 
+## Phase 3 results — the cost model
+
+`scripts/03_cost_model.py`. The argument in one table (synthetic figures, shape
+not magnitude):
+
+| policy | τ | cost | fraud caught by value | good declined |
+|---|---|---|---|---|
+| approve everything | — | 193,326 | 0.0% | 0.00% |
+| τ = 0.50 (default) | 0.5937 | 192,185 | 0.7% | 0.01% |
+| **τ\* (cost-optimal)** | **0.0401** | **109,446** | **77.2%** | 22.07% |
+| τ = 0.05 (paranoid) | 0.0539 | 111,406 | 72.0% | 17.74% |
+
+The default threshold costs 192,185 against 193,326 for having no model at all.
+That is the whole argument: a perfectly good classifier delivers essentially
+nothing until someone chooses the threshold on purpose.
+
+Outputs: `cost_curve.png` (the U, τ\* marked), `cost_curve.json` (what the
+Phase 5 slider reads — dragging changes the threshold, never the model, which
+is why it is instant), `sensitivity.csv`.
+
+### Two results here that are uncomfortable, and are reported anyway
+
+- **τ\* declines 22% of good customers.** No merchant would accept that. The
+  cost model is not wrong — it is reporting that the *model* is weak. When a
+  classifier cannot separate, blocking indiscriminately genuinely is cheaper
+  under these constants. The fix is a better classifier, or a decline-rate
+  ceiling imposed as a business constraint on top of the cost minimum. The
+  script prints this warning whenever the rate exceeds 5%.
+- **τ\* moves 5.7x across the sensitivity variants** (0.034 → 0.191). The
+  assumed constants are load-bearing. Lead with that rather than letting a judge
+  find it: the method is sound, and the constants need a real merchant's
+  numbers. `sensitivity.csv` has the full table.
+
+### The scoring path is shared, deliberately
+
+`src/cutline/bundle.py` holds the only `score()` in the project. Phase 3's
+sweep, Phase 4's endpoint and Phase 5's dashboard all call it. A service that
+loads the model and rebuilds features from a second copy of the logic returns
+numbers that disagree with the metrics table — silently, and usually the night
+before a demo.
+
 ## Metrics, and why these ones
 
 - **PR-AUC** is the headline. At a 3.5% positive rate, ROC-AUC reads ~0.95 while
@@ -201,6 +242,8 @@ src/cutline/
   split.py       time-ordered splitter and the leakage demo — read this first
   data.py        CSV -> parquet, identity join, dtype downcasting
   features.py    history features (unfitted) + FeatureBuilder (fitted on train)
+  costs.py       cost(tau), the sweep, sensitivity, three-band policy
+  bundle.py      load + score — the ONE scoring path, shared by every phase
   metrics.py     PR-AUC, value-recall, the results-table appender
   synthetic.py   stand-in frame for running without the download
 scripts/
@@ -208,10 +251,14 @@ scripts/
   prepare_data.py   CSV -> parquet, once
   01_baseline.py    Phase 1: the floor and the leakage demo
   02_model.py       Phase 2: LightGBM + isotonic calibration
+  03_cost_model.py  Phase 3: threshold sweep, sensitivity, the money sentence
   smoke_test.py     ingestion round trip on synthetic CSVs, in a temp dir
 reports/
   results.csv       every experiment, appended
   calibration.png   reliability, raw vs calibrated
+  cost_curve.png    cost vs threshold, with tau* marked
+  cost_curve.json   thinned curve for the Phase 5 slider
+  sensitivity.csv   how far tau* moves when the constants are wrong
 models/
   cutline.joblib    encoder + model + calibrator, versioned together
 ```
