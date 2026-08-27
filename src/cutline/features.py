@@ -126,6 +126,7 @@ class FeatureBuilder:
     levels_: dict[str, list] = field(default_factory=dict)
     columns_: list[str] = field(default_factory=list)
     categorical_: list[str] = field(default_factory=list)
+    source_columns_: list[str] = field(default_factory=list)
 
     def fit(self, df: pd.DataFrame) -> "FeatureBuilder":
         self.freq_maps_ = {}
@@ -140,12 +141,25 @@ class FeatureBuilder:
                     pd.Series(df[col].astype("string")).dropna().unique().tolist()
                 )
 
+        # Remember which raw columns were present at fit time. A live request
+        # carries fewer fields than a training row, and in this dataset an
+        # absent column is missing DATA, not a schema error — has_identity
+        # exists precisely because most rows have no device information.
+        wanted = set(PASSTHROUGH) | set(HISTORY_COLUMNS) | set(FREQ_COLUMNS) | set(CATEGORICAL)
+        self.source_columns_ = [c for c in df.columns if c in wanted]
+
         self.columns_ = []
         self.categorical_ = []
         _ = self.transform(df.head(min(len(df), 50)), _recording=True)
         return self
 
     def transform(self, df: pd.DataFrame, _recording: bool = False) -> pd.DataFrame:
+        # Reinstate any source column the caller did not supply, as NaN, so
+        # training and serving take the same path through the code below.
+        absent = [c for c in self.source_columns_ if c not in df.columns]
+        if absent:
+            df = df.assign(**{c: np.nan for c in absent})
+
         X = pd.DataFrame(index=df.index)
 
         for col in PASSTHROUGH:
@@ -175,8 +189,17 @@ class FeatureBuilder:
 
         missing = [c for c in self.columns_ if c not in X.columns]
         if missing:
-            raise ValueError(f"columns absent at transform time: {missing}")
+            # Reaching here means the feature set itself changed, not that a
+            # request was sparse — that case is handled above.
+            raise ValueError(
+                f"feature columns could not be built: {missing}. The builder and "
+                f"the code that produces features are out of sync; retrain."
+            )
         return X[self.columns_]
+
+    def missing_source_columns(self, df: pd.DataFrame) -> list[str]:
+        """Which fit-time columns this frame does not carry. Useful in /health."""
+        return [c for c in self.source_columns_ if c not in df.columns]
 
     def fit_transform(self, df: pd.DataFrame) -> pd.DataFrame:
         return self.fit(df).transform(df)

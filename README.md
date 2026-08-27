@@ -16,8 +16,8 @@ it came from.
 | 1 | Data, time-ordered split, baseline floor | **done** |
 | 2 | Feature engineering, LightGBM, calibration | **done** |
 | 3 | Cost model and threshold sweep | **done** |
-| 4 | FastAPI `/score` + `/explain` | next |
-| 5 | Next.js review queue + threshold slider | — |
+| 4 | FastAPI `/score` + `/explain` | **done** |
+| 5 | Next.js review queue + threshold slider | next |
 
 ## Setup
 
@@ -247,6 +247,68 @@ loads the model and rebuilds features from a second copy of the logic returns
 numbers that disagree with the metrics table — silently, and usually the night
 before a demo.
 
+## Phase 4 — the service
+
+```bash
+.venv/bin/uvicorn api.main:app --reload --port 8000
+.venv/bin/python scripts/04_api_check.py     # every endpoint, in-process
+```
+
+| endpoint | what |
+|---|---|
+| `GET /health` | model loaded, what it was trained on, synthetic warning |
+| `GET /policy` | thresholds in force + the constants behind them |
+| `POST /score` | probability + decision, ~30 ms |
+| `POST /explain` | the same plus three reasons in plain words |
+| `POST /replay` | a batch, for the demo feed |
+
+**The decision is not a fixed 0.5.** It is read from `cost_curve.json`, and
+`04_api_check.py` asserts the threshold is not exactly 0.5 — if the curve fails
+to load, the service silently reverts to the default and undoes the entire
+argument of the project. That assert is the guard.
+
+A real response:
+
+```
+POST /explain -> review  p=0.0338
+  - placed at 05:00                              (+0.533)
+  - no device or browser information             (+0.219)
+  - risk pattern learned for this specific card   (+0.112)
+```
+
+### Serving needed history, and got it without a second code path
+
+Velocity features look backward over a card's transactions; a single incoming
+request carries no history. `HistoryStore` keeps recent transactions in memory
+and, for a new one, runs **the training function** over just that card's rows.
+That is safe rather than approximate: `add_history_features` computes row-local
+values plus per-card values grouped by `card1`, so a row's features depend only
+on itself and earlier rows of the same card. Restricting to that card returns
+bit-identical output. Production would swap the store for a feature store; the
+feature code would not change.
+
+### What SHAP is actually explaining
+
+SHAP explains the **raw** model output, not the calibrated probability. Isotonic
+sits downstream and is monotone, so the order and direction of reasons carry
+over exactly — the magnitudes are log-odds, not probability. Saying "this added
+0.4 to the probability" would be false; the endpoint returns that caveat in the
+payload rather than leaving it to the reader.
+
+### Phrasing rules that took two attempts
+
+- **`TransactionAmt` and `log_amt` are the same fact told twice.** The first
+  version listed "amount is 249.99" as two separate reasons, which reads as a
+  bug. Reasons are deduplicated by rendered text, keeping the stronger one.
+- **`card1 = 4564.0` is not an explanation.** IEEE-CIS never says what `card1`,
+  `C13` or `D15 `mean, so the phrasing does not pretend: "risk pattern learned
+  for this specific card", and anonymised counters are labelled as anonymised.
+  Inventing a meaning would be worse than admitting there isn't one.
+- Requests are sparse. `FeatureBuilder` records its fit-time source columns and
+  reinstates absent ones as NaN, because in this dataset a missing column is
+  missing **data**, not a schema error — `has_identity` exists for exactly that
+  reason. A genuine feature-set mismatch still raises.
+
 ## Metrics, and why these ones
 
 - **PR-AUC** is the headline. At a 3.5% positive rate, ROC-AUC reads ~0.95 while
@@ -271,6 +333,8 @@ src/cutline/
   features.py    history features (unfitted) + FeatureBuilder (fitted on train)
   costs.py       cost(tau), the sweep, sensitivity, three-band policy
   bundle.py      load + score — the ONE scoring path, shared by every phase
+  explain.py     SHAP -> sentences an analyst would write
+  serving.py     HistoryStore + Scorer (threshold read from the cost curve)
   metrics.py     PR-AUC, value-recall, the results-table appender
   synthetic.py   stand-in frame for running without the download
 scripts/
@@ -279,6 +343,9 @@ scripts/
   01_baseline.py    Phase 1: the floor and the leakage demo
   02_model.py       Phase 2: LightGBM + isotonic calibration
   03_cost_model.py  Phase 3: threshold sweep, sensitivity, the money sentence
+  04_api_check.py   Phase 4: exercises every endpoint in-process
+api/
+  main.py           FastAPI service
   smoke_test.py     ingestion round trip on synthetic CSVs, in a temp dir
 reports/
   results.csv       every experiment, appended

@@ -1,0 +1,172 @@
+"""Cutline scoring service.
+
+    .venv/bin/uvicorn api.main:app --reload --port 8000
+
+Endpoints
+    GET  /health    is the model loaded, and what was it trained on
+    GET  /policy    the thresholds in force and the constants behind them
+    POST /score     probability + decision for one transaction
+    POST /explain   the same, plus the three strongest reasons in plain words
+    POST /replay    a batch, for the demo feed
+
+The decision is NOT a fixed 0.5. It comes from the cost curve written by
+scripts/03_cost_model.py, which is the point of the whole project — see
+/policy for the threshold in force and the assumptions that produced it.
+"""
+
+from __future__ import annotations
+
+import sys
+import time
+from pathlib import Path
+
+import pandas as pd
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from cutline import serving  # noqa: E402
+
+app = FastAPI(
+    title="Cutline",
+    description="Payment risk scoring whose threshold comes from cost, not accuracy.",
+    version="0.4.0",
+)
+
+# The Next.js dashboard in Phase 5 runs on another origin.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+STATE: dict = {}
+
+
+class Transaction(BaseModel):
+    """Only amount, time and card are required; the rest degrade gracefully.
+
+    Missing values are signal in this dataset, not an error — `has_identity`
+    exists precisely because most transactions carry no device information.
+    """
+
+    TransactionID: int | None = None
+    TransactionDT: int = Field(..., description="seconds offset, NOT a unix timestamp")
+    TransactionAmt: float
+    card1: int
+    ProductCD: str | None = None
+    card2: float | None = None
+    card3: float | None = None
+    card4: str | None = None
+    card5: float | None = None
+    card6: str | None = None
+    addr1: float | None = None
+    dist1: float | None = None
+    P_emaildomain: str | None = None
+    R_emaildomain: str | None = None
+    C1: float | None = None
+    C13: float | None = None
+    C14: float | None = None
+    D1: float | None = None
+    D15: float | None = None
+    M4: str | None = None
+    DeviceType: str | None = None
+    DeviceInfo: str | None = None
+    id_01: float | None = None
+    id_02: float | None = None
+    has_identity: int | None = None
+
+    def to_row(self) -> dict:
+        row = self.model_dump()
+        if row.get("has_identity") is None:
+            row["has_identity"] = int(row.get("DeviceType") is not None)
+        return row
+
+
+@app.on_event("startup")
+def _startup() -> None:
+    STATE["scorer"] = serving.Scorer()
+    STATE["history"] = serving.HistoryStore()
+    scorer = STATE["scorer"]
+    print(f"loaded: {scorer.bundle.get('source')} bundle, "
+          f"tau_block={scorer.tau_block:.4f}")
+
+
+def _scorer() -> serving.Scorer:
+    s = STATE.get("scorer")
+    if s is None:
+        raise HTTPException(503, "model not loaded")
+    return s
+
+
+@app.get("/health")
+def health() -> dict:
+    s = STATE.get("scorer")
+    return {
+        "ok": s is not None,
+        "trained_on": None if s is None else s.bundle.get("source"),
+        "history_rows": len(STATE.get("history", [])) if STATE.get("history") else 0,
+        "warning": (
+            None if s is None or s.bundle.get("source") != "synthetic"
+            else "model trained on synthetic data — scores are shape, not magnitude"
+        ),
+    }
+
+
+@app.get("/policy")
+def policy() -> dict:
+    return _scorer().policy()
+
+
+def _score_one(txn: Transaction, explain: bool) -> dict:
+    scorer, history = _scorer(), STATE["history"]
+    started = time.perf_counter()
+
+    featurised = history.add(txn.to_row())
+    p = float(scorer.score(featurised)[0])
+    decision = scorer.decide(p)
+
+    result = {
+        "transaction_id": txn.TransactionID,
+        "probability": p,
+        "decision": decision,
+        "tau_block": scorer.tau_block,
+        "tau_review": scorer.tau_review,
+        "amount": txn.TransactionAmt,
+    }
+
+    if explain:
+        X = scorer.features_for(featurised)
+        result["reasons"] = scorer.explainer.top_reasons(X, k=3)[0]
+        result["explanation_note"] = (
+            "SHAP explains the raw model output. Isotonic calibration sits "
+            "downstream and is monotone, so the order and direction of these "
+            "reasons hold exactly; the magnitudes are log-odds, not probability."
+        )
+
+    result["latency_ms"] = round((time.perf_counter() - started) * 1000, 1)
+    return result
+
+
+@app.post("/score")
+def score(txn: Transaction) -> dict:
+    return _score_one(txn, explain=False)
+
+
+@app.post("/explain")
+def explain(txn: Transaction) -> dict:
+    return _score_one(txn, explain=True)
+
+
+@app.post("/replay")
+def replay(batch: list[Transaction]) -> dict:
+    """Score a batch in order, as the demo feed does."""
+    if len(batch) > 2000:
+        raise HTTPException(413, "batch too large; send 2000 or fewer")
+    scored = [_score_one(t, explain=False) for t in batch]
+    counts: dict[str, int] = {}
+    for r in scored:
+        counts[r["decision"]] = counts.get(r["decision"], 0) + 1
+    return {"n": len(scored), "decisions": counts, "results": scored}
