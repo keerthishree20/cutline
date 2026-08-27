@@ -9,14 +9,13 @@ plus a support ticket. Those are not equal, so `0.5` is almost never the right
 cut. This project finds the cut that minimises actual cost, and shows the curve
 it came from.
 
-
 ## Status
 
 | Phase | What | State |
 |---|---|---|
 | 1 | Data, time-ordered split, baseline floor | **done** |
-| 2 | Feature engineering, LightGBM, calibration | next |
-| 3 | Cost model and threshold sweep | — |
+| 2 | Feature engineering, LightGBM, calibration | **done** |
+| 3 | Cost model and threshold sweep | next |
 | 4 | FastAPI `/score` + `/explain` | — |
 | 5 | Next.js review queue + threshold slider | — |
 
@@ -102,7 +101,83 @@ contemporaneous data. The gap between them is what a random split silently
 hands you.
 
 Results append to `reports/results.csv` — that file is the project's lab
-notebook, and every experiment from here on adds a row.
+notebook, and every experiment from here on adds a row. It is per-machine until
+committed, so a fresh clone will report no floor on the first run of
+`02_model.py` until `01_baseline.py` has been run once. The floor comparison is
+scoped to the same data source and the most recent baseline row, because an
+append-only notebook accumulates rows from older feature sets and, once the real
+data lands, from a different dataset entirely.
+
+## Phase 2 results
+
+`scripts/02_model.py`. Four slices, three held back for a named reason:
+
+```
+[ ---- fit ---- ][ early-stop ][ calib ][ ---- test ---- ]
+ <------ train 70% ---------->    10%        20%
+```
+
+`fit` trains the model and fits the encoder. `early-stop` picks the tree count.
+`calib` is touched only by isotonic regression, so the probabilities the cost
+model consumes are honest. `test` is touched once.
+
+Isotonic is fitted directly rather than through `CalibratedClassifierCV` so it
+is obvious exactly what was fitted on what, and so the reliability curve can
+show raw and calibrated scores on the same axes
+(`reports/calibration.png`).
+
+**Isotonic barely moves PR-AUC, and that is correct.** It is a monotone
+transform, so it preserves ranking almost exactly. What it moves is calibration
+error — which is the only number `cost(τ)` actually rests on.
+
+### Two bugs this phase produced, both silent
+
+- **Early stopping fired on the wrong metric.** With `scale_pos_weight` applied,
+  `binary_logloss` degrades from the first iteration by construction. Left in
+  the metric list it stopped training at **one tree**, and the model still
+  trained, still scored, still saved. Fixed by setting
+  `metric="average_precision"` and `first_metric_only=True`.
+- **Equal-width ECE bins say nothing at a 3.5% fraud rate.** Nearly every score
+  sits near zero, so ~99% of the mass lands in the first bucket. `metrics.py`
+  uses quantile bins.
+
+### One feature that was measuring the wrong thing
+
+`card1_amt_z` is meant to say "this amount is unusual for this card", and the
+SHAP panel in Phase 4 will quote it back to a user in those words. Built from an
+expanding std with a `+1.0` denominator floor, it wasn't saying that: with one
+or two prior transactions the std estimate is noise and the floor dominates, so
+mean `|z|` fell from 1.63 to 0.56 purely as card history grew, with no change in
+the underlying amounts. It now requires `MIN_PRIOR_FOR_Z = 3` prior
+transactions and emits NaN below that — the "no history" state is already
+carried by the count and first-seen features.
+
+### Two leaks the code guards against structurally
+
+Both compile, train, and score fine while being wrong, so neither shows up as
+an error:
+
+- **The encoder is the leak, not the velocity features.** Backward-looking
+  rolling windows computed before splitting are fine — every value depends only
+  on earlier rows. But fitting frequency maps on the full frame lets a card that
+  appears only in the test period contribute to a training feature.
+  `FeatureBuilder` is fitted on the fit slice alone, and unseen keys get a
+  sentinel of `0`, never NaN. `unseen_rate()` on held-out data returning exactly
+  `0.0` is the signature of an encoder fitted on too much; the smoke test
+  asserts against it.
+- **`.astype("category")` on train and test independently gives the same string
+  different integer codes.** LightGBM then reads garbage at inference, silently.
+  `transform` pins levels from training via `pd.Categorical(..., categories=...)`.
+
+### About the synthetic numbers
+
+On the stand-in, Phase 2 beats the Phase 1 floor by ~15%. Do not read anything
+into the magnitude. An earlier version of the generator left `D15`, `card5` and
+`card2` as pure noise, and LightGBM tied with logistic regression because ~22 of
+33 features were random and the planted signal was mostly linear — the one
+regime where boosting has no edge. The generator now includes non-linear terms
+and a two-way interaction. **Judge Phase 2 on IEEE-CIS, not here**, which is why
+the below-floor warning is worded differently for the two sources.
 
 ## Metrics, and why these ones
 
@@ -114,6 +189,9 @@ notebook, and every experiment from here on adds a row.
 - **Recall by value, not just by count.** Catching half of fraudulent
   transactions is a modelling result; catching half of fraudulent dollars is
   what a merchant feels.
+- **ECE and Brier**, because a model can rank perfectly and still be useless
+  for pricing: if it says 0.30 for a bucket that defaults at 0.05, every figure
+  in `cost(τ)` is wrong while PR-AUC looks fine.
 
 ## Layout
 
@@ -122,16 +200,26 @@ src/cutline/
   config.py      paths + the cost constants, stated as assumptions
   split.py       time-ordered splitter and the leakage demo — read this first
   data.py        CSV -> parquet, identity join, dtype downcasting
+  features.py    history features (unfitted) + FeatureBuilder (fitted on train)
   metrics.py     PR-AUC, value-recall, the results-table appender
   synthetic.py   stand-in frame for running without the download
 scripts/
   download_data.py  train files only
   prepare_data.py   CSV -> parquet, once
   01_baseline.py    Phase 1: the floor and the leakage demo
+  02_model.py       Phase 2: LightGBM + isotonic calibration
   smoke_test.py     ingestion round trip on synthetic CSVs, in a temp dir
 reports/
   results.csv       every experiment, appended
+  calibration.png   reliability, raw vs calibrated
+models/
+  cutline.joblib    encoder + model + calibrator, versioned together
 ```
+
+The bundle is deliberately one file holding three objects. If Phase 4 loads a
+model and rebuilds features from a second copy of the logic, it ships a service
+whose scores disagree with the metrics table. `scripts/smoke_test.py` asserts
+the round trip returns byte-identical scores.
 
 ## Currency
 

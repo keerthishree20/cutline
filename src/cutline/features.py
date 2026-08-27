@@ -32,6 +32,14 @@ FREQ_COLUMNS = ["card1", "addr1", "P_emaildomain", "card2"]
 CATEGORICAL = ["ProductCD", "card4", "card6", "M4", "DeviceType"]
 UNSEEN = 0  # frequency sentinel; genuine counts are always >= 1
 
+# A z-score needs a believable baseline. With one or two prior transactions the
+# expanding std is noise and the +1.0 denominator floor dominates, so the score
+# ends up measuring how much history a card has rather than how unusual this
+# amount is — mean |z| falls 1.63 -> 0.56 as prior count rises, with no change
+# in the underlying amounts. Below this many priors, emit nothing: the "no
+# history" signal is already carried by the count and first-seen features.
+MIN_PRIOR_FOR_Z = 3
+
 PASSTHROUGH = [
     "TransactionAmt", "card1", "card2", "card3", "card5",
     "addr1", "dist1", "C1", "C13", "C14", "D1", "D15", "has_identity",
@@ -82,11 +90,15 @@ def add_history_features(df: pd.DataFrame, key: str = "card1") -> pd.DataFrame:
         group_amt = pd.Series(amt.to_numpy()[idx])
         prior_mean = group_amt.expanding().mean().shift(1)
         prior_std = group_amt.expanding().std().shift(1)
-        amt_z[idx] = ((group_amt - prior_mean) / (prior_std + 1.0)).to_numpy()
+        z = (group_amt - prior_mean) / (prior_std + 1.0)
+        z[np.arange(len(idx)) < MIN_PRIOR_FOR_Z] = np.nan
+        amt_z[idx] = z.to_numpy()
 
     out[f"{key}_count_1h"] = counts_1h
     out[f"{key}_count_24h"] = counts_24h
     out[f"{key}_sec_since_prev"] = since_prev
+    # Named for what it means, because the SHAP panel will quote it back to a
+    # user as "amount is N x this card's usual".
     out[f"{key}_amt_z"] = amt_z
     # No prior history is a state worth naming, not a missing value.
     out[f"{key}_is_first_seen"] = np.isnan(since_prev).astype("int8")

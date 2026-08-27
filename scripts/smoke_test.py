@@ -19,9 +19,70 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from cutline import config, data, metrics, split, synthetic  # noqa: E402
+from cutline import config, data, features, metrics, split, synthetic  # noqa: E402
 
 IDENTITY_COLS = ["id_01", "id_02", "DeviceType", "DeviceInfo"]
+
+
+def test_serving_parity() -> None:
+    """The model must score identically after a save/load round trip.
+
+    Phase 4 loads this bundle and serves from it. If the encoder is rebuilt
+    from a second copy of the logic, or category levels are re-derived at load
+    time, the service returns scores that quietly disagree with the metrics
+    table — no exception, no warning, just wrong numbers in production.
+    """
+    import joblib
+    import lightgbm as lgb
+    from sklearn.isotonic import IsotonicRegression
+
+    df = features.add_history_features(synthetic.make_frame(12_000))
+    parts = split.time_ordered_split(df)
+
+    builder = features.FeatureBuilder().fit(parts.train)
+    X_tr, X_te = builder.transform(parts.train), builder.transform(parts.test)
+
+    # The silent killer: independent .astype("category") calls give the same
+    # string different integer codes on either side.
+    for col in builder.categorical_:
+        assert list(X_tr[col].cat.categories) == list(X_te[col].cat.categories), (
+            f"{col}: category coding differs between train and test"
+        )
+
+    # Assert per high-cardinality column, not on the max. Low-cardinality keys
+    # like P_emaildomain legitimately sit at 0.0 (every level appears in train),
+    # so a max() check keeps passing on card1 alone even if a bug zeroed the
+    # rest — which is precisely the failure this test exists to catch.
+    unseen = builder.unseen_rate(parts.test)
+    for col in ("card1", "addr1"):
+        if col in unseen:
+            assert unseen[col] > 0.0, (
+                f"{col}: no unseen keys on held-out data — the encoder was "
+                f"fitted on more than the train slice"
+            )
+
+    model = lgb.LGBMClassifier(n_estimators=60, num_leaves=15, verbose=-1,
+                               random_state=config.RANDOM_STATE)
+    model.fit(X_tr, parts.train["isFraud"])
+    iso = IsotonicRegression(out_of_bounds="clip", y_min=0.0, y_max=1.0)
+    iso.fit(model.predict_proba(builder.transform(parts.calib))[:, 1],
+            parts.calib["isFraud"])
+
+    expected = iso.predict(model.predict_proba(X_te)[:, 1])
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "bundle.joblib"
+        joblib.dump({"feature_builder": builder, "model": model, "isotonic": iso}, path)
+        loaded = joblib.load(path)
+
+    got = loaded["isotonic"].predict(
+        loaded["model"].predict_proba(loaded["feature_builder"].transform(parts.test))[:, 1]
+    )
+
+    import numpy as np
+    assert np.array_equal(expected, got), "scores changed across the save/load round trip"
+    print(f"serving parity: {len(got):,} scores identical after joblib round trip")
+    print(f"  unseen-key rates held out: {({k: round(v, 4) for k, v in unseen.items()})}")
 
 
 def main() -> None:
@@ -64,7 +125,10 @@ def main() -> None:
 
         print("\n" + parts.describe())
         print(f"\ndtypes surviving parquet: {dict(reloaded.dtypes.value_counts().items())}")
-        print("\nsmoke test PASSED — ingestion, dtypes, join and split all sound.")
+        print("\ningestion OK — dtypes, join and split all sound.\n")
+
+    test_serving_parity()
+    print("\nsmoke test PASSED.")
 
 
 if __name__ == "__main__":

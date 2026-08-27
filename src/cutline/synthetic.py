@@ -10,6 +10,8 @@ Two properties are deliberate:
   * concept drift over time, so the random-vs-time split gap is visible
   * heavy, uneven card reuse, so the velocity features actually have history
     to look back at
+  * non-linear terms and a two-way interaction, so gradient boosting can show
+    an advantage over a linear model the way it would on real data
 """
 
 from __future__ import annotations
@@ -44,6 +46,12 @@ def make_frame(n: int = 20_000, seed: int = 0) -> pd.DataFrame:
     dist1 = np.where(rng.random(n) < 0.6, np.nan, rng.exponential(50, size=n))
     hour = (dt % SECONDS_PER_DAY) // 3600
     has_identity = (rng.random(n) < 0.24).astype(np.int8)
+    # Columns that a real dataset would carry signal in. Left as pure noise,
+    # they make the stand-in actively misleading: LightGBM splits on 20-odd
+    # random columns, ties with logistic regression, and the Phase 2 gate
+    # reports a bug that is not there.
+    c13 = rng.poisson(8.0, size=n).astype(np.float32)
+    d15 = np.where(rng.random(n) < 0.15, np.nan, rng.exponential(90, size=n))
 
     # Planted signal: large amounts, small hours, missing identity, and a
     # drifting card-range effect that only appears in the back half of the year.
@@ -54,10 +62,17 @@ def make_frame(n: int = 20_000, seed: int = 0) -> pd.DataFrame:
         + 0.9 * ((hour < 6) | (hour > 22))
         + 0.7 * (1 - has_identity)
         + 2.1 * drift * (card1 > 14000)
+        # Non-linear terms, so gradient boosting has something linear models
+        # cannot reach: a band effect rather than a monotone one, and a genuine
+        # two-way interaction.
+        + 1.3 * ((c13 > 12) & (c13 < 18))
+        + 1.1 * (np.nan_to_num(d15, nan=90.0) < 10)
+        + 1.4 * ((amount > 200) & (hour < 6))
         + rng.normal(0, 0.8, size=n)
     )
     p = 1 / (1 + np.exp(-logit))
     is_fraud = (rng.random(n) < p).astype(np.int8)
+
 
     df = pd.DataFrame(
         {
@@ -77,10 +92,10 @@ def make_frame(n: int = 20_000, seed: int = 0) -> pd.DataFrame:
             "P_emaildomain": rng.choice(EMAILS, size=n),
             "R_emaildomain": rng.choice([*EMAILS, None], size=n),
             "C1": rng.poisson(2.0, size=n).astype(np.float32),
-            "C13": rng.poisson(8.0, size=n).astype(np.float32),
+            "C13": c13,
             "C14": rng.poisson(3.0, size=n).astype(np.float32),
             "D1": rng.exponential(60, size=n).astype(np.float32),
-            "D15": np.where(rng.random(n) < 0.15, np.nan, rng.exponential(90, size=n)),
+            "D15": d15,
             "M4": rng.choice(["M0", "M1", "M2", None], size=n),
             "DeviceType": np.where(has_identity == 1, rng.choice(DEVICES, size=n), None),
             "DeviceInfo": np.where(has_identity == 1, rng.choice(["Windows", "iOS", "MacOS", "Android"], size=n), None),

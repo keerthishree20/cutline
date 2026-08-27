@@ -91,16 +91,25 @@ def expected_calibration_error(y_true, y_score, bins: int = 10) -> float:
 
     This is the number the cost model actually rests on. A model can rank
     perfectly and still be useless here: if it says 0.30 for a bucket that
-    defaults at 0.05, every rupee in cost(tau) is wrong even though PR-AUC
+    defaults at 0.05, every figure in cost(tau) is wrong even though PR-AUC
     looks fine.
+
+    Bins are QUANTILE bins, not equal width. At a 3.5% fraud rate almost every
+    score sits near zero, so equal-width bins put ~99% of the mass in the first
+    bucket and the metric stops saying anything. Quantile bins keep each bucket
+    populated and make the number move when calibration actually changes.
     """
     y_true = np.asarray(y_true, dtype=float)
     y_score = np.asarray(y_score, dtype=float)
-    edges = np.linspace(0.0, 1.0, bins + 1)
-    idx = np.clip(np.digitize(y_score, edges[1:-1], right=True), 0, bins - 1)
+
+    edges = np.unique(np.quantile(y_score, np.linspace(0.0, 1.0, bins + 1)))
+    if len(edges) < 3:  # scores are near-constant; nothing to bin
+        return float(abs(y_score.mean() - y_true.mean()))
+
+    idx = np.clip(np.digitize(y_score, edges[1:-1], right=True), 0, len(edges) - 2)
 
     total = 0.0
-    for b in range(bins):
+    for b in range(len(edges) - 1):
         mask = idx == b
         if not mask.any():
             continue
