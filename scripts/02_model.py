@@ -58,7 +58,10 @@ def main() -> None:
         df = synthetic.make_frame(80_000)
         source = "synthetic"
     else:
-        df = data.load()
+        # Only the columns the feature code can use. The V block is 800MB
+        # in memory; reading all 435 columns and then selecting is the
+        # difference between a run that fits and one that swaps.
+        df = data.load(columns=features.required_columns())
         source = "ieee-cis"
 
     print(f"source: {source}  rows={len(df):,}  fraud={df['isFraud'].mean():.3%}")

@@ -44,7 +44,8 @@ def main() -> None:
     source = b.get("source", "synthetic")
     print(bundle_mod.describe(b))
 
-    raw = data.load() if source == "ieee-cis" else synthetic.make_frame(80_000)
+    raw = (data.load(columns=features.required_columns()) if source == "ieee-cis"
+           else synthetic.make_frame(80_000))
     test = split.time_ordered_split(features.add_history_features(raw)).test
     print(f"test slice: {len(test):,} rows")
 

@@ -96,9 +96,10 @@ def main() -> None:
         for reason in j["reasons"]:
             print(f"   - {reason['reason']}")
         assert j["sparse"], "a 3-field request should be flagged sparse"
-        print("   ^ scores high BECAUSE it is sparse: missing history is predictive")
-        print("     here. Demo through /replay with history warmed, not one cold curl —")
-        print("     a judge posting this by hand will otherwise read it as broken.")
+        print(f"   ^ this is a SPARSE request — {j['fields_supplied']} of "
+              f"{j['fields_supplied'] + j['fields_absent']} fields. Whichever way it")
+        print("     scores, it is not evidence about the model: demo through /replay")
+        print("     with history warmed, never one cold hand-written curl.")
 
         bad = client.post("/score", json={"TransactionAmt": 10.0})
         assert bad.status_code == 422, f"expected validation error, got {bad.status_code}"

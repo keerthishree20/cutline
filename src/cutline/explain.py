@@ -107,6 +107,18 @@ PHRASES = {
 
 def phrase(feature: str, value) -> str:
     """Plain-language rendering of one feature's value."""
+    # The V block is Vesta's own engineered features and they published no
+    # definitions for any of them. "V294 = 3.0" is not an explanation, and
+    # inventing a meaning would be worse than admitting there isn't one.
+    if feature.startswith("Vgrp") and feature.endswith("_present"):
+        gid = feature[4:-8]
+        return (f"Vesta feature group {gid} is "
+                f"{'present' if value and value >= 0.5 else 'absent'} for this transaction")
+    if feature.startswith("V") and feature[1:].isdigit():
+        if pd.isna(value):
+            return f"Vesta feature {feature} is missing (undocumented by the dataset)"
+        return f"Vesta feature {feature} is {value:,.2f} (undocumented by the dataset)"
+
     if pd.isna(value):
         return f"{feature.replace('_', ' ')} is missing"
     fn = PHRASES.get(feature)

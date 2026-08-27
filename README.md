@@ -173,15 +173,44 @@ an error:
 
 590,540 transactions, 3.50% fraud. Test slice is the last 118,108 by time.
 
-| run | PR-AUC | lift over base rate | ECE | Brier |
-|---|---|---|---|---|
-| baseline logreg (floor) | 0.1325 | 3.85x | 0.3645 | 0.1827 |
-| LightGBM raw | 0.4391 | 12.76x | 0.1073 | 0.0551 |
-| **LightGBM calibrated** | **0.4263** | **12.39x** | **0.0043** | **0.0244** |
+| run | features | PR-AUC | lift | precision @ 50% recall | ECE |
+|---|---|---|---|---|---|
+| baseline logreg (floor) | 13 | 0.1325 | 3.85x | 0.115 | 0.3645 |
+| LightGBM, first pass | 34 | 0.4263 | 12.39x | 0.333 | 0.0043 |
+| **LightGBM, full feature set** | **380** | **0.4718** | **13.71x** | **0.392** | **0.0053** |
 
-**+221.7% over the floor**, and calibration error down 96%. Isotonic costs a
-little PR-AUC (ties) and buys a 25x improvement in ECE, which is the trade the
+**+256% over the floor**, and calibration error down 91%. Isotonic costs a
+little PR-AUC (ties) and buys a ~11x improvement in ECE, which is the trade the
 cost model needs.
+
+### The 404 columns that went unused for four phases
+
+The first working model used **31 of the dataset's 435 columns**. All 339 `V`
+columns — Vesta's own engineered features, where most of the signal in the
+winning Kaggle solutions lives — and all 38 `id_` columns were untouched, along
+with most of the `C` and `D` blocks.
+
+The V block is not 339 independent features. The columns fall into **14 groups
+that go missing together**, which is Vesta telling you they came from 14
+upstream sources. The obvious move is to reduce hard within each group — but
+measuring first showed within-group correlation is only **median |r| 0.14–0.26**,
+with 2–7% of pairs above 0.95. These are not near-duplicates, and an aggressive
+reduction would have thrown away real signal on the strength of an assumption
+that turned out to be false.
+
+So only genuine near-duplicates are dropped (r > 0.95 within group, keeping the
+higher-cardinality member), which removes about a fifth. The 14 group-present
+flags are kept as features in their own right, for exactly the reason
+`has_identity` is: absence is informative here.
+
+The selection is **fitted, not configured** — correlations are computed on the
+training slice inside `FeatureBuilder.fit` and stored in the bundle, so a pair
+that happens to be redundant only in the test period cannot influence what the
+model is given. High-cardinality identity strings (`id_30` OS, `id_31` browser,
+`id_33` resolution) are capped at 30 levels, because a browser version seen once
+in training is noise holding a category slot that LightGBM will split on.
+
+Result: 34 → 380 features, 975 → 1558 trees, and the numbers above.
 
 `has_identity` earned its place: fraud runs at **7.85%** on the 24.4% of
 transactions that carry identity data, against **2.09%** on those that do not.
@@ -205,12 +234,12 @@ On IEEE-CIS: 118,108 test transactions, 4,064 fraudulent, 16.2M USD of value.
 | policy | τ | cost (USD) | fraud caught by value | good declined |
 |---|---|---|---|---|
 | approve everything | — | 711,534 | 0.0% | 0.00% |
-| τ = 0.50 (default) | 0.5000 | 589,543 | 18.6% | 0.51% |
-| τ\* (pure cost min) | 0.1538 | 560,924 | 37.2% | 2.48% |
-| **τ_ship (≤1% declines)** | **0.4194** | **583,344** | **20.8%** | **0.73%** |
+| τ = 0.50 (default) | 0.5000 | 554,789 | 23.7% | 0.54% |
+| τ\* (pure cost min) | 0.2423 | 527,893 | 35.4% | 1.57% |
+| **τ_ship (≤1% declines)** | **0.3559** | **539,991** | **28.4%** | **0.88%** |
 
-**The recommended policy catches 20.8% of fraud by value while declining 0.73%
-of good customers — saving 128,190 USD on the test set, 10,854 per 10,000
+**The recommended policy catches 28.4% of fraud by value while declining 0.88%
+of good customers — saving 171,543 USD on the test set, 14,524 per 10,000
 transactions.**
 
 Two thresholds are reported on purpose. τ\* is what pure cost minimisation
@@ -281,7 +310,7 @@ before a demo.
 |---|---|
 | `GET /health` | model loaded, what it was trained on, synthetic warning |
 | `GET /policy` | thresholds in force + the constants behind them |
-| `POST /score` | probability + decision, ~30 ms |
+| `POST /score` | probability + decision, ~83 ms |
 | `POST /explain` | the same plus three reasons in plain words |
 | `POST /replay` | a batch, for the demo feed |
 
@@ -444,15 +473,23 @@ Two things that made this a real demo rather than a box that returns "allow":
   would have understated the model, not flattered it.
 
 The SHAP explainer is now built at startup. Lazily it cost ~2.5s on the first
-`/explain`, and that latency landed on whoever clicked first. Median is now 62ms,
-max 85ms.
+`/explain`, and that latency landed on whoever clicked first. On the 34-feature model that took median
+latency to 62ms.
+
+**The 380-feature model cost latency, and most of it was recoverable.** Scoring
+went 62ms → 248ms, and SHAP 85ms → 550ms. Profiling put the blame not on the
+model but on `transform` assigning 380 columns into a DataFrame one at a time,
+reallocating the block manager on nearly every write. Building the frame in a
+single pass from a dict took it back to **83ms scoring, 207ms with SHAP**. The
+remainder over the original is the genuine price of a model twelve times
+larger.
 
 ### What the reasons actually look like, and why
 
-**117 of 300 queue items have reasons that are entirely opaque**: "counting
-field C1 is 34 (anonymised in this dataset)". The anonymised counting fields
-fill 596 of 900 reason slots, because on IEEE-CIS they genuinely dominate the
-model and Vesta never documented what they mean.
+Many queue items have reasons that are entirely opaque: "counting field C1 is
+34 (anonymised in this dataset)", "Vesta feature V294 is missing (undocumented
+by the dataset)". The anonymised blocks dominate the model on IEEE-CIS, and
+Vesta published no definitions for any of the 339 `V` columns.
 
 That was tempting to fix by reweighting attribution toward features that merely
 *read* better. It is not fixed that way — that would be a lie about what drove

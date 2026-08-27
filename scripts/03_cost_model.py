@@ -35,7 +35,7 @@ def rebuild_test_set(source: str):
     if source == "synthetic":
         df = synthetic.make_frame(80_000)
     else:
-        df = data.load()
+        df = data.load(columns=features.required_columns())
     parts = split.time_ordered_split(features.add_history_features(df))
     return parts
 

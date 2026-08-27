@@ -93,9 +93,19 @@ def build_parquet(force: bool = False) -> pd.DataFrame:
 
 
 def load(columns: list[str] | None = None) -> pd.DataFrame:
-    """Load the prepared parquet. Pass `columns` to read only what you need."""
+    """Load the prepared parquet. Pass `columns` to read only what you need.
+
+    Requested columns the file does not carry are skipped rather than raising:
+    the caller asks for a superset (see features.required_columns) and the
+    dataset decides what actually exists.
+    """
     if not config.TRAIN_PARQUET.exists():
         raise FileNotFoundError(
             f"{config.TRAIN_PARQUET} missing — run `python scripts/prepare_data.py`"
         )
+    if columns is not None:
+        import pyarrow.parquet as pq
+
+        available = set(pq.ParquetFile(config.TRAIN_PARQUET).schema.names)
+        columns = [c for c in columns if c in available]
     return pd.read_parquet(config.TRAIN_PARQUET, columns=columns)

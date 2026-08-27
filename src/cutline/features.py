@@ -45,10 +45,50 @@ UNSEEN = 0  # frequency sentinel; genuine counts are always >= 1
 # history" signal is already carried by the count and first-seen features.
 MIN_PRIOR_FOR_Z = 3
 
-PASSTHROUGH = [
-    "TransactionAmt", "card1", "card2", "card3", "card5",
-    "addr1", "dist1", "C1", "C13", "C14", "D1", "D15", "has_identity",
-]
+# --- the V and id_ blocks -------------------------------------------------
+# 404 of the dataset's 435 columns went unused for the first four phases. The
+# V block is Vesta's own engineered features and it carries most of the signal
+# the winning Kaggle solutions found.
+#
+# The V columns fall into 14 groups that go missing together — Vesta telling us
+# they came from 14 upstream sources. Within a group the columns are only
+# modestly correlated (median |r| 0.14-0.26), so aggressive reduction would
+# discard real signal; only genuine near-duplicates are dropped. The
+# group-present flags are kept as features in their own right, for the same
+# reason has_identity is: absence is informative here.
+V_CORR_THRESHOLD = 0.95
+V_CORR_SAMPLE = 40_000
+
+# id_30/31/33 are OS, browser and screen-resolution strings with long tails. A
+# browser version seen once in training is noise occupying a category slot, and
+# LightGBM will happily split on it.
+MAX_CATEGORY_LEVELS = 30
+
+# The full counting and timedelta blocks, not the three of each that Phase 2
+# sampled — C1-C14 and D1-D15 are among the strongest features on this dataset.
+PASSTHROUGH = (
+    ["TransactionAmt", "card1", "card2", "card3", "card5", "addr1", "addr2",
+     "dist1", "dist2", "has_identity"]
+    + [f"C{i}" for i in range(1, 15)]
+    + [f"D{i}" for i in range(1, 16)]
+    + [f"id_{i:02d}" for i in range(1, 12)]      # the numeric identity columns
+)
+
+
+def required_columns() -> list[str]:
+    """Raw columns worth loading. Everything else stays off the heap.
+
+    The parquet is 435 columns and the V block alone is 800MB in memory, so
+    reading the whole frame and then selecting is the difference between a
+    training run that fits and one that swaps.
+    """
+    base = ["TransactionID", "isFraud", "TransactionDT", "P_emaildomain",
+            "R_emaildomain", "DeviceInfo"]
+    return sorted(set(
+        base + PASSTHROUGH + FREQ_COLUMNS + CATEGORICAL
+        + [f"V{i}" for i in range(1, 340)]
+        + [f"id_{i:02d}" for i in range(1, 39)]
+    ))
 
 
 def _prior_count_within(dt_sorted: np.ndarray, window: int) -> np.ndarray:
@@ -138,8 +178,18 @@ class FeatureBuilder:
     columns_: list[str] = field(default_factory=list)
     categorical_: list[str] = field(default_factory=list)
     source_columns_: list[str] = field(default_factory=list)
+    v_keep_: list[str] = field(default_factory=list)
+    v_groups_: dict[str, list[str]] = field(default_factory=dict)
+    extra_categorical_: list[str] = field(default_factory=list)
 
     def fit(self, df: pd.DataFrame) -> "FeatureBuilder":
+        # The V selection is FITTED, not read from a file: correlations are
+        # computed on the training slice alone, so a column pair that happens
+        # to be redundant only in the test period cannot influence what the
+        # model is given.
+        self._fit_v_block(df)
+        self._fit_extra_categoricals(df)
+
         self.freq_maps_ = {}
         for col in FREQ_COLUMNS:
             if col in df.columns:
@@ -156,7 +206,9 @@ class FeatureBuilder:
         # carries fewer fields than a training row, and in this dataset an
         # absent column is missing DATA, not a schema error — has_identity
         # exists precisely because most rows have no device information.
-        wanted = set(PASSTHROUGH) | set(HISTORY_COLUMNS) | set(FREQ_COLUMNS) | set(CATEGORICAL)
+        wanted = (set(PASSTHROUGH) | set(HISTORY_COLUMNS) | set(FREQ_COLUMNS)
+                  | set(CATEGORICAL) | set(self.v_keep_) | set(self.extra_categorical_)
+                  | {c for g in self.v_groups_.values() for c in g})
         self.source_columns_ = [c for c in df.columns if c in wanted]
 
         self.columns_ = []
@@ -169,33 +221,59 @@ class FeatureBuilder:
         # training and serving take the same path through the code below.
         absent = [c for c in self.source_columns_ if c not in df.columns]
         if absent:
-            df = df.assign(**{c: np.nan for c in absent})
+            # One concat, not 380 assigns. A live request carries a handful of
+            # fields against a 400-column fit-time schema, and adding them one
+            # at a time fragments the frame and floods the log with pandas
+            # performance warnings on every single call.
+            filler = pd.DataFrame(
+                np.nan, index=df.index, columns=absent, dtype="float32"
+            )
+            df = pd.concat([df, filler], axis=1)
 
-        X = pd.DataFrame(index=df.index)
+        # Accumulate into a dict and build the frame ONCE. Assigning 380
+        # columns one at a time into a DataFrame reallocates the block manager
+        # on nearly every write; at serving time that alone cost ~200ms per
+        # request, several times more than the model itself.
+        cols: dict[str, pd.Series] = {}
+
+        def numeric(name: str, source: str) -> None:
+            if source in df.columns:
+                cols[name] = pd.to_numeric(df[source], errors="coerce").astype("float32")
 
         for col in PASSTHROUGH:
-            if col in df.columns:
-                X[col] = pd.to_numeric(df[col], errors="coerce").astype("float32")
-
+            numeric(col, col)
         for col in HISTORY_COLUMNS:
-            if col in df.columns:
-                X[col] = pd.to_numeric(df[col], errors="coerce").astype("float32")
+            numeric(col, col)
+        for col in self.v_keep_:
+            numeric(col, col)
+
+        for gid, members in self.v_groups_.items():
+            probe = next((c for c in members if c in df.columns), None)
+            cols[f"Vgrp{gid}_present"] = (
+                df[probe].notna().astype("float32") if probe is not None
+                else pd.Series(np.float32(0.0), index=df.index)
+            )
 
         for col, mapping in self.freq_maps_.items():
             if col in df.columns:
                 # UNSEEN, not NaN: a key absent from training is a real state.
-                X[f"{col}_freq"] = (
-                    df[col].map(mapping).fillna(UNSEEN).astype("float32")
-                )
+                cols[f"{col}_freq"] = df[col].map(mapping).fillna(UNSEEN).astype("float32")
 
-        for col, levels in self.levels_.items():
+        categorical: list[str] = []
+        for col, levels in {**self.levels_, **self._extra_levels}.items():
             if col in df.columns:
                 # Pin the levels from training so the integer coding is stable.
-                X[col] = pd.Categorical(df[col].astype("string"), categories=levels)
+                cols[col] = pd.Series(
+                    pd.Categorical(df[col].astype("string"), categories=levels),
+                    index=df.index,
+                )
+                categorical.append(col)
+
+        X = pd.DataFrame(cols, index=df.index)
 
         if _recording:
             self.columns_ = list(X.columns)
-            self.categorical_ = [c for c in X.columns if str(X[c].dtype) == "category"]
+            self.categorical_ = categorical
             return X
 
         missing = [c for c in self.columns_ if c not in X.columns]
@@ -225,6 +303,57 @@ class FeatureBuilder:
             if col not in df.columns or bool(df[col].isna().all()):
                 out.append(col)
         return out
+
+    @property
+    def _extra_levels(self) -> dict:
+        return getattr(self, "_extra_levels_store", {})
+
+    def _fit_extra_categoricals(self, df: pd.DataFrame) -> None:
+        """Identity string columns, capped to their commonest levels."""
+        cands = [c for c in df.columns
+                 if (c.startswith("id_") or c == "DeviceInfo")
+                 and (df[c].dtype == object or str(df[c].dtype) in ("category", "str"))]
+        store: dict[str, list] = {}
+        for col in cands:
+            counts = df[col].astype("string").value_counts(dropna=True)
+            store[col] = sorted(counts.head(MAX_CATEGORY_LEVELS).index.tolist())
+        self.extra_categorical_ = cands
+        self._extra_levels_store = store
+
+    def _fit_v_block(self, df: pd.DataFrame) -> None:
+        """Group the V columns by null-pattern, then drop near-duplicates."""
+        v_cols = [c for c in df.columns if c.startswith("V") and c[1:].isdigit()]
+        if not v_cols:
+            self.v_keep_, self.v_groups_ = [], {}
+            return
+
+        nulls = df[v_cols].isna().mean().round(4)
+        buckets: dict[float, list[str]] = {}
+        for col, share in nulls.items():
+            buckets.setdefault(float(share), []).append(col)
+
+        groups, keep = {}, []
+        for gid, (_, members) in enumerate(
+            sorted(buckets.items(), key=lambda kv: -len(kv[1]))
+        ):
+            groups[str(gid)] = sorted(members)
+            sub = df[members].dropna()
+            if len(sub) > V_CORR_SAMPLE:
+                sub = sub.sample(V_CORR_SAMPLE, random_state=0)
+            if len(sub) < 50 or len(members) == 1:
+                keep.extend(members)
+                continue
+            corr = sub.corr().abs()
+            # Prefer the higher-cardinality member of a near-duplicate pair.
+            order = df[members].nunique().sort_values(ascending=False).index.tolist()
+            kept: list[str] = []
+            for col in order:
+                if all(not (corr.loc[col, k] > V_CORR_THRESHOLD) for k in kept):
+                    kept.append(col)
+            keep.extend(kept)
+
+        self.v_keep_ = sorted(keep)
+        self.v_groups_ = groups
 
     def fit_transform(self, df: pd.DataFrame) -> pd.DataFrame:
         return self.fit(df).transform(df)
