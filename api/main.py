@@ -16,6 +16,7 @@ scripts/03_cost_model.py, which is the point of the whole project — see
 
 from __future__ import annotations
 
+import json
 import sys
 import time
 from contextlib import asynccontextmanager
@@ -121,6 +122,35 @@ def health() -> dict:
 @app.get("/policy")
 def policy() -> dict:
     return _scorer().policy()
+
+
+def _serve_report(name: str, hint: str) -> dict:
+    """Return a generated report file verbatim.
+
+    Verbatim matters. Re-deriving any of this in the API would create a second
+    source for numbers the deck already quotes, and the two would drift. A
+    missing file is a 503 with instructions, never a synthesised default — a
+    dashboard silently showing tau=0.5 is precisely the failure the whole
+    project argues against.
+    """
+    from cutline import config
+
+    path = config.REPORTS / name
+    if not path.exists():
+        raise HTTPException(503, f"{name} not generated — run {hint}")
+    return json.loads(path.read_text())
+
+
+@app.get("/curve")
+def curve() -> dict:
+    """The cost curve. The dashboard slider reads this and never recomputes."""
+    return _serve_report("cost_curve.json", "scripts/03_cost_model.py")
+
+
+@app.get("/queue")
+def queue() -> dict:
+    """Scored transactions for the review queue, built by scripts/05_demo_queue.py."""
+    return _serve_report("demo_queue.json", "scripts/05_demo_queue.py")
 
 
 def _score_one(txn: Transaction, explain: bool) -> dict:

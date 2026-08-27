@@ -17,7 +17,7 @@ it came from.
 | 2 | Feature engineering, LightGBM, calibration | **done** |
 | 3 | Cost model and threshold sweep | **done** |
 | 4 | FastAPI `/score` + `/explain` | **done** |
-| 5 | Next.js review queue + threshold slider | next |
+| 5 | Next.js review queue + threshold slider | **done** |
 
 ## Setup
 
@@ -351,6 +351,63 @@ payload rather than leaving it to the reader.
   missing **data**, not a schema error — `has_identity` exists for exactly that
   reason. A genuine feature-set mismatch still raises.
 
+## Phase 5 — the dashboard
+
+```bash
+.venv/bin/uvicorn api.main:app --port 8000      # terminal 1
+cd frontend && npm run dev                      # terminal 2 -> localhost:3000
+```
+
+Next.js 16, React 19, Tailwind 4. Three panels: the threshold slider with four
+live stat tiles, the cost curve, and the review queue.
+
+### The slider binds to an index, not a threshold
+
+`min=0 max=155 step=1` over the curve array. Every stored τ is reachable and
+nothing between two of them is — which makes it *impossible* to land between
+curve rows and have to search for the nearest. That is the same snapping bug
+that was fixed in the Python sweep, closed structurally rather than by care.
+
+### Every headline number is read, never recomputed
+
+Cost, fraud caught, and decline rate come from the curve row at τ, which covers
+all 118,108 test transactions. The queue is a 300-row sample. Deriving the stat
+tiles from the visible rows would put different numbers on screen than in this
+README — and that disagreement is exactly what a judge notices.
+
+For the same reason `GET /curve` and `GET /queue` return their generated files
+verbatim rather than re-deriving anything, and a missing file is a 503 with
+instructions rather than a synthesised default. `decide()` in the frontend
+mirrors `Scorer.decide` exactly (block at τ, review at τ/3) so a queue chip
+always matches what `/score` would return.
+
+### The queue is generated offline, on purpose
+
+`HistoryStore` starts empty, so transactions scored live through the API arrive
+with no card history, every velocity feature reads near-zero, and the
+probabilities do not match `cost_curve.json`. `scripts/05_demo_queue.py` builds
+the queue from the same batch-featurised test slice the curve came from, so the
+two agree by construction — and the script asserts it by rescoring a probe row.
+The live `/score` endpoint still exists and is still what gets demonstrated.
+
+`is_fraud` is included because it is a held-out slice and the truth is known.
+Showing whether each decision was right — caught, missed, false decline — is the
+difference between a list of numbers and a demo.
+
+### What the reasons actually look like, and why
+
+**117 of 300 queue items have reasons that are entirely opaque**: "counting
+field C1 is 34 (anonymised in this dataset)". The anonymised counting fields
+fill 596 of 900 reason slots, because on IEEE-CIS they genuinely dominate the
+model and Vesta never documented what they mean.
+
+That was tempting to fix by reweighting attribution toward features that merely
+*read* better. It is not fixed that way — that would be a lie about what drove
+the score. Instead each row carries a separate `context` line of plain facts
+about the transaction (time, prior card activity, device, email domain), clearly
+marked as facts rather than as claims about why it scored. Add information;
+do not distort it.
+
 ## Metrics, and why these ones
 
 - **PR-AUC** is the headline. At a 3.5% positive rate, ROC-AUC reads ~0.95 while
@@ -386,8 +443,13 @@ scripts/
   02_model.py       Phase 2: LightGBM + isotonic calibration
   03_cost_model.py  Phase 3: threshold sweep, sensitivity, the money sentence
   04_api_check.py   Phase 4: exercises every endpoint in-process
+  05_demo_queue.py  Phase 5: builds the review queue offline
 api/
-  main.py           FastAPI service
+  main.py           FastAPI service (+ /curve and /queue, served verbatim)
+frontend/
+  app/page.tsx      dashboard
+  components/       CostCurve (hand-authored SVG), QueueTable, StatTile
+  lib/api.ts        types + the single definition of the decision bands
   smoke_test.py     ingestion round trip on synthetic CSVs, in a temp dir
 reports/
   results.csv       every experiment, appended

@@ -49,6 +49,23 @@ def main() -> None:
             "silently undoes the entire argument of the project"
         )
 
+        cv = client.get("/curve")
+        assert cv.status_code == 200, cv.text
+        cvj = cv.json()
+        print(f"\nGET /curve -> {len(cvj['points'])} points, "
+              f"tau*={cvj['tau_star']:.4f}, ship={cvj['tau_recommended']:.4f}")
+        assert abs(cvj["tau_recommended"] - pol["tau_block"]) < 1e-12, (
+            "the curve's recommended threshold and the one the service uses "
+            "disagree — two sources of truth for the same number"
+        )
+
+        q = client.get("/queue")
+        assert q.status_code == 200, q.text
+        qj = q.json()
+        print(f"GET /queue -> {qj['n']} transactions, "
+              f"{sum(i['is_fraud'] for i in qj['items'])} fraudulent")
+        assert qj["source"] == origin, "queue and model were built from different data"
+
         payload = _row_to_payload(sample.iloc[0])
         r = client.post("/score", json=payload)
         assert r.status_code == 200, r.text

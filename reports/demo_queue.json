@@ -1,0 +1,7442 @@
+{
+ "source": "ieee-cis",
+ "n": 300,
+ "test_rows": 118108,
+ "fraud_rate": 0.034409184813899145,
+ "note": "Scored from the same batch-featurised test slice as the cost curve, so these probabilities match the curve exactly.",
+ "items": [
+  {
+   "TransactionID": 3486886,
+   "TransactionAmt": 31.724000930786133,
+   "TransactionDT": 13109794,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 34 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "1 prior on card in 24h",
+    "21h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3486883,
+   "TransactionAmt": 31.724000930786133,
+   "TransactionDT": 13109736,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 33 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "3 prior on card in 24h",
+    "38 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494151,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13286720,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 30 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "18:00",
+    "4 prior on card in 24h",
+    "5h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494175,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13287192,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 31 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "18:00",
+    "4 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3490488,
+   "TransactionAmt": 175.95599365234375,
+   "TransactionDT": 13194824,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 21 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "2 prior on card in 24h",
+    "16h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3547513,
+   "TransactionAmt": 62.95600128173828,
+   "TransactionDT": 14848904,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 48 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "20:00",
+    "4 prior on card in 24h",
+    "74 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3460732,
+   "TransactionAmt": 176.447998046875,
+   "TransactionDT": 12246468,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 39 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3460709,
+   "TransactionAmt": 176.447998046875,
+   "TransactionDT": 12246266,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 39 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "1 prior on card in 24h",
+    "21h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495231,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13305842,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 1.0,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 32 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "4 prior on card in 24h",
+    "26 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495840,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13319049,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.97002930667231,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 32 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "25 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3523861,
+   "TransactionAmt": 20.902999877929688,
+   "TransactionDT": 14150067,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "18:00",
+    "8 prior on card in 24h",
+    "27 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560132,
+   "TransactionAmt": 118.28700256347656,
+   "TransactionDT": 15215209,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 17 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "02:00",
+    "1 prior on card in 24h",
+    "11 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3556658,
+   "TransactionAmt": 300.0,
+   "TransactionDT": 15110762,
+   "ProductCD": "R",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "first seen on this card",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510777,
+   "TransactionAmt": 106.72899627685547,
+   "TransactionDT": 13749274,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 51 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 8 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "3 prior on card in 24h",
+    "89 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3540441,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14618073,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 86 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "2 prior on card in 24h",
+    "40s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3475034,
+   "TransactionAmt": 157.14300537109375,
+   "TransactionDT": 12704542,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 46 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 11 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "2 prior on card in 24h",
+    "4h after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3464819,
+   "TransactionAmt": 43.52799987792969,
+   "TransactionDT": 12371412,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 30 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "8 prior on card in 24h",
+    "5h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3464830,
+   "TransactionAmt": 43.52799987792969,
+   "TransactionDT": 12372360,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 30 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "8 prior on card in 24h",
+    "16 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499598,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407097,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 121 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "3 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3523549,
+   "TransactionAmt": 13.46399974822998,
+   "TransactionDT": 14144039,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 203 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "16:00",
+    "1 prior on card in 24h",
+    "16h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3570055,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15595541,
+   "ProductCD": "S",
+   "card4": "discover",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 25 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "12:00",
+    "11 prior on card in 24h",
+    "4 min after the last",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3570053,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15595291,
+   "ProductCD": "S",
+   "card4": "discover",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 25 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "12:00",
+    "10 prior on card in 24h",
+    "2 min after the last",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3499623,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407926,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 127 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "3 prior on card in 24h",
+    "14 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3475683,
+   "TransactionAmt": 53.611000061035156,
+   "TransactionDT": 12747584,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "12:00",
+    "7 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3523530,
+   "TransactionAmt": 13.46399974822998,
+   "TransactionDT": 14143770,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 202 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "16:00",
+    "0 prior on card in 24h",
+    "26h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499626,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407988,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 128 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "4 prior on card in 24h",
+    "62s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3486876,
+   "TransactionAmt": 31.724000930786133,
+   "TransactionDT": 13109544,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 32 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "1 prior on card in 24h",
+    "4 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3525594,
+   "TransactionAmt": 15.246999740600586,
+   "TransactionDT": 14208944,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "10:00",
+    "8 prior on card in 24h",
+    "65s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3523865,
+   "TransactionAmt": 20.902999877929688,
+   "TransactionDT": 14150187,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "18:00",
+    "9 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3572266,
+   "TransactionAmt": 250.0,
+   "TransactionDT": 15642630,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "10 prior on card in 24h",
+    "16 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3572210,
+   "TransactionAmt": 109.12699890136719,
+   "TransactionDT": 15641257,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "00:00",
+    "2 prior on card in 24h",
+    "65 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3540435,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14617887,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 86 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "1 prior on card in 24h",
+    "9h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3558445,
+   "TransactionAmt": 71.93199920654297,
+   "TransactionDT": 15180600,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "16:00",
+    "2 prior on card in 24h",
+    "37 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3572527,
+   "TransactionAmt": 150.0,
+   "TransactionDT": 15650329,
+   "ProductCD": "H",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "1 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3504601,
+   "TransactionAmt": 200.0,
+   "TransactionDT": 13558073,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 10 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "first seen on this card",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499594,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13406999,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 120 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "2 prior on card in 24h",
+    "4h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499604,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407322,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 124 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "7 prior on card in 24h",
+    "7h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499605,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407380,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 125 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "6 prior on card in 24h",
+    "39 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499601,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407164,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 122 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542884,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14685500,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "32 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560198,
+   "TransactionAmt": 80.16999816894531,
+   "TransactionDT": 15216444,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 16 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "0 prior on card in 24h",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560205,
+   "TransactionAmt": 80.16999816894531,
+   "TransactionDT": 15216616,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 18 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "0 prior on card in 24h",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495038,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13302583,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 42 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "23 prior on card in 24h",
+    "7 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3564682,
+   "TransactionAmt": 25.760000228881836,
+   "TransactionDT": 15368129,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 42 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "20:00",
+    "8 prior on card in 24h",
+    "15 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495012,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13302173,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 41 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "22 prior on card in 24h",
+    "19 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3572525,
+   "TransactionAmt": 150.0,
+   "TransactionDT": 15650215,
+   "ProductCD": "H",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3523876,
+   "TransactionAmt": 20.902999877929688,
+   "TransactionDT": 14150359,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "18:00",
+    "11 prior on card in 24h",
+    "88s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499603,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407218,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 123 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "12 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3525595,
+   "TransactionAmt": 15.246999740600586,
+   "TransactionDT": 14209019,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 15 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "10:00",
+    "9 prior on card in 24h",
+    "75s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499636,
+   "TransactionAmt": 375.0,
+   "TransactionDT": 13408398,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "3 prior on card in 24h",
+    "42 min after the last",
+    "device known",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3464856,
+   "TransactionAmt": 43.52799987792969,
+   "TransactionDT": 12375345,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 30 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "05:00",
+    "12 prior on card in 24h",
+    "6 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542876,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14685356,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 21 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "31 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542948,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14686531,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "16 prior on card in 24h",
+    "80 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542954,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14686615,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "17 prior on card in 24h",
+    "84s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3575666,
+   "TransactionAmt": 22.74799919128418,
+   "TransactionDT": 15772831,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 195 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "13:00",
+    "4 prior on card in 24h",
+    "8h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3575678,
+   "TransactionAmt": 22.74799919128418,
+   "TransactionDT": 15773130,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 195 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "13:00",
+    "3 prior on card in 24h",
+    "15h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494166,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13287067,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 31 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "18:00",
+    "3 prior on card in 24h",
+    "21h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494141,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13286558,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 28 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "18:00",
+    "16 prior on card in 24h",
+    "11 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542117,
+   "TransactionAmt": 119.0260009765625,
+   "TransactionDT": 14672854,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 21 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3541889,
+   "TransactionAmt": 39.2239990234375,
+   "TransactionDT": 14668920,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "icloud.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "18:00",
+    "1 prior on card in 24h",
+    "19h after the last",
+    "device known",
+    "icloud.com"
+   ]
+  },
+  {
+   "TransactionID": 3523534,
+   "TransactionAmt": 13.46399974822998,
+   "TransactionDT": 14143829,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 203 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "16:00",
+    "4 prior on card in 24h",
+    "13h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3523870,
+   "TransactionAmt": 20.902999877929688,
+   "TransactionDT": 14150271,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "18:00",
+    "10 prior on card in 24h",
+    "84s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3567908,
+   "TransactionAmt": 100.0,
+   "TransactionDT": 15513642,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "13:00",
+    "4 prior on card in 24h",
+    "9h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3540434,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14617840,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 85 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "13 prior on card in 24h",
+    "40s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3519371,
+   "TransactionAmt": 104.88500213623047,
+   "TransactionDT": 14017578,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "05:00",
+    "2 prior on card in 24h",
+    "7h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3502946,
+   "TransactionAmt": 166.91799926757812,
+   "TransactionDT": 13503341,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 8 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "06:00",
+    "1 prior on card in 24h",
+    "6h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3551647,
+   "TransactionAmt": 28.833999633789062,
+   "TransactionDT": 14951892,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "01:00",
+    "4 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494143,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13286607,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 28 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "18:00",
+    "17 prior on card in 24h",
+    "49s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542929,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14686301,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "33 prior on card in 24h",
+    "13 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495845,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13319130,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 32 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "26 prior on card in 24h",
+    "81s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3565745,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15422156,
+   "ProductCD": "S",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "11:00",
+    "2 prior on card in 24h",
+    "17h after the last",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3525598,
+   "TransactionAmt": 15.246999740600586,
+   "TransactionDT": 14209120,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 15 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "10:00",
+    "10 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3537469,
+   "TransactionAmt": 28.833999633789062,
+   "TransactionDT": 14531245,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "04:00",
+    "1 prior on card in 24h",
+    "10h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3537467,
+   "TransactionAmt": 28.833999633789062,
+   "TransactionDT": 14531160,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "04:00",
+    "20 prior on card in 24h",
+    "24 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3537472,
+   "TransactionAmt": 28.833999633789062,
+   "TransactionDT": 14531313,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "04:00",
+    "21 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3460688,
+   "TransactionAmt": 176.447998046875,
+   "TransactionDT": 12245822,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 50 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "4 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560236,
+   "TransactionAmt": 16.354000091552734,
+   "TransactionDT": 15217731,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 27 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "7 prior on card in 24h",
+    "41s after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560235,
+   "TransactionAmt": 16.354000091552734,
+   "TransactionDT": 15217690,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 27 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "6 prior on card in 24h",
+    "6h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3543614,
+   "TransactionAmt": 29.81800079345703,
+   "TransactionDT": 14710722,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "06:00",
+    "10 prior on card in 24h",
+    "8 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3464462,
+   "TransactionAmt": 86.68699645996094,
+   "TransactionDT": 12357121,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "outlook.es",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 10 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "00:00",
+    "1 prior on card in 24h",
+    "4h after the last",
+    "device known",
+    "outlook.es"
+   ]
+  },
+  {
+   "TransactionID": 3495833,
+   "TransactionAmt": 56.5620002746582,
+   "TransactionDT": 13318769,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 27 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 6 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "7 prior on card in 24h",
+    "3h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495835,
+   "TransactionAmt": 56.5620002746582,
+   "TransactionDT": 13318818,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 27 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 6 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "8 prior on card in 24h",
+    "49s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3545947,
+   "TransactionAmt": 18.812999725341797,
+   "TransactionDT": 14797000,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "06:00",
+    "15 prior on card in 24h",
+    "87 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3464150,
+   "TransactionAmt": 475.0,
+   "TransactionDT": 12349659,
+   "ProductCD": "R",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3545962,
+   "TransactionAmt": 300.0,
+   "TransactionDT": 14800800,
+   "ProductCD": "H",
+   "card4": "discover",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "07:00",
+    "2 prior on card in 24h",
+    "10h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3531343,
+   "TransactionAmt": 10.206000328063965,
+   "TransactionDT": 14351181,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 47 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "9 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3469838,
+   "TransactionAmt": 156.6510009765625,
+   "TransactionDT": 12551393,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "06:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3469840,
+   "TransactionAmt": 156.6510009765625,
+   "TransactionDT": 12551582,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "06:00",
+    "1 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3464873,
+   "TransactionAmt": 71.93199920654297,
+   "TransactionDT": 12378516,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 11 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "06:00",
+    "5 prior on card in 24h",
+    "5h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3464875,
+   "TransactionAmt": 71.93199920654297,
+   "TransactionDT": 12378574,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "06:00",
+    "6 prior on card in 24h",
+    "58s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3520188,
+   "TransactionAmt": 12.295999526977539,
+   "TransactionDT": 14054339,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "15:00",
+    "12 prior on card in 24h",
+    "4 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3520202,
+   "TransactionAmt": 12.295999526977539,
+   "TransactionDT": 14054541,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "16:00",
+    "13 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510153,
+   "TransactionAmt": 27.051000595092773,
+   "TransactionDT": 13736214,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 46 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "1 prior on card in 24h",
+    "5h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3509447,
+   "TransactionAmt": 49.66400146484375,
+   "TransactionDT": 13724272,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 43 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "20:00",
+    "1 prior on card in 24h",
+    "18h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3518631,
+   "TransactionAmt": 30.493999481201172,
+   "TransactionDT": 13993670,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "23:00",
+    "15 prior on card in 24h",
+    "72s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3565748,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15422222,
+   "ProductCD": "S",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 23 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "11:00",
+    "0 prior on card in 24h",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3465407,
+   "TransactionAmt": 14.38599967956543,
+   "TransactionDT": 12416875,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "7 prior on card in 24h",
+    "62s after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3502425,
+   "TransactionAmt": 43.6510009765625,
+   "TransactionDT": 13479944,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 17 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "00:00",
+    "0 prior on card in 24h",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3488936,
+   "TransactionAmt": 34.551998138427734,
+   "TransactionDT": 13150497,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 35 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "3 prior on card in 24h",
+    "48s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3488935,
+   "TransactionAmt": 34.551998138427734,
+   "TransactionDT": 13150449,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 34 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "2 prior on card in 24h",
+    "9h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3565738,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15421800,
+   "ProductCD": "S",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "11:00",
+    "26 prior on card in 24h",
+    "4h after the last",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3565743,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15422110,
+   "ProductCD": "S",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 21 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "11:00",
+    "0 prior on card in 24h",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3469612,
+   "TransactionAmt": 6.394000053405762,
+   "TransactionDT": 12537777,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 40 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "4 prior on card in 24h",
+    "6h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3565736,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15421753,
+   "ProductCD": "S",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 18 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "11:00",
+    "24 prior on card in 24h",
+    "2 min after the last",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3461061,
+   "TransactionAmt": 176.447998046875,
+   "TransactionDT": 12252669,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 41 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "0 prior on card in 24h",
+    "25h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3479311,
+   "TransactionAmt": 6.394000053405762,
+   "TransactionDT": 12850716,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 41 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "4 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3502950,
+   "TransactionAmt": 166.91799926757812,
+   "TransactionDT": 13503478,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 9 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "06:00",
+    "2 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3486863,
+   "TransactionAmt": 63.446998596191406,
+   "TransactionDT": 13109274,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 32 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3558331,
+   "TransactionAmt": 71.93199920654297,
+   "TransactionDT": 15178235,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "16:00",
+    "0 prior on card in 24h",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3461025,
+   "TransactionAmt": 176.447998046875,
+   "TransactionDT": 12252124,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 40 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "35 prior on card in 24h",
+    "21 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3465403,
+   "TransactionAmt": 14.38599967956543,
+   "TransactionDT": 12416813,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "6 prior on card in 24h",
+    "10h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3469614,
+   "TransactionAmt": 6.394000053405762,
+   "TransactionDT": 12537835,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 41 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "5 prior on card in 24h",
+    "58s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3566076,
+   "TransactionAmt": 16.354000091552734,
+   "TransactionDT": 15436479,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 29 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "15:00",
+    "7 prior on card in 24h",
+    "61s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3566078,
+   "TransactionAmt": 16.354000091552734,
+   "TransactionDT": 15436552,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 30 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "15:00",
+    "8 prior on card in 24h",
+    "73s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3481125,
+   "TransactionAmt": 150.0,
+   "TransactionDT": 12891829,
+   "ProductCD": "H",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 8 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "05:00",
+    "0 prior on card in 24h",
+    "device known",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3540439,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14618033,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 86 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "1 prior on card in 24h",
+    "23h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3540438,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14617985,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 86 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "2 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3505452,
+   "TransactionAmt": 78.38700103759766,
+   "TransactionDT": 13587557,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 26 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "06:00",
+    "12 prior on card in 24h",
+    "7h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3505454,
+   "TransactionAmt": 78.38700103759766,
+   "TransactionDT": 13587704,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 27 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "06:00",
+    "13 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3566075,
+   "TransactionAmt": 16.354000091552734,
+   "TransactionDT": 15436418,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 29 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "15:00",
+    "6 prior on card in 24h",
+    "8h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3459698,
+   "TransactionAmt": 43.52799987792969,
+   "TransactionDT": 12223174,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 29 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "11:00",
+    "3 prior on card in 24h",
+    "11h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560134,
+   "TransactionAmt": 16.354000091552734,
+   "TransactionDT": 15215252,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 21 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "5 prior on card in 24h",
+    "28 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3577092,
+   "TransactionAmt": 38.41400146484375,
+   "TransactionDT": 15801846,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 10 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "21:00",
+    "2 prior on card in 24h",
+    "86s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3577103,
+   "TransactionAmt": 38.41400146484375,
+   "TransactionDT": 15802102,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 11 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "21:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495229,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13305785,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 32 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "23 prior on card in 24h",
+    "42 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3504585,
+   "TransactionAmt": 200.0,
+   "TransactionDT": 13557887,
+   "ProductCD": "R",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 9 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3522237,
+   "TransactionAmt": 3.443000078201294,
+   "TransactionDT": 14086728,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "18 prior on card in 24h",
+    "70 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3459510,
+   "TransactionAmt": 59.63600158691406,
+   "TransactionDT": 12197239,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 36 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "3 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495077,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13303241,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 44 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "22 prior on card in 24h",
+    "4 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3572226,
+   "TransactionAmt": 250.0,
+   "TransactionDT": 15641678,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "9 prior on card in 24h",
+    "30 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3540433,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14617800,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 85 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "12 prior on card in 24h",
+    "3h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3540431,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14617753,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 85 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3528996,
+   "TransactionAmt": 54.224998474121094,
+   "TransactionDT": 14305967,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9534883720930233,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 83 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "13:00",
+    "0 prior on card in 24h",
+    "39h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3525592,
+   "TransactionAmt": 15.246999740600586,
+   "TransactionDT": 14208879,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9525874586913902,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "10:00",
+    "7 prior on card in 24h",
+    "16h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542862,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14685067,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9380197584022925,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 18 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "28 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495747,
+   "TransactionAmt": 26.80500030517578,
+   "TransactionDT": 13316694,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9219588099061191,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 15 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "3 prior on card in 24h",
+    "12h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3550987,
+   "TransactionAmt": 55.638999938964844,
+   "TransactionDT": 14939816,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "6 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494799,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13298637,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 38 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "2 prior on card in 24h",
+    "9 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3494780,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13298310,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 37 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "8 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3499666,
+   "TransactionAmt": 39.10100173950195,
+   "TransactionDT": 13410058,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 18 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "05:00",
+    "15 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3562117,
+   "TransactionAmt": 96.52400207519531,
+   "TransactionDT": 15281283,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "20:00",
+    "2 prior on card in 24h",
+    "18h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494981,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13301770,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 40 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "19 prior on card in 24h",
+    "5 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3494963,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13301452,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 39 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "18 prior on card in 24h",
+    "39 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3495023,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13302375,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 41 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "6 prior on card in 24h",
+    "20 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3481069,
+   "TransactionAmt": 44.26599884033203,
+   "TransactionDT": 12887154,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 338 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "4 prior on card in 24h",
+    "4h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3544503,
+   "TransactionAmt": 14.878999710083008,
+   "TransactionDT": 14753632,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "18:00",
+    "2 prior on card in 24h",
+    "14h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3558479,
+   "TransactionAmt": 71.93199920654297,
+   "TransactionDT": 15181359,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "3 prior on card in 24h",
+    "13 min after the last",
+    "no device data",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3550983,
+   "TransactionAmt": 55.638999938964844,
+   "TransactionDT": 14939736,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 18 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "1 prior on card in 24h",
+    "87s after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3495056,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13302763,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 44 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "4 prior on card in 24h",
+    "5 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3495045,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13302675,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 43 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "23:00",
+    "0 prior on card in 24h",
+    "45h after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3495033,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13302508,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 41 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "53 prior on card in 24h",
+    "11 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3494693,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13296774,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 34 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "6 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3522627,
+   "TransactionAmt": 66.39800262451172,
+   "TransactionDT": 14096064,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 330 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 10 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "8 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3462646,
+   "TransactionAmt": 14.38599967956543,
+   "TransactionDT": 12295701,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": null,
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 215 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 11 (anonymised in this dataset)"
+   ],
+   "context": [
+    "07:00",
+    "6 prior on card in 24h",
+    "3h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3565734,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 15421636,
+   "ProductCD": "S",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 17 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "11:00",
+    "23 prior on card in 24h",
+    "3 min after the last",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3464465,
+   "TransactionAmt": 86.68699645996094,
+   "TransactionDT": 12357158,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "outlook.es",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 10 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "10 prior on card in 24h",
+    "6h after the last",
+    "device known",
+    "outlook.es"
+   ]
+  },
+  {
+   "TransactionID": 3489070,
+   "TransactionAmt": 150.0,
+   "TransactionDT": 13160212,
+   "ProductCD": "H",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 11 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "07:00",
+    "first seen on this card",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3562624,
+   "TransactionAmt": 59.14400100708008,
+   "TransactionDT": 15289056,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 20 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "22:00",
+    "7 prior on card in 24h",
+    "55s after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494806,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13298798,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 38 (anonymised in this dataset)",
+    "product code C",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3494803,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13298702,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 38 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "20 prior on card in 24h",
+    "9 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3502728,
+   "TransactionAmt": 44.26599884033203,
+   "TransactionDT": 13487019,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 344 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 11 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "34 prior on card in 24h",
+    "3h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3507277,
+   "TransactionAmt": 8.361000061035156,
+   "TransactionDT": 13653025,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 105 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 6 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "2 prior on card in 24h",
+    "6h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3507264,
+   "TransactionAmt": 8.361000061035156,
+   "TransactionDT": 13652872,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 103 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 6 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3507258,
+   "TransactionAmt": 8.361000061035156,
+   "TransactionDT": 13652806,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 102 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 6 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "12 prior on card in 24h",
+    "38 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3496532,
+   "TransactionAmt": 19.551000595092773,
+   "TransactionDT": 13354671,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 16 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "13:00",
+    "2 prior on card in 24h",
+    "20h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3538949,
+   "TransactionAmt": 13.402999877929688,
+   "TransactionDT": 14585224,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 203 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "10 prior on card in 24h",
+    "4h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499607,
+   "TransactionAmt": 99.72100067138672,
+   "TransactionDT": 13407428,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 126 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "11 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3489069,
+   "TransactionAmt": 150.0,
+   "TransactionDT": 13160173,
+   "ProductCD": "H",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 10 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "07:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3523546,
+   "TransactionAmt": 13.46399974822998,
+   "TransactionDT": 14143996,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 203 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "16:00",
+    "10 prior on card in 24h",
+    "3h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3557255,
+   "TransactionAmt": 118.71800231933594,
+   "TransactionDT": 15123337,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "0 prior on card in 24h",
+    "33h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3475679,
+   "TransactionAmt": 53.611000061035156,
+   "TransactionDT": 12747499,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "12:00",
+    "6 prior on card in 24h",
+    "11h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3475674,
+   "TransactionAmt": 53.611000061035156,
+   "TransactionDT": 12747415,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "12:00",
+    "6 prior on card in 24h",
+    "37s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3522630,
+   "TransactionAmt": 66.39800262451172,
+   "TransactionDT": 14096120,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 330 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 10 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "1 prior on card in 24h",
+    "10h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542865,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14685163,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "29 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3480239,
+   "TransactionAmt": 10.206000328063965,
+   "TransactionDT": 12866150,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 20 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "12 prior on card in 24h",
+    "24 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3480234,
+   "TransactionAmt": 10.206000328063965,
+   "TransactionDT": 12866097,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 20 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "7 prior on card in 24h",
+    "57 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3518304,
+   "TransactionAmt": 59.63600158691406,
+   "TransactionDT": 13987724,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "0 prior on card in 24h",
+    "29h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3534373,
+   "TransactionAmt": 33.26100158691406,
+   "TransactionDT": 14440870,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "18 prior on card in 24h",
+    "58s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494147,
+   "TransactionAmt": 39.59299850463867,
+   "TransactionDT": 13286650,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 29 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "18:00",
+    "13 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542088,
+   "TransactionAmt": 8.361000061035156,
+   "TransactionDT": 14672417,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 203 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "0 prior on card in 24h",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3548743,
+   "TransactionAmt": 59.14400100708008,
+   "TransactionDT": 14867366,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 9 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "01:00",
+    "8 prior on card in 24h",
+    "42 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3548553,
+   "TransactionAmt": 450.0,
+   "TransactionDT": 14863838,
+   "ProductCD": "H",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "amount is 450.00",
+    "counting field C1 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "16 prior on card in 24h",
+    "61s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3548546,
+   "TransactionAmt": 450.0,
+   "TransactionDT": 14863777,
+   "ProductCD": "H",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "amount is 450.00",
+    "D15 is missing"
+   ],
+   "context": [
+    "00:00",
+    "15 prior on card in 24h",
+    "3h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3504790,
+   "TransactionAmt": 19.551000595092773,
+   "TransactionDT": 13562035,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 26 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "16 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542096,
+   "TransactionAmt": 8.361000061035156,
+   "TransactionDT": 14672481,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 203 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "9 prior on card in 24h",
+    "48 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3537792,
+   "TransactionAmt": 19.673999786376953,
+   "TransactionDT": 14562311,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 8 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "13:00",
+    "20 prior on card in 24h",
+    "6h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3479722,
+   "TransactionAmt": 44.63399887084961,
+   "TransactionDT": 12857899,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 336 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 13 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "1 prior on card in 24h",
+    "43 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3460321,
+   "TransactionAmt": 26.19099998474121,
+   "TransactionDT": 12239297,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "15:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3460315,
+   "TransactionAmt": 26.19099998474121,
+   "TransactionDT": 12239213,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "15:00",
+    "4 prior on card in 24h",
+    "28 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3575713,
+   "TransactionAmt": 14.38599967956543,
+   "TransactionDT": 15774110,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 195 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 7 (anonymised in this dataset)"
+   ],
+   "context": [
+    "13:00",
+    "1 prior on card in 24h",
+    "15h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3542870,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14685235,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 20 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "30 prior on card in 24h",
+    "72s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499637,
+   "TransactionAmt": 375.0,
+   "TransactionDT": 13408450,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "4 prior on card in 24h",
+    "52s after the last",
+    "device known",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3542912,
+   "TransactionAmt": 22.993000030517578,
+   "TransactionDT": 14686052,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 22 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "5 prior on card in 24h",
+    "22 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499667,
+   "TransactionAmt": 39.10100173950195,
+   "TransactionDT": 13410221,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "product code C",
+    "counting field C14 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "05:00",
+    "2 prior on card in 24h",
+    "15h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510134,
+   "TransactionAmt": 27.051000595092773,
+   "TransactionDT": 13736033,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 46 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "13 prior on card in 24h",
+    "17 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3562105,
+   "TransactionAmt": 96.52400207519531,
+   "TransactionDT": 15281140,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 11 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "20:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3554897,
+   "TransactionAmt": 119.20999908447266,
+   "TransactionDT": 15054428,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 16 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "05:00",
+    "13 prior on card in 24h",
+    "14 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560201,
+   "TransactionAmt": 80.16999816894531,
+   "TransactionDT": 15216512,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 17 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "2 prior on card in 24h",
+    "9h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560194,
+   "TransactionAmt": 80.16999816894531,
+   "TransactionDT": 15216373,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 15 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "16 prior on card in 24h",
+    "9 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3560187,
+   "TransactionAmt": 80.16999816894531,
+   "TransactionDT": 15216270,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "8 prior on card in 24h",
+    "67 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510689,
+   "TransactionAmt": 18.93600082397461,
+   "TransactionDT": 13746856,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 9 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "5 prior on card in 24h",
+    "4h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510678,
+   "TransactionAmt": 18.93600082397461,
+   "TransactionDT": 13746667,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "6 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510674,
+   "TransactionAmt": 18.93600082397461,
+   "TransactionDT": 13746536,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "2 prior on card in 24h",
+    "3h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3469294,
+   "TransactionAmt": 22.74799919128418,
+   "TransactionDT": 12530150,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 217 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 11 (anonymised in this dataset)"
+   ],
+   "context": [
+    "00:00",
+    "1 prior on card in 24h",
+    "9h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499639,
+   "TransactionAmt": 39.10100173950195,
+   "TransactionDT": 13408622,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 18 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "14 prior on card in 24h",
+    "25 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3554898,
+   "TransactionAmt": 119.20999908447266,
+   "TransactionDT": 15054487,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 16 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "05:00",
+    "23 prior on card in 24h",
+    "6 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3562637,
+   "TransactionAmt": 33.44499969482422,
+   "TransactionDT": 15289276,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 20 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "8 prior on card in 24h",
+    "4 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3467012,
+   "TransactionAmt": 8.361000061035156,
+   "TransactionDT": 12460599,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 133 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 8 (anonymised in this dataset)"
+   ],
+   "context": [
+    "05:00",
+    "6 prior on card in 24h",
+    "5h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3494769,
+   "TransactionAmt": 14.324999809265137,
+   "TransactionDT": 13298117,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 37 (anonymised in this dataset)",
+    "counting field C14 is 2 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "7 prior on card in 24h",
+    "22 min after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3499712,
+   "TransactionAmt": 19.551000595092773,
+   "TransactionDT": 13413642,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 26 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "06:00",
+    "18 prior on card in 24h",
+    "9 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3499707,
+   "TransactionAmt": 19.551000595092773,
+   "TransactionDT": 13413074,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 25 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 4 (anonymised in this dataset)"
+   ],
+   "context": [
+    "05:00",
+    "17 prior on card in 24h",
+    "7 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3568818,
+   "TransactionAmt": 22.625,
+   "TransactionDT": 15537444,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "11 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3519755,
+   "TransactionAmt": 12.295999526977539,
+   "TransactionDT": 14046351,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 12 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "13:00",
+    "10 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3556851,
+   "TransactionAmt": 300.0,
+   "TransactionDT": 15114689,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "18 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3469610,
+   "TransactionAmt": 6.394000053405762,
+   "TransactionDT": 12537655,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 39 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "37 prior on card in 24h",
+    "34 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3551652,
+   "TransactionAmt": 28.833999633789062,
+   "TransactionDT": 14952037,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 16 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "01:00",
+    "6 prior on card in 24h",
+    "82s after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510782,
+   "TransactionAmt": 106.72899627685547,
+   "TransactionDT": 13749369,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 51 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 8 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "2 prior on card in 24h",
+    "48s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3559952,
+   "TransactionAmt": 16.354000091552734,
+   "TransactionDT": 15210200,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 19 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "9 prior on card in 24h",
+    "32s after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3554895,
+   "TransactionAmt": 119.20999908447266,
+   "TransactionDT": 15054099,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 16 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)",
+    "product code C"
+   ],
+   "context": [
+    "05:00",
+    "22 prior on card in 24h",
+    "2 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3516626,
+   "TransactionAmt": 15.246999740600586,
+   "TransactionDT": 13947869,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 10 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "10:00",
+    "16 prior on card in 24h",
+    "4 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3522710,
+   "TransactionAmt": 3.443000078201294,
+   "TransactionDT": 14099904,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 20 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "23 prior on card in 24h",
+    "7 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3554446,
+   "TransactionAmt": 119.20999908447266,
+   "TransactionDT": 15037695,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 13 (anonymised in this dataset)",
+    "product code C",
+    "counting field C13 is 2 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "12 prior on card in 24h",
+    "82 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3572269,
+   "TransactionAmt": 175.0,
+   "TransactionDT": 15642701,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "11 prior on card in 24h",
+    "71s after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3572285,
+   "TransactionAmt": 175.0,
+   "TransactionDT": 15642868,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 1,
+   "reasons": [
+    "counting field C1 is 5 (anonymised in this dataset)",
+    "counting field C14 is 0 (anonymised in this dataset)",
+    "counting field C13 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "12 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3568542,
+   "TransactionAmt": 22.625,
+   "TransactionDT": 15529915,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.9032258064516129,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "17:00",
+    "12 prior on card in 24h",
+    "3 min after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3521264,
+   "TransactionAmt": 108.5,
+   "TransactionDT": 14071355,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.009096077316657191,
+   "is_fraud": 0,
+   "reasons": [
+    "M4 = M0",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "amount is 108.50"
+   ],
+   "context": [
+    "20:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3484398,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 13031396,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.009096077316657191,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 0.5x this card's usual spread (below its recent average)",
+    "4 prior transactions on this card in 24 hours",
+    "M4 = M0"
+   ],
+   "context": [
+    "19:00",
+    "4 prior on card in 24h",
+    "5h after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3525923,
+   "TransactionAmt": 100.0,
+   "TransactionDT": 14220381,
+   "ProductCD": "R",
+   "card4": "american express",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.009096077316657191,
+   "is_fraud": 0,
+   "reasons": [
+    "email domain seen 134117 times during training",
+    "credit card",
+    "D15 is missing"
+   ],
+   "context": [
+    "14:00",
+    "0 prior on card in 24h",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3483214,
+   "TransactionAmt": 201.0,
+   "TransactionDT": 12968641,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.009096077316657191,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 121 (anonymised in this dataset)",
+    "credit card",
+    "amount is 201.00"
+   ],
+   "context": [
+    "02:00",
+    "1 prior on card in 24h",
+    "30s after the last",
+    "no device data",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3479704,
+   "TransactionAmt": 63.970001220703125,
+   "TransactionDT": 12857602,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.007717750826901874,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 14 (anonymised in this dataset)",
+    "card seen 511 times during training",
+    "risk pattern learned for this billing region"
+   ],
+   "context": [
+    "19:00",
+    "10 prior on card in 24h",
+    "34 min after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3530813,
+   "TransactionAmt": 42.95000076293945,
+   "TransactionDT": 14340049,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.007717750826901874,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this specific card",
+    "card seen 569 times during training",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "3 prior on card in 24h",
+    "4h after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3486675,
+   "TransactionAmt": 59.0,
+   "TransactionDT": 13106017,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.007717750826901874,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this specific card",
+    "amount ends in a round number of cents",
+    "amount is 0.3x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "16:00",
+    "7 prior on card in 24h",
+    "4h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3543362,
+   "TransactionAmt": 59.0,
+   "TransactionDT": 14695320,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "aol.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.007717750826901874,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "M4 = M0",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "aol.com"
+   ]
+  },
+  {
+   "TransactionID": 3559010,
+   "TransactionAmt": 200.0,
+   "TransactionDT": 15192081,
+   "ProductCD": "R",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.006289308176100629,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 200.00",
+    "1 prior transactions on this card in 24 hours",
+    "amount ends in a round number of cents"
+   ],
+   "context": [
+    "20:00",
+    "1 prior on card in 24h",
+    "52 min after the last",
+    "device known",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3539344,
+   "TransactionAmt": 664.0,
+   "TransactionDT": 14592255,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.006289308176100629,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "amount is 664.00",
+    "card2 freq = 26781.0"
+   ],
+   "context": [
+    "21:00",
+    "2 prior on card in 24h",
+    "13 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3504023,
+   "TransactionAmt": 88.94999694824219,
+   "TransactionDT": 13546756,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.005509641873278237,
+   "is_fraud": 0,
+   "reasons": [
+    "days-since field D15 is 0 (anonymised in this dataset)",
+    "amount is 88.95",
+    "dist1 is missing"
+   ],
+   "context": [
+    "18:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3530378,
+   "TransactionAmt": 312.95001220703125,
+   "TransactionDT": 14331399,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "anonymous.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.005509641873278237,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 312.95",
+    "days-since field D1 is 0 (anonymised in this dataset)",
+    "days-since field D15 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "20:00",
+    "8 prior on card in 24h",
+    "2 min after the last",
+    "no device data",
+    "anonymous.com"
+   ]
+  },
+  {
+   "TransactionID": 3493323,
+   "TransactionAmt": 100.0,
+   "TransactionDT": 13271396,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "credit card",
+    "0 prior transactions on this card in 24 hours",
+    "D15 is missing"
+   ],
+   "context": [
+    "14:00",
+    "0 prior on card in 24h",
+    "device known",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3506034,
+   "TransactionAmt": 57.95000076293945,
+   "TransactionDT": 13625985,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "roadrunner.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "days-since field D15 is 0 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "amount is 0.4x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "16:00",
+    "20 prior on card in 24h",
+    "9h after the last",
+    "no device data",
+    "roadrunner.com"
+   ]
+  },
+  {
+   "TransactionID": 3554526,
+   "TransactionAmt": 82.94999694824219,
+   "TransactionDT": 15039365,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 122 (anonymised in this dataset)",
+    "email domain never seen during training",
+    "risk pattern learned for this billing region"
+   ],
+   "context": [
+    "01:00",
+    "52 prior on card in 24h",
+    "9 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3490879,
+   "TransactionAmt": 75.0,
+   "TransactionDT": 13200409,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "D15 is missing",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "18:00",
+    "17 prior on card in 24h",
+    "40 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3528090,
+   "TransactionAmt": 37.810001373291016,
+   "TransactionDT": 14260112,
+   "ProductCD": "C",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": "mobile",
+   "has_identity": 1,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "product code C",
+    "addr1 is missing",
+    "billing region never seen during training"
+   ],
+   "context": [
+    "01:00",
+    "10 prior on card in 24h",
+    "2h after the last",
+    "device known",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3544812,
+   "TransactionAmt": 24.83799934387207,
+   "TransactionDT": 14760943,
+   "ProductCD": "C",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "product code C",
+    "billing region never seen during training",
+    "amount is 0.4x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "20:00",
+    "2 prior on card in 24h",
+    "23h after the last",
+    "device known",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3497805,
+   "TransactionAmt": 311.95001220703125,
+   "TransactionDT": 13374027,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 311.95",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "email domain seen 134117 times during training"
+   ],
+   "context": [
+    "19:00",
+    "2 prior on card in 24h",
+    "17h after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3489679,
+   "TransactionAmt": 107.94999694824219,
+   "TransactionDT": 13183222,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "card seen 1100 times during training",
+    "risk pattern learned for this specific card",
+    "card2 freq = 6580.0"
+   ],
+   "context": [
+    "14:00",
+    "18 prior on card in 24h",
+    "14 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3572214,
+   "TransactionAmt": 29.0,
+   "TransactionDT": 15641301,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "outlook.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "amount ends in a round number of cents",
+    "risk pattern learned for this card group"
+   ],
+   "context": [
+    "00:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "outlook.com"
+   ]
+  },
+  {
+   "TransactionID": 3565349,
+   "TransactionAmt": 36.95000076293945,
+   "TransactionDT": 15383528,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "card seen 2296 times during training",
+    "email domain never seen during training",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "14 prior on card in 24h",
+    "26 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3558773,
+   "TransactionAmt": 117.0,
+   "TransactionDT": 15187397,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "anonymous.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this card group",
+    "amount is 117.00",
+    "amount ends in a round number of cents"
+   ],
+   "context": [
+    "18:00",
+    "1 prior on card in 24h",
+    "22h after the last",
+    "no device data",
+    "anonymous.com"
+   ]
+  },
+  {
+   "TransactionID": 3477366,
+   "TransactionAmt": 107.94999694824219,
+   "TransactionDT": 12783169,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 129 (anonymised in this dataset)",
+    "credit card",
+    "billing region seen 4918 times during training"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "31h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3474808,
+   "TransactionAmt": 59.0,
+   "TransactionDT": 12700440,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "days-since field D15 is 0 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "23:00",
+    "45 prior on card in 24h",
+    "16 min after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3510768,
+   "TransactionAmt": 47.95000076293945,
+   "TransactionDT": 13749040,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "card seen 115 times during training",
+    "risk pattern learned for this specific card",
+    "counting field C1 is 5 (anonymised in this dataset)"
+   ],
+   "context": [
+    "03:00",
+    "1 prior on card in 24h",
+    "4h after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3468144,
+   "TransactionAmt": 25.0,
+   "TransactionDT": 12508858,
+   "ProductCD": "S",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": "desktop",
+   "has_identity": 1,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "D15 is missing",
+    "credit card",
+    "email domain never seen during training"
+   ],
+   "context": [
+    "18:00",
+    "4 prior on card in 24h",
+    "7h after the last",
+    "device known"
+   ]
+  },
+  {
+   "TransactionID": 3515005,
+   "TransactionAmt": 59.0,
+   "TransactionDT": 13892295,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "card seen 2191 times during training",
+    "risk pattern learned for this card group",
+    "M4 = M0"
+   ],
+   "context": [
+    "18:00",
+    "26 prior on card in 24h",
+    "23 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3570048,
+   "TransactionAmt": 67.94999694824219,
+   "TransactionDT": 15594905,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "placed at 11:00",
+    "card seen 1744 times during training",
+    "risk pattern learned for this billing region"
+   ],
+   "context": [
+    "11:00",
+    "7 prior on card in 24h",
+    "9h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3569941,
+   "TransactionAmt": 135.0,
+   "TransactionDT": 15574287,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "comcast.net",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 21 (anonymised in this dataset)",
+    "risk pattern learned for this specific card",
+    "risk pattern learned for this billing region"
+   ],
+   "context": [
+    "06:00",
+    "0 prior on card in 24h",
+    "27h after the last",
+    "no device data",
+    "comcast.net"
+   ]
+  },
+  {
+   "TransactionID": 3534766,
+   "TransactionAmt": 259.95001220703125,
+   "TransactionDT": 14474053,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 99 (anonymised in this dataset)",
+    "amount is 259.95",
+    "placed at 12:00"
+   ],
+   "context": [
+    "12:00",
+    "28 prior on card in 24h",
+    "3h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3573019,
+   "TransactionAmt": 30.950000762939453,
+   "TransactionDT": 15689917,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this specific card",
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "risk pattern learned for this billing region"
+   ],
+   "context": [
+    "14:00",
+    "1 prior on card in 24h",
+    "20h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3564924,
+   "TransactionAmt": 301.0,
+   "TransactionDT": 15372615,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 301.00",
+    "risk pattern learned for this specific card",
+    "amount ends in a round number of cents"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3551802,
+   "TransactionAmt": 30.950000762939453,
+   "TransactionDT": 14954701,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "days-since field D1 is 9 (anonymised in this dataset)",
+    "card2 freq = 4568.0",
+    "amount is 0.5x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "02:00",
+    "10 prior on card in 24h",
+    "2h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3502136,
+   "TransactionAmt": 30.0,
+   "TransactionDT": 13474459,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "amount ends in a round number of cents",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "27h after the last",
+    "no device data",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3557567,
+   "TransactionAmt": 110.94999694824219,
+   "TransactionDT": 15135886,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "email domain seen 134117 times during training",
+    "risk pattern learned for this billing region",
+    "amount is 110.95"
+   ],
+   "context": [
+    "04:00",
+    "12 prior on card in 24h",
+    "19 min after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3559124,
+   "TransactionAmt": 34.0,
+   "TransactionDT": 15194106,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 6 (anonymised in this dataset)",
+    "amount ends in a round number of cents",
+    "M4 = M0"
+   ],
+   "context": [
+    "20:00",
+    "9 prior on card in 24h",
+    "8h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3568769,
+   "TransactionAmt": 117.0,
+   "TransactionDT": 15536371,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 7 (anonymised in this dataset)",
+    "risk pattern learned for this specific card",
+    "amount ends in a round number of cents"
+   ],
+   "context": [
+    "19:00",
+    "6 prior on card in 24h",
+    "5h after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3548761,
+   "TransactionAmt": 57.95000076293945,
+   "TransactionDT": 14867823,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "sbcglobal.net",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.004364784546805348,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 123 (anonymised in this dataset)",
+    "risk pattern learned for this specific card",
+    "risk pattern learned for this billing region"
+   ],
+   "context": [
+    "01:00",
+    "0 prior on card in 24h",
+    "32h after the last",
+    "no device data",
+    "sbcglobal.net"
+   ]
+  },
+  {
+   "TransactionID": 3471806,
+   "TransactionAmt": 39.0,
+   "TransactionDT": 12613476,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0028099754127151387,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "risk pattern learned for this card group",
+    "email domain seen 134117 times during training"
+   ],
+   "context": [
+    "23:00",
+    "1 prior on card in 24h",
+    "12h after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3507423,
+   "TransactionAmt": 107.94999694824219,
+   "TransactionDT": 13656128,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0028099754127151387,
+   "is_fraud": 0,
+   "reasons": [
+    "email domain never seen during training",
+    "counting field C1 is 4 (anonymised in this dataset)",
+    "days-since field D1 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "72 prior on card in 24h",
+    "3 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3509961,
+   "TransactionAmt": 30.950000762939453,
+   "TransactionDT": 13733043,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0028099754127151387,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "risk pattern learned for this specific card",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "27h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3554578,
+   "TransactionAmt": 119.94999694824219,
+   "TransactionDT": 15040429,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "att.net",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.002356637863315004,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this specific card",
+    "card seen 1586 times during training",
+    "amount is 0.1x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "01:00",
+    "5 prior on card in 24h",
+    "47 min after the last",
+    "no device data",
+    "att.net"
+   ]
+  },
+  {
+   "TransactionID": 3544693,
+   "TransactionAmt": 107.94999694824219,
+   "TransactionDT": 14758251,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.002356637863315004,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 0.3x this card's usual spread (below its recent average)",
+    "credit card",
+    "days-since field D1 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "19:00",
+    "42 prior on card in 24h",
+    "30 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3492382,
+   "TransactionAmt": 33.470001220703125,
+   "TransactionDT": 13224522,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.002356637863315004,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "risk pattern learned for this specific card",
+    "days-since field D15 is 61 (anonymised in this dataset)"
+   ],
+   "context": [
+    "01:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3484464,
+   "TransactionAmt": 1375.6600341796875,
+   "TransactionDT": 13032440,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "anonymous.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this specific card",
+    "credit card",
+    "days-since field D15 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "20:00",
+    "5 prior on card in 24h",
+    "21 min after the last",
+    "no device data",
+    "anonymous.com"
+   ]
+  },
+  {
+   "TransactionID": 3466254,
+   "TransactionAmt": 209.9499969482422,
+   "TransactionDT": 12437074,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 209.95",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "email domain seen 134117 times during training"
+   ],
+   "context": [
+    "22:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3479904,
+   "TransactionAmt": 2185.7099609375,
+   "TransactionDT": 12860821,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "msn.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)",
+    "days-since field D15 is 0 (anonymised in this dataset)"
+   ],
+   "context": [
+    "20:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "msn.com"
+   ]
+  },
+  {
+   "TransactionID": 3464859,
+   "TransactionAmt": 58.43000030517578,
+   "TransactionDT": 12375819,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 125 (anonymised in this dataset)",
+    "credit card",
+    "dist1 is missing"
+   ],
+   "context": [
+    "05:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3463886,
+   "TransactionAmt": 59.0,
+   "TransactionDT": 12344141,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "aol.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this billing region",
+    "M4 = M0",
+    "card2 freq = 25257.0"
+   ],
+   "context": [
+    "20:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "aol.com"
+   ]
+  },
+  {
+   "TransactionID": 3460188,
+   "TransactionAmt": 3163.949951171875,
+   "TransactionDT": 12236989,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "hotmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "days-since field D15 is 0 (anonymised in this dataset)",
+    "counting field C13 is 1 (anonymised in this dataset)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "15:00",
+    "29 prior on card in 24h",
+    "5 min after the last",
+    "no device data",
+    "hotmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3541631,
+   "TransactionAmt": 59.95000076293945,
+   "TransactionDT": 14664890,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 0.3x this card's usual spread (below its recent average)",
+    "risk pattern learned for this billing region",
+    "risk pattern learned for this card's issuer band"
+   ],
+   "context": [
+    "17:00",
+    "1 prior on card in 24h",
+    "3h after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3542586,
+   "TransactionAmt": 82.94999694824219,
+   "TransactionDT": 14680236,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "email domain never seen during training",
+    "amount is 0.3x this card's usual spread (below its recent average)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "21:00",
+    "3 prior on card in 24h",
+    "82 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3493271,
+   "TransactionAmt": 29.0,
+   "TransactionDT": 13270236,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "card2 is missing",
+    "M4 = M0"
+   ],
+   "context": [
+    "14:00",
+    "1 prior on card in 24h",
+    "23h after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3466048,
+   "TransactionAmt": 57.95000076293945,
+   "TransactionDT": 12432089,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "credit",
+   "P_emaildomain": "aol.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "credit card",
+    "risk pattern learned for this billing region",
+    "card2 freq = 4204.0"
+   ],
+   "context": [
+    "21:00",
+    "0 prior on card in 24h",
+    "46h after the last",
+    "no device data",
+    "aol.com"
+   ]
+  },
+  {
+   "TransactionID": 3483252,
+   "TransactionAmt": 24.969999313354492,
+   "TransactionDT": 12970754,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "days-since field D1 is 0 (anonymised in this dataset)",
+    "dist1 is missing",
+    "risk pattern learned for this card's issuer band"
+   ],
+   "context": [
+    "02:00",
+    "1 prior on card in 24h",
+    "2h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3499411,
+   "TransactionAmt": 30.950000762939453,
+   "TransactionDT": 13401075,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "anonymous.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "days-since field D1 is 31 (anonymised in this dataset)",
+    "billing region seen 2933 times during training",
+    "risk pattern learned for this card group"
+   ],
+   "context": [
+    "02:00",
+    "0 prior on card in 24h",
+    "27h after the last",
+    "no device data",
+    "anonymous.com"
+   ]
+  },
+  {
+   "TransactionID": 3555007,
+   "TransactionAmt": 261.95001220703125,
+   "TransactionDT": 15073182,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "placed at 10:00",
+    "amount is 261.95",
+    "13 prior transactions on this card in 24 hours"
+   ],
+   "context": [
+    "10:00",
+    "13 prior on card in 24h",
+    "8h after the last",
+    "no device data",
+    "gmail"
+   ]
+  },
+  {
+   "TransactionID": 3501750,
+   "TransactionAmt": 41.0,
+   "TransactionDT": 13469007,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "M4 = M0",
+    "amount ends in a round number of cents",
+    "email domain seen 134117 times during training"
+   ],
+   "context": [
+    "21:00",
+    "229 prior on card in 24h",
+    "30 min after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3512452,
+   "TransactionAmt": 57.95000076293945,
+   "TransactionDT": 13811953,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 0.5x this card's usual spread (below its recent average)",
+    "email domain seen 59510 times during training",
+    "card seen 338 times during training"
+   ],
+   "context": [
+    "20:00",
+    "0 prior on card in 24h",
+    "26h after the last",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3525450,
+   "TransactionAmt": 200.0,
+   "TransactionDT": 14187454,
+   "ProductCD": "R",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 1,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 200.00",
+    "card seen 3611 times during training",
+    "card2 freq = 4534.0"
+   ],
+   "context": [
+    "04:00",
+    "33 prior on card in 24h",
+    "67 min after the last",
+    "device known",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3577130,
+   "TransactionAmt": 35.95000076293945,
+   "TransactionDT": 15802623,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "email domain never seen during training",
+    "card seen 1744 times during training",
+    "dist1 is missing"
+   ],
+   "context": [
+    "21:00",
+    "26 prior on card in 24h",
+    "41 min after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3575940,
+   "TransactionAmt": 12.5,
+   "TransactionDT": 15778768,
+   "ProductCD": "W",
+   "card4": "mastercard",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "M4 = M0",
+    "email domain seen 134117 times during training",
+    "card2 freq = 8615.0"
+   ],
+   "context": [
+    "14:00",
+    "10 prior on card in 24h",
+    "59 min after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3569890,
+   "TransactionAmt": 30.950000762939453,
+   "TransactionDT": 15568646,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "dist1 is missing",
+    "placed at 04:00",
+    "counting field C13 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "04:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3574248,
+   "TransactionAmt": 117.0,
+   "TransactionDT": 15714491,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0014047410008779632,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "email domain never seen during training",
+    "2 prior transactions on this card in 24 hours"
+   ],
+   "context": [
+    "21:00",
+    "2 prior on card in 24h",
+    "18h after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3547937,
+   "TransactionAmt": 117.0,
+   "TransactionDT": 14856456,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "credit",
+   "P_emaildomain": "msn.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this specific card",
+    "M4 = M0",
+    "amount is 0.3x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "22:00",
+    "16 prior on card in 24h",
+    "52 min after the last",
+    "no device data",
+    "msn.com"
+   ]
+  },
+  {
+   "TransactionID": 3569068,
+   "TransactionAmt": 31.950000762939453,
+   "TransactionDT": 15543817,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "amount is 0.5x this card's usual spread (below its recent average)",
+    "email domain seen 59510 times during training",
+    "risk pattern learned for this card's issuer band"
+   ],
+   "context": [
+    "21:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3508085,
+   "TransactionAmt": 82.94999694824219,
+   "TransactionDT": 13697198,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "att.net",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "placed at 12:00",
+    "amount is 0.2x this card's usual spread (below its recent average)",
+    "card2 freq = 6580.0"
+   ],
+   "context": [
+    "12:00",
+    "3 prior on card in 24h",
+    "13h after the last",
+    "no device data",
+    "att.net"
+   ]
+  },
+  {
+   "TransactionID": 3481443,
+   "TransactionAmt": 47.95000076293945,
+   "TransactionDT": 12926426,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 149 (anonymised in this dataset)",
+    "amount is 0.5x this card's usual spread (below its recent average)",
+    "risk pattern learned for this card's issuer band"
+   ],
+   "context": [
+    "14:00",
+    "1 prior on card in 24h",
+    "9 min after the last",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3575970,
+   "TransactionAmt": 59.0,
+   "TransactionDT": 15779303,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "billing region seen 4918 times during training",
+    "card seen 890 times during training",
+    "amount is 0.3x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "15:00",
+    "3 prior on card in 24h",
+    "22h after the last",
+    "no device data"
+   ]
+  },
+  {
+   "TransactionID": 3526845,
+   "TransactionAmt": 59.0,
+   "TransactionDT": 14235987,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "comcast.net",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "amount ends in a round number of cents",
+    "billing region seen 3270 times during training",
+    "amount is 0.3x this card's usual spread (below its recent average)"
+   ],
+   "context": [
+    "18:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "comcast.net"
+   ]
+  },
+  {
+   "TransactionID": 3517415,
+   "TransactionAmt": 57.95000076293945,
+   "TransactionDT": 13970057,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "aol.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this billing region",
+    "amount is 0.3x this card's usual spread (below its recent average)",
+    "counting field C14 is 1 (anonymised in this dataset)"
+   ],
+   "context": [
+    "16:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "aol.com"
+   ]
+  },
+  {
+   "TransactionID": 3479544,
+   "TransactionAmt": 57.95000076293945,
+   "TransactionDT": 12854560,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "yahoo.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "0 prior transactions on this card in 24 hours",
+    "risk pattern learned for this card's issuer band",
+    "email domain seen 59510 times during training"
+   ],
+   "context": [
+    "18:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "yahoo.com"
+   ]
+  },
+  {
+   "TransactionID": 3548857,
+   "TransactionAmt": 57.95000076293945,
+   "TransactionDT": 14870219,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": "gmail.com",
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "risk pattern learned for this specific card",
+    "risk pattern learned for this billing region",
+    "counting field C1 is 3 (anonymised in this dataset)"
+   ],
+   "context": [
+    "02:00",
+    "0 prior on card in 24h",
+    "no device data",
+    "gmail.com"
+   ]
+  },
+  {
+   "TransactionID": 3512579,
+   "TransactionAmt": 108.94999694824219,
+   "TransactionDT": 13814411,
+   "ProductCD": "W",
+   "card4": "visa",
+   "card6": "debit",
+   "P_emaildomain": null,
+   "DeviceType": null,
+   "has_identity": 0,
+   "probability": 0.0,
+   "is_fraud": 0,
+   "reasons": [
+    "counting field C1 is 110 (anonymised in this dataset)",
+    "email domain never seen during training",
+    "card seen 2929 times during training"
+   ],
+   "context": [
+    "21:00",
+    "29 prior on card in 24h",
+    "86 min after the last",
+    "no device data"
+   ]
+  }
+ ]
+}

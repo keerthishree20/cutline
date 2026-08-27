@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f1f4f4;
+  --surface: #ffffff;
+  --surface-2: #e9eeee;
+  --ink: #141c1d;
+  --muted: #5a6a6b;
+  --faint: #869596;
+  --hair: #d5dede;
+  --accent: #0e6b70;
+  --accent-soft: #dcecec;
+  --ok: #37795a;
+  --warn: #96690f;
+  --risk: #a8402f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1314;
+    --surface: #151e1f;
+    --surface-2: #1b2627;
+    --ink: #e3ebea;
+    --muted: #94a5a5;
+    --faint: #6e8080;
+    --hair: #24302f;
+    --accent: #56c2c6;
+    --accent-soft: #16302f;
+    --ok: #6bbb89;
+    --warn: #d5a64c;
+    --risk: #e08272;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-hair: var(--hair);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-risk: var(--risk);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+html, body { background: var(--bg); color: var(--ink); }
+.tabular { font-variant-numeric: tabular-nums; }
+
+input[type="range"] {
+  -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--hair);
+}
+input[type="range"]::-moz-range-track {
+  height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--hair);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; margin-top: -7px;
+  height: 19px; width: 19px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--surface);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+}
+input[type="range"]::-moz-range-thumb {
+  height: 19px; width: 19px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--surface);
+}
+input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
