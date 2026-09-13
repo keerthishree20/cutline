@@ -42,3 +42,7 @@ next-env.d.ts
 
 # the template is meant to be committed; the real env files are not
 !.env.example
+
+# Written by `next dev` when it detects an AI coding agent. Kept out of the repo.
+AGENTS.md
+CLAUDE.md
