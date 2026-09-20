@@ -6,6 +6,7 @@ It is self-contained: you can paste it into any AI chat and ask questions about 
 sharing the repository.
 
 **Repository:** https://github.com/keerthishree20/cutline
+**All projects:** https://github.com/keerthishree20
 
 ---
 
