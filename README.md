@@ -1,5 +1,7 @@
 # Cutline
 
+[![build](https://github.com/keerthishree20/cutline/actions/workflows/build.yml/badge.svg)](https://github.com/keerthishree20/cutline/actions/workflows/build.yml)
+
 A payment risk scorer whose decline threshold comes from **cost**, not accuracy.
 
 Every fraud model outputs a probability. Turning that probability into a decision
